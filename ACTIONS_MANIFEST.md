@@ -49,6 +49,14 @@ Status possíveis: `completed`, `partial`, `blocked`, `not_started`.
 | `/dashboard` | Atalhos "Criar agora" | `next/link` | navegação para geradores | — | manual | completed (destinos ainda são `ComingSoon`, fases 3-7) |
 | `/dashboard` | Conteúdos recentes / Próximas publicações | Server Components com `Suspense` | select `content_items` / `calendar_events` | idem | manual | completed |
 
+## Planejador
+
+| Página | Elemento | Handler | Backend | Tabela | Teste | Status |
+|---|---|---|---|---|---|---|
+| `/planejador` | Botão "Salvar configurações" | `saveNicheProfileAction` | snapshot da versão anterior + update/insert | `niche_profiles`, `niche_profile_versions` | `e2e/planejador.spec.ts` | completed |
+| `/planejador` | Botão "Restaurar" (histórico) | `restoreNicheProfileVersionAction` | snapshot do estado atual + restaura snapshot antigo | `niche_profiles`, `niche_profile_versions` | `e2e/planejador.spec.ts` | completed |
+| `/planejador` | Botão "Testar geração" | `testGenerationAction` | `costPreflight` + gerador local determinístico | `ai_generation_runs`, `ai_generation_outputs` | `e2e/planejador.spec.ts` | completed |
+
 ## Conexões / Instagram (single-owner)
 
 | Página | Elemento | Handler | Backend | Tabela | Teste | Status |
@@ -78,7 +86,6 @@ backend, processamento e testes desses módulos estão em `not_started`.
 
 | Módulo | Rota | Fase | Status |
 |---|---|---|---|
-| Planejador | `/planejador` | 2 | not_started |
 | Calendário | `/calendario` | 2 | not_started |
 | Biblioteca | `/biblioteca` | 2 | not_started |
 | Post Twitter | `/posts/twitter` | 3 | not_started |

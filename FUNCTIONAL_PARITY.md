@@ -16,7 +16,7 @@ banco, processamento (quando houver), exportação (quando houver), publicação
 | Configurações de perfil (nome, bio, foto) | ✅ | ✅ | ✅ | ✅ (upload) | — | — | manual | **completed** |
 | Créditos (visualização + histórico) | ✅ | ✅ | ✅ | — | — | — | manual | **completed** |
 | Registro de providers + cost preflight (custo zero) | — | ✅ | — | — | — | — | pendente | **partial** (arquitetura pronta; sem consumidor ainda) |
-| Planejador (perfil de nicho/marca) | 🔲 | 🔲 | ✅ (schema) | — | — | — | 🔲 | **not_started** |
+| Planejador (perfil de nicho/marca) | ✅ | ✅ | ✅ | ✅ (gerador local) | — | — | ✅ | **completed** |
 | Calendário editorial | 🔲 | 🔲 | ✅ (schema) | — | — | ✅ (schema `publish_jobs`) | 🔲 | **not_started** |
 | Biblioteca | 🔲 | 🔲 | ✅ (schema) | — | — | — | 🔲 | **not_started** |
 | Post Twitter | 🔲 | 🔲 | ✅ (schema) | 🔲 (render `next/og`) | 🔲 | 🔲 | 🔲 | **not_started** |

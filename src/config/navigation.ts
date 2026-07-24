@@ -38,7 +38,7 @@ export const navSections: NavSection[] = [
     title: "Principal",
     items: [
       { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard, status: "live" },
-      { label: "Planejador", href: "/planejador", icon: CalendarRange, status: "planned", phase: 2 },
+      { label: "Planejador", href: "/planejador", icon: CalendarRange, status: "live" },
       { label: "Calendário", href: "/calendario", icon: CalendarDays, status: "planned", phase: 2 },
       { label: "Conexões", href: "/conexoes", icon: Link2, status: "live" },
     ],

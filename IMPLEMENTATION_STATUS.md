@@ -52,12 +52,28 @@ resumo executivo por fase.
 
 ## Fase 2 — Planejador, Biblioteca, Calendário, créditos
 
-**Status: not_started.** Schema já existe (`niche_profiles`,
-`niche_profile_versions`, `brand_profiles`, `content_items` com `folder_id`,
-`tags`, `calendars`, `calendar_events`). Sistema de créditos (carteira +
-transações) já funciona desde a Fase 1 (criado no signup, visível em
-`/configuracoes/creditos`) — falta apenas *debitar* créditos quando houver
-geração de IA real (Fase 3+).
+**Status: Planejador completed · Biblioteca/Calendário not_started.**
+
+Planejador (`/planejador`) é vertical slice completo:
+- Formulário com os 16 campos do perfil de nicho, salvamento cria uma nova
+  linha de versão (`niche_profiles.version` incrementa, snapshot da versão
+  anterior vai para `niche_profile_versions`) — nada é sobrescrito ou perdido.
+- Dados persistem de fato: recarregar a página mostra os valores salvos.
+- "Restaurar" traz uma versão antiga de volta (e cria uma nova versão do
+  estado atual antes de restaurar, para a restauração também ser reversível).
+- "Testar geração" usa o provider `local-template-text` (registry de custo
+  zero) via `costPreflight()`, grava `ai_generation_runs` +
+  `ai_generation_outputs` — primeiro consumidor real dessas tabelas.
+- Cobertura: `e2e/planejador.spec.ts` (salvar → recarregar → testar geração →
+  nova versão → restaurar, tudo contra o Supabase real).
+
+Sistema de créditos (carteira + transações) já funciona desde a Fase 1
+(criado no signup, visível em `/configuracoes/creditos`) — falta apenas
+*debitar* créditos quando houver geração de mídia real (Fase 3+; texto local
+não consome crédito, por não ter custo).
+
+Biblioteca e Calendário continuam `not_started` — schema já existe
+(`content_items` com `folder_id`, `tags`, `calendars`, `calendar_events`).
 
 ## Fase 3 — Post Twitter, Frase de Efeito, Post YouTube, Post GPT, Google Post
 
