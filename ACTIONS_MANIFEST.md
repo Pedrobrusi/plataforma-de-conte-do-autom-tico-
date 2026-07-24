@@ -49,6 +49,27 @@ Status possíveis: `completed`, `partial`, `blocked`, `not_started`.
 | `/dashboard` | Atalhos "Criar agora" | `next/link` | navegação para geradores | — | manual | completed (destinos ainda são `ComingSoon`, fases 3-7) |
 | `/dashboard` | Conteúdos recentes / Próximas publicações | Server Components com `Suspense` | select `content_items` / `calendar_events` | idem | manual | completed |
 
+## Conexões / Instagram (single-owner)
+
+| Página | Elemento | Handler | Backend | Tabela | Teste | Status |
+|---|---|---|---|---|---|---|
+| `/conexoes` | Card "Instagram" | `next/link` | leitura `social_connections` | `social_connections` | `e2e/instagram-setup.spec.ts` | completed |
+| `/configuracoes/instagram-setup` | Botão "Conectar meu Instagram" | link → `GET /api/integrations/instagram/connect` | gera state assinado, redireciona para `instagram.com/oauth/authorize` (ou para `status=blocked_official_auth_unavailable` se `META_APP_ID` ausente) | — | `e2e/instagram-setup.spec.ts` (cobre o caminho bloqueado) | **blocked_official_auth_unavailable** até `META_APP_ID`/`META_APP_SECRET` serem configurados |
+| (callback) | — | `GET /api/integrations/instagram/callback` | valida state, troca código, busca perfil, checa allowlist, criptografa e grava token | `social_connections`, `audit_logs` | requer Meta App real (manual) | blocked_official_auth_unavailable |
+| `/configuracoes/instagram-setup` | Botão "Verificar conexão" | `testInstagramConnectionAction` | chama `GET /me` na Graph API com o token descriptografado | `social_connections`, `audit_logs` | requer conexão real (manual) | blocked_official_auth_unavailable |
+| `/configuracoes/instagram-setup` | Botão "Publicar teste" | `publishTestPostAction` | renderiza imagem via `next/og`, sobe para Storage, cria container, publica, busca permalink | `social_connections`, `audit_logs`, Storage `media` | requer conexão real (manual) | blocked_official_auth_unavailable |
+| `/configuracoes/instagram-setup` | Botão "Desconectar" | `disconnectInstagramAction` | limpa tokens, marca `disconnected` | `social_connections`, `audit_logs` | requer conexão real (manual) | blocked_official_auth_unavailable |
+| `/configuracoes/instagram-setup` | Botão "Copiar redirect URI" | `navigator.clipboard.writeText` | — | — | manual | completed |
+| `/configuracoes/instagram-setup` | Link "Abrir Meta for Developers" | link externo | — | — | manual | completed |
+
+Toda a integração está **implementada e testada no que depende só do código
+desta aplicação** (allowlist fail-closed, criptografia, CSRF do OAuth,
+proteção de rota, redirecionamento honesto quando faltam credenciais). O que
+falta é exclusivamente externo: o proprietário criar o Meta App e me passar
+`META_APP_ID`/`META_APP_SECRET` — só então os itens marcados
+`blocked_official_auth_unavailable` acima podem ser testados de ponta a ponta
+e promovidos a `completed`.
+
 ## Módulos ainda não implementados (fases 2-7)
 
 Todas as rotas abaixo existem, estão protegidas por autenticação e mostram um
@@ -71,6 +92,7 @@ backend, processamento e testes desses módulos estão em `not_started`.
 | Carrossel Dark | `/carrosseis/dark` | 5 | not_started |
 | Criador de Reels | `/reels/criador` | 5 | not_started (infra OK: FFmpeg local; voz via `say` do macOS pendente de revisão de licença para uso multi-tenant) |
 | Roteiro Reels | `/reels/roteiro` | 5 | not_started |
-| Conexões | `/conexoes` | 6 | not_started (bloqueado: nenhum app OAuth de terceiros cadastrado ainda) |
+| Conexões — Instagram | `/conexoes`, `/configuracoes/instagram-setup` | 6 | **partial** — ver seção dedicada acima (código completo, falta só `META_APP_ID`/`META_APP_SECRET` do proprietário) |
+| Conexões — Facebook/YouTube/Google Business | `/conexoes` | 6 | not_started |
 | Bio Magnética | `/marca/bio` | 7 | not_started |
 | Criativos | `/marca/criativos` | 7 | not_started |

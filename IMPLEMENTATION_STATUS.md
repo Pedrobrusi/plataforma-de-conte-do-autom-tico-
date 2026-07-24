@@ -38,6 +38,12 @@ resumo executivo por fase.
 - **Envio de e-mail usa o serviço de e-mail embutido do Supabase** (tier
   gratuito) — limite de taxa baixo. Para produção, configurar SMTP customizado
   em Project Settings → Auth.
+- **Proteção contra senhas vazadas (HaveIBeenPwned) não habilitada**: o
+  Supabase retorna `402 Payment Required` ao tentar ativar
+  `password_hibp_enabled` — é um recurso de plano pago. Mantido desabilitado
+  para preservar o projeto 100% gratuito; reavaliar se o projeto for
+  upgradeado. Todos os outros advisories de segurança do banco estão limpos
+  (`get_advisors` → 0 findings restantes).
 - **Convite de membros**: schema pronto (`workspace_members.invited_email`,
   `invite_token`), UI/e-mail de convite ainda não implementados (Fase 2).
 - **Migrations foram aplicadas via Supabase Management API**, não via
@@ -77,15 +83,42 @@ provider local de avatar identificado ainda, ficará como `manual_handoff`
 
 ## Fase 6 — Conexões, publicação, agendamento, filas, retries, logs
 
-**Status: not_started / blocked_official_auth_unavailable por padrão.**
-Nenhuma rede social (Instagram, Facebook, X, YouTube, Google Business) tem um
-app OAuth cadastrado ainda — isso exige o proprietário criar o app em cada
-painel de desenvolvedores (Meta for Developers, X Developer Portal, Google
-Cloud Console) e preencher `*_OAUTH_CLIENT_ID`/`SECRET` em `.env`. A
-arquitetura de OAuth (Authorization Code + PKCE, tokens criptografados,
-`provider_connections`) será implementada de qualquer forma; o *status* de
-cada conexão só passa de `blocked_official_auth_unavailable` para
-`connected` depois que essas credenciais existirem e o fluxo real for testado.
+**Status: Instagram partial (código 100% pronto, aguardando credencial
+externa) · demais plataformas not_started.**
+
+O produto foi redefinido para uso **single-owner**: só a conta do proprietário
+pode conectar, sem App Review, sem Live Mode, sem clientes externos. Construído:
+
+- `src/lib/integrations/instagram/{config,oauth,publish}.ts` — Instagram API
+  with Instagram Login (sem Facebook Page), scopes
+  `instagram_business_basic` + `instagram_business_content_publish`.
+- `src/lib/crypto/{token-cipher,oauth-state}.ts` — tokens sempre criptografados
+  (AES-256-GCM) em repouso; CSRF do OAuth via cookie assinado HMAC (TTL 5min).
+- Allowlist **fail-closed**: `INSTAGRAM_ALLOWED_ACCOUNT_IDS` /
+  `INSTAGRAM_ALLOWED_USERNAMES` — sem allowlist configurada, nenhuma conta é
+  aceita. Tentativa de conta não autorizada é recusada e registrada em
+  `audit_logs`, nunca fica "Conectado" sem essa verificação.
+- Rotas `/api/integrations/instagram/{connect,callback,test-image}` e página
+  `/configuracoes/instagram-setup` (checklist real, redirect URI para copiar,
+  botões Conectar/Verificar/Publicar teste/Desconectar).
+- `/conexoes` virou hub real (deixou de ser `ComingSoon`): Instagram tem card
+  funcional, Facebook/YouTube/Google Business aparecem como "não
+  implementado" honestamente.
+- 17 testes unitários (Vitest) + 2 testes E2E (Playwright) cobrindo cifra de
+  token, allowlist, construção da URL OAuth, proteção de rota e o
+  redirecionamento correto quando `META_APP_ID` está ausente.
+
+**Bloqueio real, não de arquitetura**: sem `META_APP_ID`/`META_APP_SECRET` (só
+o proprietário pode gerá-los, criando o Meta App e aceitando o convite de
+Instagram Tester), o botão "Conectar meu Instagram" redireciona para
+`status=blocked_official_auth_unavailable` em vez de simular sucesso ou
+quebrar com erro 500 — isso está testado. Publicação real, teste de conexão e
+desconexão dependem dessa mesma credencial e ficam `blocked_official_auth_unavailable`
+até lá.
+
+Facebook Pages, X/Twitter, YouTube e Google Business Profile continuam
+`not_started` — mesmo princípio (OAuth real, sem API paga, sem chave inserida
+pelo usuário) será aplicado quando chegar a vez de cada uma.
 
 ## Fase 7 — Bio Magnética, Criativos, métricas, acessibilidade, deploy
 

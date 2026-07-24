@@ -107,6 +107,39 @@ continuar o desenvolvimento localmente com Docker, basta `supabase link
   (`ffmpeg-static`) para vídeo, `tesseract.js` (WASM) para OCR. Nenhum depende
   de chave paga.
 
+## Conexões sociais — Instagram (modo single-owner)
+
+Esta instalação é de uso pessoal do proprietário: não há App Review, Live Mode,
+nem contas de terceiros. Decisões de arquitetura específicas:
+
+- **Instagram API with Instagram Login** (`src/lib/integrations/instagram/`),
+  não Facebook Login — não exige Página do Facebook vinculada à conta
+  Instagram. Todas as chamadas Graph vão para `graph.instagram.com`, não
+  `graph.facebook.com`.
+- **Allowlist fail-closed**: `isAccountAllowed()` só permite uma conta se
+  `INSTAGRAM_ALLOWED_ACCOUNT_IDS` ou `INSTAGRAM_ALLOWED_USERNAMES` estiverem
+  configurados E a conta bater com a lista. Sem allowlist configurada,
+  **nenhuma** conta é aceita — nunca "fail open".
+- **CSRF/state do OAuth via cookie assinado** (`src/lib/crypto/oauth-state.ts`),
+  não uma tabela no banco: HMAC-SHA256 com `TOKEN_ENCRYPTION_KEY`, TTL de 5
+  minutos, comparação com `timingSafeEqual`. Evita uma tabela cujo único papel
+  é guardar estado efêmero de alguns minutos.
+- **Tokens sempre criptografados em repouso** (`src/lib/crypto/token-cipher.ts`,
+  AES-256-GCM) — `social_connections.access_token_encrypted` nunca guarda texto
+  plano, e a chave decifrada só existe em memória durante uma Server
+  Action/Route Handler, nunca é enviada ao client.
+- **Sem tabela nova para a conexão**: reaproveita `social_connections` (já
+  criada na Fase 1, workspace-scoped, RLS pronta) em vez de duplicar schema.
+- **Publicação de teste usa imagem gerada por `next/og`** (real, com timestamp
+  dinâmico — não é um asset estático), enviada para o bucket público `media`
+  do Supabase Storage para obter uma URL HTTPS real. Isso é necessário mesmo
+  em desenvolvimento local: a Graph API do Instagram busca a imagem pelo
+  `image_url` a partir dos servidores da Meta, que não alcançam
+  `http://localhost:3000`.
+- **Sem App Review**: funciona porque o proprietário é adicionado como
+  Admin/Developer/Tester do Meta App — Development Mode permite autenticação e
+  publicação por usuários com papel no app, indefinidamente.
+
 ## Estrutura de pastas relevante
 
 ```
@@ -120,19 +153,25 @@ src/
       dashboard/
       configuracoes/perfil, configuracoes/creditos
       planejador, calendario, conexoes, biblioteca,
-      posts/*, carrosseis/*, reels/*, marca/*    → ComingSoon (fases 2-7)
+      configuracoes/instagram-setup  wizard real de conexão do Instagram
+      conexoes/            hub de plataformas (Instagram real; demais "não implementado")
+      posts/*, carrosseis/*, reels/*, marca/*    → ComingSoon (fases 2-5, 7)
+    api/integrations/instagram/  connect, callback (Route Handlers OAuth) e test-image (next/og)
   components/
     ui/                 Button, Input, Card, Alert, Dropdown, Skeleton
     layout/              Sidebar, Header, AppShell, ComingSoon
   config/               site.ts (nome do produto), navigation.ts (sidebar)
   lib/
     supabase/            client, server, types
-    actions/             Server Actions (auth, onboarding, profile, workspace)
+    actions/             Server Actions (auth, onboarding, profile, workspace, instagram)
     validations/         schemas Zod
     providers/           registry de custo zero
+    crypto/              token-cipher (AES-256-GCM), oauth-state (cookie assinado)
+    integrations/instagram/  config, oauth, publish (Instagram API with Instagram Login)
     workspace.ts
-supabase/migrations/     0001_init.sql, 0002_harden_functions.sql, 0003_storage.sql
+supabase/migrations/     0001_init.sql … 0006_media_bucket.sql
 e2e/                     Playwright
+vitest.config.ts         testes unitários (crypto, allowlist, OAuth URL builder)
 ```
 
 ## Decisões que exigiram trade-off explícito

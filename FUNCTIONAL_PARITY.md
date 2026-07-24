@@ -32,7 +32,8 @@ banco, processamento (quando houver), exportação (quando houver), publicação
 | Criador de Reels | 🔲 | 🔲 | ✅ (schema) | 🔲 (FFmpeg; voz pendente de revisão de licença) | 🔲 | 🔲 | 🔲 | **not_started** |
 | Bio Magnética | 🔲 | 🔲 | ✅ (schema) | 🔲 (gerador local de texto) | — | — | 🔲 | **not_started** |
 | Criativos | 🔲 | 🔲 | ✅ (schema) | 🔲 (gerador local de texto) | — | — | 🔲 | **not_started** |
-| Conexões sociais (OAuth) | 🔲 | 🔲 | ✅ (schema) | — | — | 🔲 | 🔲 | **blocked** (nenhum app OAuth de terceiros registrado — cadastro depende do proprietário em cada plataforma) |
+| Conexões — Instagram (single-owner) | ✅ | ✅ | ✅ | — | — | ✅ (código) | ✅ | **partial** — todo o código está pronto e testado (allowlist fail-closed, criptografia AES-256-GCM, CSRF via cookie assinado, publicação real com container→poll→publish→permalink); falta apenas o proprietário criar o Meta App e fornecer `META_APP_ID`/`META_APP_SECRET` para o teste E2E de publicação real. Status reportado ao usuário: `blocked_official_auth_unavailable` |
+| Conexões — Facebook/YouTube/Google Business | 🔲 | 🔲 | ✅ (schema) | — | — | 🔲 | 🔲 | **not_started** |
 
 Legenda: ✅ pronto · 🔲 não implementado · — não aplicável a esta feature.
 
