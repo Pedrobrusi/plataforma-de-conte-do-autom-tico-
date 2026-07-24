@@ -74,7 +74,7 @@ export const navSections: NavSection[] = [
     items: [
       { label: "Bio Magnética", href: "/marca/bio", icon: Magnet, status: "planned", phase: 7 },
       { label: "Criativos", href: "/marca/criativos", icon: Palette, status: "planned", phase: 7 },
-      { label: "Biblioteca", href: "/biblioteca", icon: Library, status: "planned", phase: 2 },
+      { label: "Biblioteca", href: "/biblioteca", icon: Library, status: "live" },
     ],
   },
 ];

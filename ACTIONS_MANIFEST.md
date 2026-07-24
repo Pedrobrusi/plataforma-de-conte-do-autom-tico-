@@ -57,6 +57,22 @@ Status possíveis: `completed`, `partial`, `blocked`, `not_started`.
 | `/planejador` | Botão "Restaurar" (histórico) | `restoreNicheProfileVersionAction` | snapshot do estado atual + restaura snapshot antigo | `niche_profiles`, `niche_profile_versions` | `e2e/planejador.spec.ts` | completed |
 | `/planejador` | Botão "Testar geração" | `testGenerationAction` | `costPreflight` + gerador local determinístico | `ai_generation_runs`, `ai_generation_outputs` | `e2e/planejador.spec.ts` | completed |
 
+## Biblioteca
+
+| Página | Elemento | Handler | Backend | Tabela | Teste | Status |
+|---|---|---|---|---|---|---|
+| `/biblioteca` | Busca + filtros (tipo/status/pasta/tag/favorito) | GET via query params | `content_items` filtrado no servidor | `content_items`, `content_item_tags` | `e2e/biblioteca.spec.ts` | completed |
+| `/biblioteca` | Botão "Nova pasta" | `createFolderAction` | insert | `folders` | `e2e/biblioteca.spec.ts` | completed |
+| `/biblioteca` | Botão "Nova tag" | `createTagAction` | insert | `tags` | manual | completed |
+| `/biblioteca` | ★ Favoritar | `toggleFavoriteAction` | update `is_favorite` | `content_items` | `e2e/biblioteca.spec.ts` | completed |
+| `/biblioteca` | Renomear | `renameContentItemAction` | update `title` | `content_items` | `e2e/biblioteca.spec.ts` | completed |
+| `/biblioteca` | Duplicar | `duplicateContentItemAction` | insert nova linha | `content_items` | `e2e/biblioteca.spec.ts` | completed |
+| `/biblioteca` | Mover de pasta (select) | `moveToFolderAction` | update `folder_id` | `content_items` | manual | completed |
+| `/biblioteca` | Tag no item (+ tag) | `toggleTagOnItemAction` | insert/delete | `content_item_tags` | manual | completed |
+| `/biblioteca` | Arquivar | `archiveContentItemAction` | update `status` | `content_items` | manual | completed |
+| `/biblioteca` | Excluir | `softDeleteContentItemAction` | update `deleted_at` | `content_items`, `audit_logs` | `e2e/biblioteca.spec.ts` | completed |
+| `/biblioteca` | Restaurar (lixeira) | `restoreContentItemAction` | update `deleted_at = null` | `content_items` | `e2e/biblioteca.spec.ts` | completed |
+
 ## Conexões / Instagram (single-owner)
 
 | Página | Elemento | Handler | Backend | Tabela | Teste | Status |
@@ -87,7 +103,6 @@ backend, processamento e testes desses módulos estão em `not_started`.
 | Módulo | Rota | Fase | Status |
 |---|---|---|---|
 | Calendário | `/calendario` | 2 | not_started |
-| Biblioteca | `/biblioteca` | 2 | not_started |
 | Post Twitter | `/posts/twitter` | 3 | not_started |
 | Frase de Efeito | `/posts/frase-de-efeito` | 3 | not_started |
 | Post YouTube | `/posts/youtube` | 3 | not_started (infra OK: FFmpeg local via `ffmpeg-static` já instalado) |

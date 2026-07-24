@@ -72,8 +72,27 @@ Sistema de créditos (carteira + transações) já funciona desde a Fase 1
 *debitar* créditos quando houver geração de mídia real (Fase 3+; texto local
 não consome crédito, por não ter custo).
 
-Biblioteca e Calendário continuam `not_started` — schema já existe
-(`content_items` com `folder_id`, `tags`, `calendars`, `calendar_events`).
+Biblioteca (`/biblioteca`) também é vertical slice completo:
+- Busca por título, filtros por tipo/status/pasta/tag/favoritos (todos via
+  query no Supabase, não em memória), alternância grade/lista.
+- Criar pasta, criar tag, mover item entre pastas, anexar/remover tags —
+  tudo persistido, sem estado que "parece" salvo mas não é.
+- Favoritar, renomear, duplicar (cria linha nova real), arquivar, excluir
+  (soft delete via `deleted_at`) e restaurar — com view de "Itens excluídos".
+- Estado vazio distingue "biblioteca vazia" de "filtro sem resultado".
+- Cobertura: `e2e/biblioteca.spec.ts` (semeia um `content_item` via Admin API,
+  testa busca, favoritar com persistência real após reload, renomear,
+  duplicar com contagem real no banco, excluir/restaurar).
+
+Calendário continua `not_started` — schema já existe (`calendars`,
+`calendar_events`).
+
+**Nota sobre flakiness dos testes E2E**: em algumas execuções da suíte
+completa (não isoladas), `supabase.auth.admin.createUser()` falha
+esporadicamente com `invalid JWT: unrecognized JWT kid` — é um erro do lado
+do Supabase (infra de assinatura de JWT do projeto), não do código da
+aplicação; roda isolado ou re-executado sempre passa. Se vir esse erro
+específico, rode o arquivo de teste isoladamente antes de investigar como bug.
 
 ## Fase 3 — Post Twitter, Frase de Efeito, Post YouTube, Post GPT, Google Post
 

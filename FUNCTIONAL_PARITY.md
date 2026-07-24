@@ -18,7 +18,7 @@ banco, processamento (quando houver), exportação (quando houver), publicação
 | Registro de providers + cost preflight (custo zero) | — | ✅ | — | — | — | — | pendente | **partial** (arquitetura pronta; sem consumidor ainda) |
 | Planejador (perfil de nicho/marca) | ✅ | ✅ | ✅ | ✅ (gerador local) | — | — | ✅ | **completed** |
 | Calendário editorial | 🔲 | 🔲 | ✅ (schema) | — | — | ✅ (schema `publish_jobs`) | 🔲 | **not_started** |
-| Biblioteca | 🔲 | 🔲 | ✅ (schema) | — | — | — | 🔲 | **not_started** |
+| Biblioteca | ✅ | ✅ | ✅ | — | — | — | ✅ | **completed** |
 | Post Twitter | 🔲 | 🔲 | ✅ (schema) | 🔲 (render `next/og`) | 🔲 | 🔲 | 🔲 | **not_started** |
 | Frase de Efeito | 🔲 | 🔲 | ✅ (schema) | 🔲 (render `next/og`) | 🔲 | 🔲 | 🔲 | **not_started** |
 | Post YouTube | 🔲 | 🔲 | ✅ (schema) | 🔲 (FFmpeg disponível) | 🔲 | 🔲 | 🔲 | **not_started** |
