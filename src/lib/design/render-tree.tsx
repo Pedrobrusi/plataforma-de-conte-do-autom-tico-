@@ -34,6 +34,8 @@ function renderTextElement(el: Extract<DesignElement, { type: "text" }>): ReactN
         display: "flex",
         flexWrap: "wrap",
         alignItems: "flex-start",
+        alignContent:
+          el.verticalAlign === "middle" ? "center" : el.verticalAlign === "bottom" ? "flex-end" : "flex-start",
         justifyContent:
           el.align === "center" ? "center" : el.align === "right" ? "flex-end" : "flex-start",
         width: "100%",

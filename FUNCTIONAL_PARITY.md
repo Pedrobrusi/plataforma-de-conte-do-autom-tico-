@@ -27,7 +27,7 @@ banco, processamento (quando houver), exportação (quando houver), publicação
 | Carrossel IA | 🔲 | 🔲 | ✅ (schema) | 🔲 (OCR/transcrição disponíveis) | 🔲 | 🔲 | 🔲 | **not_started** |
 | Carrossel Twitter | 🔲 | 🔲 | ✅ (schema) | 🔲 | 🔲 | 🔲 | 🔲 | **not_started** |
 | Carrossel Pessoal | 🔲 | 🔲 | ✅ (schema) | 🔲 | 🔲 | 🔲 | 🔲 | **not_started** |
-| Carrossel Dark | 🔲 | 🔲 | ✅ (schema) | 🔲 | 🔲 | 🔲 | 🔲 | **not_started** |
+| Carrossel Dark | ✅ | ✅ | ✅ | ✅ (multi-slide real) | ✅ (ZIP + PDF reais) | — | ✅ | **completed** |
 | Roteiro Reels | 🔲 | 🔲 | ✅ (schema) | 🔲 (gerador local de texto) | 🔲 | — | 🔲 | **not_started** |
 | Criador de Reels | 🔲 | 🔲 | ✅ (schema) | 🔲 (FFmpeg; voz pendente de revisão de licença) | 🔲 | 🔲 | 🔲 | **not_started** |
 | Bio Magnética | 🔲 | 🔲 | ✅ (schema) | 🔲 (gerador local de texto) | — | — | 🔲 | **not_started** |

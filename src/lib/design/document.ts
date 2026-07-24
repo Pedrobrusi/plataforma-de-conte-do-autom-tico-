@@ -29,6 +29,7 @@ export const textElementSchema = baseElementSchema.extend({
   fontWeight: z.union([z.literal(400), z.literal(500), z.literal(600), z.literal(700), z.literal(800)]).default(600),
   color: z.string().default("#F5F5F5"),
   align: z.enum(["left", "center", "right"]).default("left"),
+  verticalAlign: z.enum(["top", "middle", "bottom"]).default("top"),
   lineHeight: z.number().default(1.25),
   letterSpacing: z.number().default(0),
   highlightColor: z.string().optional(),

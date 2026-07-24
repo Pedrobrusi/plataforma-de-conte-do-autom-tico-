@@ -59,7 +59,7 @@ export const navSections: NavSection[] = [
       { label: "Carrossel IA", href: "/carrosseis/ia", icon: GalleryHorizontal, status: "planned", phase: 4 },
       { label: "Carrossel Twitter", href: "/carrosseis/twitter", icon: MessageSquareText, status: "planned", phase: 5 },
       { label: "Carrossel Pessoal", href: "/carrosseis/pessoal", icon: User, status: "planned", phase: 5 },
-      { label: "Carrossel Dark", href: "/carrosseis/dark", icon: Moon, status: "planned", phase: 5 },
+      { label: "Carrossel Dark", href: "/carrosseis/dark", icon: Moon, status: "live" },
     ],
   },
   {

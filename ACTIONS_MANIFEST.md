@@ -91,6 +91,16 @@ Status possíveis: `completed`, `partial`, `blocked`, `not_started`.
 | `/posts/twitter` | Botão "Salvar" | `saveTwitterPostAction` | insert/update + snapshot em `content_versions` | `content_items`, `content_versions` | `e2e/post-twitter.spec.ts` | completed |
 | `/posts/twitter` | Botão "Renderizar PNG" | `renderTwitterPostAction` | `renderDesignPng` → upload → `render_jobs` | `render_jobs`, Storage `media` | `e2e/post-twitter.spec.ts` (valida PNG real 1170×1560) | completed |
 
+## Carrossel Dark
+
+| Página | Elemento | Handler | Backend | Tabela | Teste | Status |
+|---|---|---|---|---|---|---|
+| `/carrosseis/dark` | Editor de slide (texto, fonte 24-96px, cores) | `useState` local | recalcula `DesignDocument` do slide ativo | — | `e2e/carousel-dark.spec.ts` | completed |
+| `/carrosseis/dark` | Adicionar/Duplicar/Excluir/Mover slide | handlers locais | — | — | `e2e/carousel-dark.spec.ts` (reordenar validado) | completed |
+| `/carrosseis/dark` | Botão "Salvar" | `saveCarouselAction` | insert/update `content_items.data.slides[]` + versão | `content_items`, `content_versions` | `e2e/carousel-dark.spec.ts` | completed |
+| `/carrosseis/dark` | Botão "Exportar ZIP" | `renderCarouselExportAction(id,'zip')` | `renderCarouselZip` → upload → `render_jobs` | `render_jobs`, Storage `media` | `e2e/carousel-dark.spec.ts` (valida cada PNG do ZIP) | completed |
+| `/carrosseis/dark` | Botão "Exportar PDF" | `renderCarouselExportAction(id,'pdf')` | `renderDesignPdf` → upload → `render_jobs` | `render_jobs`, Storage `media` | `e2e/carousel-dark.spec.ts` (valida nº de páginas via `pdf-lib`) | completed |
+
 ## Conexões / Instagram (single-owner)
 
 | Página | Elemento | Handler | Backend | Tabela | Teste | Status |
@@ -127,7 +137,6 @@ backend, processamento e testes desses módulos estão em `not_started`.
 | Carrossel IA | `/carrosseis/ia` | 4 | not_started (OCR local via `tesseract.js` já instalado) |
 | Carrossel Twitter | `/carrosseis/twitter` | 5 | not_started |
 | Carrossel Pessoal | `/carrosseis/pessoal` | 5 | not_started |
-| Carrossel Dark | `/carrosseis/dark` | 5 | not_started |
 | Criador de Reels | `/reels/criador` | 5 | not_started (infra OK: FFmpeg local; voz via `say` do macOS pendente de revisão de licença para uso multi-tenant) |
 | Roteiro Reels | `/reels/roteiro` | 5 | not_started |
 | Conexões — Instagram | `/conexoes`, `/configuracoes/instagram-setup` | 6 | **partial** — ver seção dedicada acima (código completo, falta só `META_APP_ID`/`META_APP_SECRET` do proprietário) |

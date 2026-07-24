@@ -30,6 +30,7 @@ function sampleDoc(overrides: Partial<DesignDocument> = {}): DesignDocument {
         fontWeight: 700,
         color: "#F5F5F5",
         align: "left",
+        verticalAlign: "top",
         lineHeight: 1.2,
         letterSpacing: 0,
         highlightSubstring: "sucesso",
