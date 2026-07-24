@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import sharp from "sharp";
-import { createTestUser } from "./helpers/supabase-admin";
+import { createTestUser, deleteTestUser } from "./helpers/supabase-admin";
 
 test("Frase de Efeito: cria, salva, renderiza PNG real, reabre e edita (nova versão)", async ({ page }) => {
   const stamp = Date.now();
@@ -76,6 +76,6 @@ test("Frase de Efeito: cria, salva, renderiza PNG real, reabre e edita (nova ver
       .eq("content_item_id", itemId);
     expect(versionCount).toBe(1);
   } finally {
-    await admin.auth.admin.deleteUser(userId);
+    await deleteTestUser(admin, userId);
   }
 });

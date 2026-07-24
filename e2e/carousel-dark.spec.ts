@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import sharp from "sharp";
 import JSZip from "jszip";
 import { PDFDocument } from "pdf-lib";
-import { createTestUser } from "./helpers/supabase-admin";
+import { createTestUser, deleteTestUser } from "./helpers/supabase-admin";
 
 test("Carrossel Dark: adiciona slides, reordena, salva, exporta ZIP e PDF reais", async ({ page }) => {
   const stamp = Date.now();
@@ -87,6 +87,6 @@ test("Carrossel Dark: adiciona slides, reordena, salva, exporta ZIP e PDF reais"
       .eq("status", "completed");
     expect(jobCount).toBe(2);
   } finally {
-    await admin.auth.admin.deleteUser(userId);
+    await deleteTestUser(admin, userId);
   }
 });

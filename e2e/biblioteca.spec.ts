@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { createTestUser } from "./helpers/supabase-admin";
+import { createTestUser, deleteTestUser } from "./helpers/supabase-admin";
 
 test("Biblioteca: busca, favoritar, renomear, duplicar, pastas, excluir e restaurar", async ({ page }) => {
   const stamp = Date.now();
@@ -98,6 +98,6 @@ test("Biblioteca: busca, favoritar, renomear, duplicar, pastas, excluir e restau
     await page.getByRole("button", { name: "Ver ativos" }).click();
     await expect(card()).toBeVisible();
   } finally {
-    await admin.auth.admin.deleteUser(userId);
+    await deleteTestUser(admin, userId);
   }
 });

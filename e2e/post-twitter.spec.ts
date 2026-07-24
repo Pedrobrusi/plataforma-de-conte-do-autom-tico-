@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import sharp from "sharp";
-import { createTestUser } from "./helpers/supabase-admin";
+import { createTestUser, deleteTestUser } from "./helpers/supabase-admin";
 
 test("Post Twitter: salva, renderiza PNG real com avatar/selo, reabre e edita", async ({ page }) => {
   const stamp = Date.now();
@@ -55,6 +55,6 @@ test("Post Twitter: salva, renderiza PNG real com avatar/selo, reabre e edita", 
     await expect(page.getByLabel("Texto do post")).toHaveValue(postContent);
     await expect(page.getByLabel("Selo de verificação")).toBeChecked();
   } finally {
-    await admin.auth.admin.deleteUser(userId);
+    await deleteTestUser(admin, userId);
   }
 });

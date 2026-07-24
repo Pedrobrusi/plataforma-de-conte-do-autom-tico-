@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { createTestUser } from "./helpers/supabase-admin";
+import { createTestUser, deleteTestUser } from "./helpers/supabase-admin";
 
 test.describe("Autenticação", () => {
   test("cadastro exibe erro de validação real quando as senhas não coincidem", async ({ page }) => {
@@ -46,7 +46,7 @@ test.describe("Autenticação", () => {
         .single();
       expect(profile?.onboarding_completed_at).toBeTruthy();
     } finally {
-      await admin.auth.admin.deleteUser(userId);
+      await deleteTestUser(admin, userId);
     }
   });
 });

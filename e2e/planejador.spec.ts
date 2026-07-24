@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { createTestUser } from "./helpers/supabase-admin";
+import { createTestUser, deleteTestUser } from "./helpers/supabase-admin";
 
 test("Planejador: salvar cria versão, persiste, testa geração e restaura versão anterior", async ({ page }) => {
   const stamp = Date.now();
@@ -49,6 +49,6 @@ test("Planejador: salvar cria versão, persiste, testa geração e restaura vers
     await page.getByRole("button", { name: "Restaurar" }).first().click();
     await expect(page.getByLabel("Meu nicho")).toHaveValue(nicheValue, { timeout: 10_000 });
   } finally {
-    await admin.auth.admin.deleteUser(userId);
+    await deleteTestUser(admin, userId);
   }
 });

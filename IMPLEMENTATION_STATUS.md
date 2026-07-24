@@ -114,7 +114,26 @@ projeto e editar (gera nova versão). Testado ponta a ponta em
 validar com `sharp` que é um PNG real nas dimensões certas — não apenas que o
 botão existe.
 
-**Post Twitter** também está completo: avatar circular (upload real via
+**Carrossel Pessoal** também completo: foto obrigatória por slide (upload real,
+sem placeholder quando ausente — exportação é recusada de verdade, não gera
+arquivo fictício), controle de foco horizontal/vertical do recorte, overlay
+escuro configurável, frase e @usuário. Reaproveita `useSlideList` e os
+componentes `SlideNavigator`/`CarouselExportPanel` extraídos do Carrossel Dark.
+
+Durante os testes E2E deste módulo, apagar o usuário de teste começou a falhar
+silenciosamente (o SDK do Supabase engolia o erro como `{}`). Investigação
+por SQL direto revelou uma referência circular real no schema:
+`user_profiles.active_workspace_id → workspaces` não tinha `ON DELETE`
+definido (padrão `NO ACTION`), então apagar um workspace ficava bloqueado
+enquanto qualquer perfil (inclusive o do próprio dono) ainda apontasse para
+ele como workspace ativo — o que por sua vez bloqueava apagar o usuário.
+Corrigido na migration `0008_fix_workspace_delete_fks.sql` para
+`ON DELETE SET NULL`. Também corrigido o helper de teste
+(`e2e/helpers/supabase-admin.ts`) para sempre apagar o workspace do usuário de
+teste antes do usuário, com retry para a mesma flakiness de JWT já conhecida.
+26 usuários/workspaces órfãos de execuções anteriores foram limpos do banco.
+
+**Post Twitter** está completo: avatar circular (upload real via
 `MediaUploadButton`, reutilizável pelos próximos templates), nome, @usuário,
 selo de verificação opcional, texto com auto-fit, tema claro/escuro. A
 inspeção visual real do PNG exportado (não só a checagem de dimensão/formato)

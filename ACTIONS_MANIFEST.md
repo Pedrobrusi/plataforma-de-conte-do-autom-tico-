@@ -101,6 +101,16 @@ Status possíveis: `completed`, `partial`, `blocked`, `not_started`.
 | `/carrosseis/dark` | Botão "Exportar ZIP" | `renderCarouselExportAction(id,'zip')` | `renderCarouselZip` → upload → `render_jobs` | `render_jobs`, Storage `media` | `e2e/carousel-dark.spec.ts` (valida cada PNG do ZIP) | completed |
 | `/carrosseis/dark` | Botão "Exportar PDF" | `renderCarouselExportAction(id,'pdf')` | `renderDesignPdf` → upload → `render_jobs` | `render_jobs`, Storage `media` | `e2e/carousel-dark.spec.ts` (valida nº de páginas via `pdf-lib`) | completed |
 
+## Carrossel Pessoal
+
+| Página | Elemento | Handler | Backend | Tabela | Teste | Status |
+|---|---|---|---|---|---|---|
+| `/carrosseis/pessoal` | Upload de foto (obrigatória) | `MediaUploadButton` | upload real no Storage `media` | Storage `media` | `e2e/carousel-personal.spec.ts` | completed |
+| `/carrosseis/pessoal` | Foco horizontal/vertical, overlay, frase, cor, fonte | `useSlideList` local | recalcula `DesignDocument` | — | manual | completed |
+| `/carrosseis/pessoal` | Botão "Salvar" | `saveCarouselAction` | insert/update + versão | `content_items`, `content_versions` | `e2e/carousel-personal.spec.ts` | completed |
+| `/carrosseis/pessoal` | Botão "Exportar ZIP/PDF" sem foto | `renderCarouselExportAction` | `isExportBlocked` recusa antes de gerar qualquer arquivo | — | `e2e/carousel-personal.spec.ts` (confirma a recusa real) | completed |
+| `/carrosseis/pessoal` | Botão "Exportar ZIP/PDF" com foto | `renderCarouselExportAction` | `renderCarouselZip`/`renderDesignPdf` → upload → `render_jobs` | `render_jobs`, Storage `media` | `e2e/carousel-personal.spec.ts` | completed |
+
 ## Conexões / Instagram (single-owner)
 
 | Página | Elemento | Handler | Backend | Tabela | Teste | Status |
@@ -136,7 +146,6 @@ backend, processamento e testes desses módulos estão em `not_started`.
 | Google Post | `/posts/google` | 3 | not_started (infra OK: FFmpeg local já instalado) |
 | Carrossel IA | `/carrosseis/ia` | 4 | not_started (OCR local via `tesseract.js` já instalado) |
 | Carrossel Twitter | `/carrosseis/twitter` | 5 | not_started |
-| Carrossel Pessoal | `/carrosseis/pessoal` | 5 | not_started |
 | Criador de Reels | `/reels/criador` | 5 | not_started (infra OK: FFmpeg local; voz via `say` do macOS pendente de revisão de licença para uso multi-tenant) |
 | Roteiro Reels | `/reels/roteiro` | 5 | not_started |
 | Conexões — Instagram | `/conexoes`, `/configuracoes/instagram-setup` | 6 | **partial** — ver seção dedicada acima (código completo, falta só `META_APP_ID`/`META_APP_SECRET` do proprietário) |

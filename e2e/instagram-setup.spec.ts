@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { createTestUser } from "./helpers/supabase-admin";
+import { createTestUser, deleteTestUser } from "./helpers/supabase-admin";
 
 test.describe("Conexões / Instagram (single-owner)", () => {
   test("rota é protegida — visitante não autenticado é redirecionado ao login", async ({ page }) => {
@@ -43,7 +43,7 @@ test.describe("Conexões / Instagram (single-owner)", () => {
       await expect(page.getByRole("heading", { name: "Conexões" })).toBeVisible();
       await expect(page.getByText("Instagram", { exact: true })).toBeVisible();
     } finally {
-      await admin.auth.admin.deleteUser(userId);
+      await deleteTestUser(admin, userId);
     }
   });
 });

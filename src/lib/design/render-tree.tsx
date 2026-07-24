@@ -109,7 +109,10 @@ function renderShapeElement(el: Extract<DesignElement, { type: "shape" }>): Reac
         height: "100%",
         backgroundColor: el.fill,
         borderRadius: el.shape === "circle" ? "50%" : el.borderRadius,
-        border: el.strokeWidth ? `${el.strokeWidth}px solid ${el.stroke ?? "transparent"}` : undefined,
+        // Mesma armadilha do Satori que o `transform: undefined` de renderElement:
+        // a chave precisa ser omitida do objeto de estilo, nunca setada como
+        // `undefined` — por isso o spread condicional em vez de ternário.
+        ...(el.strokeWidth ? { border: `${el.strokeWidth}px solid ${el.stroke ?? "transparent"}` } : {}),
       }}
     />
   );

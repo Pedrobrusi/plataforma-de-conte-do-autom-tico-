@@ -37,3 +37,25 @@ export async function createTestUser(email: string, password: string, fullName: 
 
   throw new Error(`Falha ao criar usuário de teste após retries: ${lastError}`);
 }
+
+/**
+ * `workspaces.owner_id` usa ON DELETE RESTRICT (de propósito — apagar o dono
+ * não deve levar o workspace/conteúdo junto sem intenção explícita). Isso
+ * significa que apagar o auth.user de um teste sem apagar o workspace dele
+ * primeiro falha com 500 (foreign key violation) — e o SDK do Supabase
+ * engole esse erro como `{}` em vez de propagá-lo, deixando usuários e
+ * workspaces órfãos no banco a cada teste. Sempre limpar nesta ordem.
+ */
+export async function deleteTestUser(admin: ReturnType<typeof adminClient>, userId: string) {
+  await admin.from("workspaces").delete().eq("owner_id", userId);
+
+  let lastError: string | undefined;
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    const { error } = await admin.auth.admin.deleteUser(userId);
+    if (!error) return;
+    lastError = error.message;
+    if (attempt < 4) await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
+  }
+
+  throw new Error(`Falha ao apagar usuário de teste ${userId} após retries: ${lastError}`);
+}
