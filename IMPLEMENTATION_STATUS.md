@@ -114,9 +114,20 @@ projeto e editar (gera nova versão). Testado ponta a ponta em
 validar com `sharp` que é um PNG real nas dimensões certas — não apenas que o
 botão existe.
 
-Post Twitter, Post YouTube, Post GPT, Google Post e os 4 carrosséis vão sobre
-a mesma base (`DesignDocument` + `documentToJsx` + `renderer.ts`), com
-templates próprios por tipo de conteúdo — ver tarefas em andamento.
+**Post Twitter** também está completo: avatar circular (upload real via
+`MediaUploadButton`, reutilizável pelos próximos templates), nome, @usuário,
+selo de verificação opcional, texto com auto-fit, tema claro/escuro. A
+inspeção visual real do PNG exportado (não só a checagem de dimensão/formato)
+revelou um bug genuíno — o caractere "✓" em texto virava um quadrado vazio,
+porque a fonte padrão do renderizador (Satori) não tem esse glifo — corrigido
+substituindo por um selo desenhado como SVG embutido (círculo + check),
+renderizado como imagem em vez de texto. Documentado em
+`ARCHITECTURE.md`/`render-tree.tsx` como armadilha conhecida de compatibilidade
+Satori. Composição original, não copia a interface do X.
+
+Post YouTube, Post GPT, Google Post e os 4 carrosséis vão sobre a mesma base
+(`DesignDocument` + `documentToJsx` + `renderer.ts`), com templates próprios
+por tipo de conteúdo — ver tarefas em andamento.
 
 ## Fase 4 — Carrossel IA (importação de fonte, OCR, transcrição, editor de slides, exportação)
 

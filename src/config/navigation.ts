@@ -46,7 +46,7 @@ export const navSections: NavSection[] = [
   {
     title: "Posts",
     items: [
-      { label: "Post Twitter", href: "/posts/twitter", icon: MessageCircle, status: "planned", phase: 3 },
+      { label: "Post Twitter", href: "/posts/twitter", icon: MessageCircle, status: "live" },
       { label: "Frase de Efeito", href: "/posts/frase-de-efeito", icon: Quote, status: "live" },
       { label: "Post YouTube", href: "/posts/youtube", icon: PlayCircle, status: "planned", phase: 3 },
       { label: "Post GPT", href: "/posts/gpt", icon: Sparkles, status: "planned", phase: 3 },

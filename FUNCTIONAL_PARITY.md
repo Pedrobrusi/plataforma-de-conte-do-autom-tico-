@@ -19,7 +19,7 @@ banco, processamento (quando houver), exportação (quando houver), publicação
 | Planejador (perfil de nicho/marca) | ✅ | ✅ | ✅ | ✅ (gerador local) | — | — | ✅ | **completed** |
 | Calendário editorial | 🔲 | 🔲 | ✅ (schema) | — | — | ✅ (schema `publish_jobs`) | 🔲 | **not_started** |
 | Biblioteca | ✅ | ✅ | ✅ | — | — | — | ✅ | **completed** |
-| Post Twitter | 🔲 | 🔲 | ✅ (schema) | 🔲 (render `next/og`) | 🔲 | 🔲 | 🔲 | **not_started** |
+| Post Twitter | ✅ | ✅ | ✅ | ✅ (avatar circular, selo como SVG, auto-fit) | ✅ (PNG real) | — | ✅ | **completed** |
 | Frase de Efeito | ✅ | ✅ | ✅ | ✅ (`next/og` real, testado) | ✅ (PNG real) | — | ✅ | **completed** |
 | Post YouTube | 🔲 | 🔲 | ✅ (schema) | 🔲 (FFmpeg disponível) | 🔲 | 🔲 | 🔲 | **not_started** |
 | Post GPT | 🔲 | 🔲 | ✅ (schema) | 🔲 (FFmpeg disponível) | 🔲 | 🔲 | 🔲 | **not_started** |

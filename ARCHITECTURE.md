@@ -124,11 +124,16 @@ com x/y/largura/altura/rotação/zIndex/opacidade.
   em SVG" diferente no export.
 - **Restrição de compatibilidade**: todo estilo usado em `render-tree.tsx`
   precisa existir tanto em CSS de browser quanto no subconjunto suportado
-  pelo Satori. Duas armadilhas já resolvidas: Satori não suporta `z-index`
-  (a ordem de empilhamento vem da ordem de renderização — os elementos já são
-  ordenados por `zIndex` antes de virar JSX) e `transform: undefined` quebra o
-  parser do Satori (o objeto de estilo precisa omitir a chave, não setá-la
-  como `undefined`).
+  pelo Satori. Três armadilhas já encontradas e resolvidas: Satori não
+  suporta `z-index` (a ordem de empilhamento vem da ordem de renderização —
+  os elementos já são ordenados por `zIndex` antes de virar JSX);
+  `transform: undefined` quebra o parser do Satori (o objeto de estilo
+  precisa omitir a chave, não setá-la como `undefined`); e a fonte padrão do
+  Satori não tem glifo para "✓" (renderiza um quadrado vazio) — selos/ícones
+  precisam ser imagens (SVG embutido como data URI), nunca caracteres de
+  texto. A última só foi encontrada por inspeção visual real do PNG exportado
+  (os testes automatizados de dimensão/formato não a pegam), reforçando por
+  que essa engine precisa de checagem visual manual, não só testes binários.
 - **`renderer.ts`**: `renderDesignPng` (via `next/og` + Satori/resvg),
   `renderDesignJpeg` (PNG + `sharp`), `renderDesignPdf` (`pdf-lib`, uma
   página por documento) e `renderCarouselZip` (`jszip`, um PNG por slide,

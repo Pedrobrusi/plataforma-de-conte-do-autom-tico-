@@ -83,6 +83,14 @@ Status possíveis: `completed`, `partial`, `blocked`, `not_started`.
 | `/posts/frase-de-efeito` | Botão "Renderizar PNG" | `renderQuoteCardAction` | `costPreflight` → `renderDesignPng` → upload Storage → `render_jobs` | `render_jobs`, Storage `media`, `content_items` | `e2e/frase-de-efeito.spec.ts` (valida dimensão real do PNG via `sharp`) | completed |
 | `/posts/frase-de-efeito` | Link "Baixar PNG" | download direto da URL pública | — | — | `e2e/frase-de-efeito.spec.ts` | completed |
 
+## Post Twitter
+
+| Página | Elemento | Handler | Backend | Tabela | Teste | Status |
+|---|---|---|---|---|---|---|
+| `/posts/twitter` | Formulário (nome, @usuário, selo, texto, tema) + upload de avatar | `useState` local + `MediaUploadButton` | recalcula `DesignDocument` a cada tecla; upload real no Storage | `— / Storage media` | `e2e/post-twitter.spec.ts` | completed |
+| `/posts/twitter` | Botão "Salvar" | `saveTwitterPostAction` | insert/update + snapshot em `content_versions` | `content_items`, `content_versions` | `e2e/post-twitter.spec.ts` | completed |
+| `/posts/twitter` | Botão "Renderizar PNG" | `renderTwitterPostAction` | `renderDesignPng` → upload → `render_jobs` | `render_jobs`, Storage `media` | `e2e/post-twitter.spec.ts` (valida PNG real 1170×1560) | completed |
+
 ## Conexões / Instagram (single-owner)
 
 | Página | Elemento | Handler | Backend | Tabela | Teste | Status |
@@ -113,7 +121,6 @@ backend, processamento e testes desses módulos estão em `not_started`.
 | Módulo | Rota | Fase | Status |
 |---|---|---|---|
 | Calendário | `/calendario` | 2 | not_started |
-| Post Twitter | `/posts/twitter` | 3 | not_started |
 | Post YouTube | `/posts/youtube` | 3 | not_started (infra OK: FFmpeg local via `ffmpeg-static` já instalado) |
 | Post GPT | `/posts/gpt` | 3 | not_started (infra OK: FFmpeg local já instalado) |
 | Google Post | `/posts/google` | 3 | not_started (infra OK: FFmpeg local já instalado) |
