@@ -1,14 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { createClient } from "@supabase/supabase-js";
-
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-function adminClient() {
-  return createClient(SUPABASE_URL, SERVICE_ROLE_KEY, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
-}
+import { createTestUser } from "./helpers/supabase-admin";
 
 test.describe("Autenticação", () => {
   test("cadastro exibe erro de validação real quando as senhas não coincidem", async ({ page }) => {
@@ -30,18 +21,7 @@ test.describe("Autenticação", () => {
     const email = `e2e-login-${stamp}@hotmail.com`;
     const password = "SenhaForte123";
     const workspaceName = `Workspace E2E ${stamp}`;
-    const admin = adminClient();
-
-    const { data: createData, error: createError } = await admin.auth.admin.createUser({
-      email,
-      password,
-      email_confirm: true,
-      user_metadata: { full_name: "Usuária de Teste" },
-    });
-    if (createError || !createData.user) {
-      throw new Error(`Falha ao criar usuário de teste: ${createError?.message}`);
-    }
-    const userId = createData.user.id;
+    const { admin, userId } = await createTestUser(email, password, "Usuária de Teste");
 
     try {
       await page.goto("/login");

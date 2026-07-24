@@ -107,6 +107,55 @@ continuar o desenvolvimento localmente com Docker, basta `supabase link
   (`ffmpeg-static`) para vídeo, `tesseract.js` (WASM) para OCR. Nenhum depende
   de chave paga.
 
+## Motor de design (`src/lib/design/`)
+
+Todo conteúdo visual (Frase de Efeito, Post Twitter, carrosséis, etc.) parte
+de um único modelo — `DesignDocument` (`document.ts`) — descrevendo canvas,
+fundo, safe area e uma lista de elementos posicionados (texto, imagem, forma)
+com x/y/largura/altura/rotação/zIndex/opacidade.
+
+- **`render-tree.tsx` → `documentToJsx(doc)`**: única função que sabe desenhar
+  um `DesignDocument`. É chamada tanto pelo preview do editor
+  (`DesignCanvasPreview`, React DOM normal no navegador, escalado via CSS
+  `transform: scale`) quanto pelo renderizador de PNG no servidor
+  (`next/og`'s `ImageResponse`, que usa Satori internamente). Como é
+  literalmente a mesma função nos dois lugares, preview e export não podem
+  divergir estruturalmente — não existe "design em CSS" no preview e "design
+  em SVG" diferente no export.
+- **Restrição de compatibilidade**: todo estilo usado em `render-tree.tsx`
+  precisa existir tanto em CSS de browser quanto no subconjunto suportado
+  pelo Satori. Duas armadilhas já resolvidas: Satori não suporta `z-index`
+  (a ordem de empilhamento vem da ordem de renderização — os elementos já são
+  ordenados por `zIndex` antes de virar JSX) e `transform: undefined` quebra o
+  parser do Satori (o objeto de estilo precisa omitir a chave, não setá-la
+  como `undefined`).
+- **`renderer.ts`**: `renderDesignPng` (via `next/og` + Satori/resvg),
+  `renderDesignJpeg` (PNG + `sharp`), `renderDesignPdf` (`pdf-lib`, uma
+  página por documento) e `renderCarouselZip` (`jszip`, um PNG por slide,
+  nomeado e ordenado). Todos comprovados com testes reais em
+  `renderer.test.ts` (dimensão exata do PNG, `%PDF`/`%%EOF` válidos, ZIP com
+  os arquivos certos na ordem certa) — não são testes de snapshot, verificam
+  o arquivo binário de fato.
+- **Reaproveitamento de schema**: em vez de criar `design_projects` /
+  `design_documents` / `render_outputs` paralelos, o `DesignDocument` mora em
+  `content_items.data` (jsonb já existente), o histórico de edição usa
+  `content_versions` (mesmo padrão de versionamento do Planejador), uploads
+  usam `media_assets`/bucket `media`, e jobs de renderização reaproveitam
+  `render_jobs` (com as colunas novas `render_kind` e `result jsonb` para
+  suportar múltiplos formatos de saída no mesmo job — ex.: um carrossel que
+  gera PNGs + ZIP + PDF).
+- **Fontes**: por ora sem fonte customizada embutida — `next/og` usa a fonte
+  padrão do Satori. Embutir Inter/Geist via buffer é uma melhoria futura, não
+  bloqueia a funcionalidade (texto renderiza corretamente, só não é
+  pixel-perfect com a tipografia da UI).
+- **Vídeo**: a especificação original pedia Remotion. Optei por FFmpeg puro
+  (`ffmpeg-static`, já instalado) em vez de Remotion — a licença do Remotion
+  exige plano comercial pago para empresas acima de um certo porte/receita, o
+  que conflita com a política de custo externo zero sem uma verificação de
+  licença mais aprofundada. FFmpeg é BSD/LGPL, sem essa ambiguidade. Isso está
+  dentro do que a própria especificação permitiu ("Remotion ou um compositor
+  equivalente").
+
 ## Conexões sociais — Instagram (modo single-owner)
 
 Esta instalação é de uso pessoal do proprietário: não há App Review, Live Mode,

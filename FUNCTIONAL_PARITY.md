@@ -20,7 +20,7 @@ banco, processamento (quando houver), exportação (quando houver), publicação
 | Calendário editorial | 🔲 | 🔲 | ✅ (schema) | — | — | ✅ (schema `publish_jobs`) | 🔲 | **not_started** |
 | Biblioteca | ✅ | ✅ | ✅ | — | — | — | ✅ | **completed** |
 | Post Twitter | 🔲 | 🔲 | ✅ (schema) | 🔲 (render `next/og`) | 🔲 | 🔲 | 🔲 | **not_started** |
-| Frase de Efeito | 🔲 | 🔲 | ✅ (schema) | 🔲 (render `next/og`) | 🔲 | 🔲 | 🔲 | **not_started** |
+| Frase de Efeito | ✅ | ✅ | ✅ | ✅ (`next/og` real, testado) | ✅ (PNG real) | — | ✅ | **completed** |
 | Post YouTube | 🔲 | 🔲 | ✅ (schema) | 🔲 (FFmpeg disponível) | 🔲 | 🔲 | 🔲 | **not_started** |
 | Post GPT | 🔲 | 🔲 | ✅ (schema) | 🔲 (FFmpeg disponível) | 🔲 | 🔲 | 🔲 | **not_started** |
 | Google Post | 🔲 | 🔲 | ✅ (schema) | 🔲 (FFmpeg disponível) | 🔲 | 🔲 (conector ausente) | 🔲 | **not_started** |

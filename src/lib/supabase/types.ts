@@ -1161,6 +1161,8 @@ export type Database = {
           payload: Json
           progress: number
           provider: string
+          render_kind: string | null
+          result: Json
           result_url: string | null
           status: Database["public"]["Enums"]["job_status"]
           updated_at: string
@@ -1178,6 +1180,8 @@ export type Database = {
           payload?: Json
           progress?: number
           provider?: string
+          render_kind?: string | null
+          result?: Json
           result_url?: string | null
           status?: Database["public"]["Enums"]["job_status"]
           updated_at?: string
@@ -1195,6 +1199,8 @@ export type Database = {
           payload?: Json
           progress?: number
           provider?: string
+          render_kind?: string | null
+          result?: Json
           result_url?: string | null
           status?: Database["public"]["Enums"]["job_status"]
           updated_at?: string

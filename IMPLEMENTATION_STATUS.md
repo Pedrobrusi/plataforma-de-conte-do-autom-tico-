@@ -96,8 +96,27 @@ específico, rode o arquivo de teste isoladamente antes de investigar como bug.
 
 ## Fase 3 — Post Twitter, Frase de Efeito, Post YouTube, Post GPT, Google Post
 
-**Status: not_started.** Infra de renderização (`next/og` para imagem,
-FFmpeg local para vídeo) já disponível. Bloqueio real: nenhum.
+**Status: motor de design completed · Frase de Efeito completed · demais not_started.**
+
+Construído o motor de design real (`src/lib/design/`) exigido pelo adendo do
+usuário — `DesignDocument` único compartilhado entre preview e exportação,
+renderizadores reais de PNG/JPEG/PDF/ZIP, todos com testes que verificam o
+arquivo binário (dimensão exata, formato válido), não só que "não deu erro".
+Ver `ARCHITECTURE.md` → "Motor de design" para os detalhes técnicos e a
+justificativa de usar FFmpeg puro em vez de Remotion para vídeo (licença).
+
+**Frase de Efeito** é o primeiro vertical slice completo sobre esse motor:
+editor com preview ao vivo, salvar (com versionamento real via
+`content_versions`), renderizar PNG real (1170×1560, upload real no Storage,
+`render_jobs` com status/erro reais), baixar o arquivo de verdade, reabrir o
+projeto e editar (gera nova versão). Testado ponta a ponta em
+`e2e/frase-de-efeito.spec.ts`, incluindo baixar o PNG resultante via HTTP e
+validar com `sharp` que é um PNG real nas dimensões certas — não apenas que o
+botão existe.
+
+Post Twitter, Post YouTube, Post GPT, Google Post e os 4 carrosséis vão sobre
+a mesma base (`DesignDocument` + `documentToJsx` + `renderer.ts`), com
+templates próprios por tipo de conteúdo — ver tarefas em andamento.
 
 ## Fase 4 — Carrossel IA (importação de fonte, OCR, transcrição, editor de slides, exportação)
 

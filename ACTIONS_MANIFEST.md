@@ -73,6 +73,16 @@ Status possíveis: `completed`, `partial`, `blocked`, `not_started`.
 | `/biblioteca` | Excluir | `softDeleteContentItemAction` | update `deleted_at` | `content_items`, `audit_logs` | `e2e/biblioteca.spec.ts` | completed |
 | `/biblioteca` | Restaurar (lixeira) | `restoreContentItemAction` | update `deleted_at = null` | `content_items` | `e2e/biblioteca.spec.ts` | completed |
 
+## Frase de Efeito
+
+| Página | Elemento | Handler | Backend | Tabela | Teste | Status |
+|---|---|---|---|---|---|---|
+| `/posts/frase-de-efeito` | Campos do formulário (frase, destaque, alinhamento, cores, @usuário) | `useState` local | `buildQuoteCardDocument` recalcula o `DesignDocument` a cada tecla | — | `e2e/frase-de-efeito.spec.ts` | completed |
+| `/posts/frase-de-efeito` | Preview ao vivo | `DesignCanvasPreview` (mesma `documentToJsx` do export) | — | — | `e2e/frase-de-efeito.spec.ts` | completed |
+| `/posts/frase-de-efeito` | Botão "Salvar" | `saveQuoteCardAction` | insert/update + snapshot em `content_versions` | `content_items`, `content_versions` | `e2e/frase-de-efeito.spec.ts` | completed |
+| `/posts/frase-de-efeito` | Botão "Renderizar PNG" | `renderQuoteCardAction` | `costPreflight` → `renderDesignPng` → upload Storage → `render_jobs` | `render_jobs`, Storage `media`, `content_items` | `e2e/frase-de-efeito.spec.ts` (valida dimensão real do PNG via `sharp`) | completed |
+| `/posts/frase-de-efeito` | Link "Baixar PNG" | download direto da URL pública | — | — | `e2e/frase-de-efeito.spec.ts` | completed |
+
 ## Conexões / Instagram (single-owner)
 
 | Página | Elemento | Handler | Backend | Tabela | Teste | Status |
@@ -104,7 +114,6 @@ backend, processamento e testes desses módulos estão em `not_started`.
 |---|---|---|---|
 | Calendário | `/calendario` | 2 | not_started |
 | Post Twitter | `/posts/twitter` | 3 | not_started |
-| Frase de Efeito | `/posts/frase-de-efeito` | 3 | not_started |
 | Post YouTube | `/posts/youtube` | 3 | not_started (infra OK: FFmpeg local via `ffmpeg-static` já instalado) |
 | Post GPT | `/posts/gpt` | 3 | not_started (infra OK: FFmpeg local já instalado) |
 | Google Post | `/posts/google` | 3 | not_started (infra OK: FFmpeg local já instalado) |
