@@ -1,0 +1,397 @@
+domains:
+  - id: content-studio
+    name: Content Studio
+    description: Plan, generate, edit, approve, render, export and publish original multi-format content with a first-class AI carousel workflow.
+    owner: Lia
+    depends_on: [foundation, aios, knowledge, offer-modeling]
+    capabilities:
+      - id: plan-editorial-content
+        name: Plan Editorial Content
+        inputs: [brand-profile, objective, offer, knowledge]
+        outputs: [content-brief, editorial-plan]
+      - id: generate-ai-carousel
+        name: Generate AI Carousel
+        description: Create structured slide copy and optional original imagery from a topic, references and brand constraints.
+        inputs: [carousel-brief, brand-profile]
+        outputs: [design-document, content-version]
+        quality_gates: [brand-compliance, originality-check, claim-evidence, slide-coherence]
+      - id: edit-design-document
+        name: Edit Design Document
+        inputs: [design-document, edit-operation]
+        outputs: [design-document-version]
+      - id: render-content-assets
+        name: Render Content Assets
+        inputs: [design-document]
+        outputs: [media-asset, render-job]
+      - id: approve-content
+        name: Approve Content
+        inputs: [content-item, quality-report]
+        outputs: [content-approval]
+      - id: publish-content
+        name: Publish Content
+        inputs: [approved-content, channel]
+        outputs: [publication]
+        quality_gates: [human-approval, channel-validation, tracking-validation]
+        tags: [external-write]
+    entities:
+      - id: brand-profile
+        name: Brand Profile
+        table: brand_communication_profiles
+        versioned: true
+        fields:
+          - {name: name, type: string, required: true}
+          - {name: voice, type: json, required: true}
+          - {name: visual_tokens, type: json, required: true}
+          - {name: typography, type: json, required: true}
+          - {name: image_style, type: json, required: true}
+          - {name: prohibited_patterns, type: json, required: true}
+          - {name: communication_guide_source_id, type: "ref:knowledge-source"}
+        states: [draft, active, archived]
+      - id: content-brief
+        name: Content Brief
+        fields:
+          - {name: objective, type: string, required: true}
+          - {name: audience, type: json, required: true}
+          - {name: topic, type: text, required: true}
+          - {name: format, type: "enum:carousel|single_image|reel|story|thread|article|newsletter|pdf", required: true, indexed: true}
+          - {name: offer_id, type: "ref:offer"}
+          - {name: brand_profile_id, type: "ref:brand-profile", required: true}
+          - {name: source_refs, type: array:string, required: true}
+          - {name: call_to_action, type: text}
+          - {name: constraints, type: json, required: true}
+        states: [draft, ready, generating, completed, cancelled]
+      - id: content-item
+        name: Content Item
+        versioned: true
+        fields:
+          - {name: brief_id, type: "ref:content-brief", required: true, indexed: true}
+          - {name: title, type: string, required: true, indexed: true}
+          - {name: content_type, type: "enum:carousel|single_image|reel|story|thread|article|newsletter|pdf", required: true, indexed: true}
+          - {name: caption, type: text}
+          - {name: channel_targets, type: array:string}
+          - {name: quality_report, type: json}
+          - {name: scheduled_at, type: datetime, indexed: true}
+          - {name: published_at, type: datetime}
+        states: [draft, review, approved, scheduled, published, archived]
+      - id: design-document
+        name: Design Document
+        table: design_documents
+        versioned: true
+        fields:
+          - {name: content_item_id, type: "ref:content-item", required: true, indexed: true}
+          - {name: format, type: "enum:instagram_portrait|instagram_square|story|linkedin|custom", required: true}
+          - {name: width, type: integer, required: true}
+          - {name: height, type: integer, required: true}
+          - {name: slide_count, type: integer, required: true}
+          - {name: document, type: json, required: true}
+          - {name: active_slide, type: integer, required: true, default: 0}
+          - {name: generation_settings, type: json, required: true}
+          - {name: brand_profile_id, type: "ref:brand-profile", required: true}
+        states: [draft, generating, editable, review, approved, rendered, archived]
+      - id: design-document-version
+        name: Design Document Version
+        table: design_document_versions
+        soft_delete: false
+        fields:
+          - {name: design_document_id, type: "ref:design-document", required: true, indexed: true}
+          - {name: version_number, type: integer, required: true}
+          - {name: snapshot, type: json, required: true}
+          - {name: operation_log, type: json, required: true}
+          - {name: change_reason, type: text}
+        indexes:
+          - {name: uq_design_document_version, fields: [design_document_id, version_number], unique: true}
+      - id: media-asset
+        name: Media Asset
+        fields:
+          - {name: content_item_id, type: "ref:content-item", indexed: true}
+          - {name: design_document_id, type: "ref:design-document", indexed: true}
+          - {name: asset_type, type: "enum:image|video|audio|pdf|zip|thumbnail|font_reference", required: true, indexed: true}
+          - {name: storage_path, type: string, required: true}
+          - {name: mime_type, type: string, required: true}
+          - {name: width, type: integer}
+          - {name: height, type: integer}
+          - {name: duration_ms, type: integer}
+          - {name: checksum, type: string, required: true}
+          - {name: provenance, type: json, required: true}
+          - {name: alt_text, type: text}
+        states: [processing, ready, failed, archived]
+      - id: render-job
+        name: Render Job
+        fields:
+          - {name: design_document_id, type: "ref:design-document", required: true, indexed: true}
+          - {name: output_format, type: "enum:png|jpg|pdf|mp4|zip", required: true}
+          - {name: settings, type: json, required: true}
+          - {name: progress, type: number, required: true, default: 0}
+          - {name: error, type: text}
+          - {name: started_at, type: datetime}
+          - {name: finished_at, type: datetime}
+        states: [queued, running, succeeded, failed, cancelled]
+      - id: content-approval
+        name: Content Approval
+        fields:
+          - {name: content_item_id, type: "ref:content-item", required: true, indexed: true}
+          - {name: decision, type: "enum:pending|approved|changes_requested|rejected", required: true}
+          - {name: reviewer_id, type: uuid}
+          - {name: notes, type: text}
+          - {name: reviewed_at, type: datetime}
+      - id: publication
+        name: Publication
+        fields:
+          - {name: content_item_id, type: "ref:content-item", required: true, indexed: true}
+          - {name: channel, type: "enum:instagram|facebook|linkedin|tiktok|youtube|x|blog|email|slack", required: true, indexed: true}
+          - {name: external_id, type: string}
+          - {name: external_url, type: url}
+          - {name: tracking, type: json, required: true}
+          - {name: scheduled_at, type: datetime}
+          - {name: published_at, type: datetime}
+          - {name: error, type: text}
+        states: [draft, awaiting_approval, scheduled, publishing, published, failed, cancelled]
+    events:
+      - id: content-brief-created
+        name: Content Brief Created
+        aggregate: content-brief
+        producers: [plan-editorial-content]
+        consumers: [generate-ai-carousel, mission-control]
+      - id: carousel-generated
+        name: Carousel Generated
+        aggregate: design-document
+        producers: [generate-ai-carousel]
+        consumers: [edit-design-document, mission-control]
+      - id: design-document-updated
+        name: Design Document Updated
+        aggregate: design-document
+        producers: [edit-design-document]
+        consumers: [mission-control]
+      - id: content-rendered
+        name: Content Rendered
+        aggregate: render-job
+        producers: [render-content-assets]
+        consumers: [approve-content, mission-control]
+      - id: content-approved
+        name: Content Approved
+        aggregate: content-approval
+        producers: [approve-content]
+        consumers: [publish-content, mission-control]
+      - id: content-published
+        name: Content Published
+        aggregate: publication
+        producers: [publish-content]
+        consumers: [analytics, mission-control]
+    policies:
+      - id: content-originality
+        name: Content Originality
+        effect: require
+        condition: output.protected_expression_overlap <= 0.1
+        enforcement: both
+        severity: critical
+      - id: brand-guide-compliance
+        name: Brand Guide Compliance
+        effect: require
+        condition: output.brand_compliance_score >= 0.85
+        enforcement: runtime
+        severity: high
+      - id: accessible-media
+        name: Accessible Media
+        effect: require
+        condition: visual_asset.alt_text != null AND text.contrast_passes == true
+        enforcement: both
+        severity: high
+      - id: publication-human-approval
+        name: Publication Human Approval
+        effect: require
+        condition: content_approval.decision == approved
+        enforcement: runtime
+        severity: critical
+    use_cases:
+      - id: create-content-brief
+        name: Create Content Brief
+        capability: plan-editorial-content
+        actor: laura-or-editor
+        input: [objective, audience, sources, brand-profile]
+        output: [content-brief]
+        emits: [content-brief-created]
+        policies: [workspace-isolation, citation-required-for-claims]
+      - id: generate-carousel-draft
+        name: Generate Carousel Draft
+        capability: generate-ai-carousel
+        actor: lia
+        input: [content-brief, generation-settings]
+        output: [content-item, design-document]
+        emits: [carousel-generated]
+        policies: [content-originality, brand-guide-compliance, citation-required-for-claims]
+      - id: apply-design-edit
+        name: Apply Design Edit
+        capability: edit-design-document
+        actor: workspace-editor-or-lia
+        input: [design-document, operation]
+        output: [design-document-version]
+        emits: [design-document-updated]
+        policies: [workspace-isolation, brand-guide-compliance]
+      - id: render-content
+        name: Render Content
+        capability: render-content-assets
+        actor: render-worker
+        input: [design-document, output-settings]
+        output: [render-job, media-asset]
+        emits: [content-rendered]
+        policies: [accessible-media]
+      - id: review-content
+        name: Review Content
+        capability: approve-content
+        actor: workspace-owner-or-admin
+        input: [content-item, quality-report]
+        output: [content-approval]
+        emits: [content-approved]
+        policies: [content-originality, brand-guide-compliance, accessible-media]
+        approval: required
+      - id: publish-approved-content
+        name: Publish Approved Content
+        capability: publish-content
+        actor: authorized-publisher
+        input: [content-item, channel, schedule]
+        output: [publication]
+        emits: [content-published]
+        policies: [publication-human-approval, human-approval-external-write]
+        approval: required
+    workflows:
+      - id: ai-carousel-production
+        name: AI Carousel Production
+        trigger: carousel-requested
+        steps:
+          - id: brief
+            name: Build Grounded Brief
+            uses: create-content-brief
+            agent: laura
+            on_success: generate
+            on_failure: escalate
+          - id: generate
+            name: Generate Slide Structure and Original Assets
+            uses: generate-carousel-draft
+            agent: lia
+            on_success: render
+            on_failure: escalate
+            retry: 1
+            timeout_seconds: 900
+          - id: render
+            name: Render Preview and Export Assets
+            uses: render-content
+            agent: lia
+            on_success: review
+            on_failure: escalate
+            retry: 2
+          - id: review
+            name: Human Review
+            uses: review-content
+            agent: laura
+            approval: required
+            on_success: finish
+            on_failure: escalate
+        emits: [carousel-generated, content-rendered, content-approved]
+      - id: approved-content-publication
+        name: Approved Content Publication
+        trigger: publication-scheduled
+        steps:
+          - id: publish
+            name: Publish to Authorized Channel
+            uses: publish-approved-content
+            approval: required
+            on_success: finish
+            on_failure: escalate
+            retry: 2
+        emits: [content-published]
+    tools:
+      - id: design-document-renderer-tool
+        name: Design Document Renderer
+        kind: worker
+        permissions: [design:render, media:create]
+      - id: channel-publisher-tool
+        name: Social Channel Publisher
+        kind: api
+        permissions: [content:publish]
+        external_writes: true
+    agents:
+      - id: lia
+        name: Lia
+        role: Creative director and carousel designer
+        mission: Turn grounded ideas into original, on-brand and editable visual content that passes quality review.
+        capabilities: [generate-ai-carousel, edit-design-document, render-content-assets, approve-content]
+        tools: [knowledge-search-tool, image-generation-tool, design-document-renderer-tool]
+        consumes: [content-brief-created, original-offer-drafted]
+        produces: [carousel-generated, design-document-updated, content-rendered]
+        policies: [content-originality, brand-guide-compliance, accessible-media]
+        memory: [permanent, operational, episodic, shared]
+        max_cost_per_run: 5.0
+    integrations:
+      - id: social-publishing-connectors
+        name: Social Publishing Connectors
+        kind: destination
+        auth: oauth
+        capabilities: [publish-content]
+        rate_limit: provider-default
+        permission_mode: authorized
+        data_classification: confidential
+    api_resources:
+      - id: content-items-api
+        name: Content Items API
+        entity: content-item
+        path: /content/items
+        operations: [list, get, create, update, archive]
+      - id: design-documents-api
+        name: Design Documents API
+        entity: design-document
+        path: /content/design-documents
+        operations: [list, get, create, update, archive]
+      - id: render-jobs-api
+        name: Render Jobs API
+        entity: render-job
+        path: /content/render-jobs
+        operations: [list, get, create]
+    ui_surfaces:
+      - id: carousel-project-library
+        name: Carousel Project Library
+        kind: list
+        entity: content-item
+        route: /content/carousels
+        capabilities: [plan-editorial-content, generate-ai-carousel]
+        components: [ProjectCardGrid, TemplateGallery, StatusFilter, SearchBar]
+        actions: [new-carousel, duplicate-own-project, open-editor, archive]
+      - id: carousel-ai-wizard
+        name: Carousel AI Wizard
+        kind: wizard
+        entity: content-brief
+        route: /content/carousels/new
+        capabilities: [generate-ai-carousel]
+        components: [TopicInput, ReferenceImageUpload, SlideCountPicker, ImageModeSelector, BrandProfilePicker, SourcePicker]
+        actions: [generate, save-draft, cancel]
+      - id: carousel-editor
+        name: Carousel Editor
+        kind: editor
+        entity: design-document
+        route: /content/carousels/:id/editor
+        capabilities: [edit-design-document, render-content-assets]
+        components: [SlideNavigator, MultiSlideCanvas, LayerPanel, GridControls, TypographyControls, AlignmentControls, ColorControls, ImageControls, BackgroundControls, LivePreview, VersionHistory, UndoRedo]
+        actions: [add-slide, remove-slide, reorder-slide, regenerate-slide-copy, generate-image, replace-image, edit-text, apply-layout, undo, redo, download-slide, export-zip, export-pdf]
+      - id: content-approval-detail
+        name: Content Approval Detail
+        kind: detail
+        entity: content-approval
+        route: /content/approvals/:id
+        capabilities: [approve-content]
+        components: [ContentPreview, QualityScorecard, ClaimEvidencePanel, BrandCompliancePanel, ReviewerNotes]
+        actions: [approve, request-changes, reject]
+    metrics:
+      - id: carousel-generation-lead-time
+        name: Carousel Generation Lead Time
+        unit: seconds
+        source: render-job
+        aggregation: avg
+      - id: content-first-pass-approval-rate
+        name: First-Pass Approval Rate
+        unit: ratio
+        source: content-approval
+        aggregation: ratio
+      - id: content-cost-per-approved-asset
+        name: Cost per Approved Asset
+        unit: BRL
+        source: render-job
+        aggregation: avg

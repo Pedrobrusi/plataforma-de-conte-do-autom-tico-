@@ -1,0 +1,161 @@
+domains:
+  - id: mission-control
+    name: Mission Control
+    description: Unified operational command center for goals, runs, approvals, alerts, system health, costs and cross-domain timelines.
+    owner: Laura
+    depends_on: [foundation, aios, analytics]
+    capabilities:
+      - id: supervise-platform-operations
+        name: Supervise Platform Operations
+        inputs: [domain-events, health-signals]
+        outputs: [operational-view]
+      - id: manage-goals-and-priorities
+        name: Manage Goals and Priorities
+        inputs: [business-goal]
+        outputs: [goal, initiative]
+      - id: respond-to-operational-alerts
+        name: Respond to Operational Alerts
+        inputs: [alert]
+        outputs: [incident, resolution]
+    entities:
+      - id: business-goal
+        name: Business Goal
+        fields:
+          - {name: title, type: string, required: true}
+          - {name: objective, type: text, required: true}
+          - {name: target_metric, type: string, required: true}
+          - {name: baseline, type: number}
+          - {name: target, type: number, required: true}
+          - {name: deadline, type: date}
+          - {name: owner_type, type: "enum:human|agent", required: true}
+          - {name: owner_id, type: uuid}
+        states: [draft, active, at_risk, achieved, cancelled]
+      - id: initiative
+        name: Initiative
+        fields:
+          - {name: goal_id, type: "ref:business-goal", required: true, indexed: true}
+          - {name: name, type: string, required: true}
+          - {name: domain, type: string, required: true, indexed: true}
+          - {name: workflow_ref, type: string}
+          - {name: priority, type: "enum:low|medium|high|critical", required: true}
+          - {name: progress, type: number, required: true, default: 0}
+          - {name: budget, type: money}
+        states: [planned, active, blocked, completed, cancelled]
+      - id: operational-alert
+        name: Operational Alert
+        fields:
+          - {name: source_domain, type: string, required: true, indexed: true}
+          - {name: source_type, type: string, required: true}
+          - {name: source_id, type: uuid}
+          - {name: severity, type: "enum:info|warning|high|critical", required: true, indexed: true}
+          - {name: title, type: string, required: true}
+          - {name: details, type: json, required: true}
+          - {name: first_seen_at, type: datetime, required: true}
+          - {name: last_seen_at, type: datetime, required: true}
+          - {name: acknowledged_by, type: uuid}
+        states: [open, acknowledged, resolved, dismissed]
+      - id: incident
+        name: Incident
+        fields:
+          - {name: alert_id, type: "ref:operational-alert", required: true}
+          - {name: title, type: string, required: true}
+          - {name: impact, type: text, required: true}
+          - {name: timeline, type: json, required: true}
+          - {name: root_cause, type: text}
+          - {name: resolution, type: text}
+          - {name: owner_id, type: uuid}
+        states: [investigating, mitigated, resolved, postmortem]
+    events:
+      - id: goal-created
+        name: Goal Created
+        aggregate: business-goal
+        producers: [manage-goals-and-priorities]
+        consumers: [laura]
+      - id: operational-alert-opened
+        name: Operational Alert Opened
+        aggregate: operational-alert
+        producers: [supervise-platform-operations]
+        consumers: [respond-to-operational-alerts, laura]
+      - id: incident-resolved
+        name: Incident Resolved
+        aggregate: incident
+        producers: [respond-to-operational-alerts]
+        consumers: [analytics, knowledge]
+    policies:
+      - id: critical-alert-escalation
+        name: Critical Alert Escalation
+        effect: require
+        condition: alert.severity != critical OR alert.human_notified == true
+        enforcement: runtime
+        severity: critical
+    use_cases:
+      - id: create-business-goal
+        name: Create Business Goal
+        capability: manage-goals-and-priorities
+        actor: workspace-owner
+        input: [goal]
+        output: [business-goal]
+        emits: [goal-created]
+        policies: [workspace-isolation]
+      - id: open-operational-alert
+        name: Open Operational Alert
+        capability: supervise-platform-operations
+        actor: system
+        input: [signal]
+        output: [operational-alert]
+        emits: [operational-alert-opened]
+        policies: [critical-alert-escalation]
+      - id: resolve-incident
+        name: Resolve Incident
+        capability: respond-to-operational-alerts
+        actor: workspace-admin-or-laura
+        input: [incident, resolution]
+        output: [incident]
+        emits: [incident-resolved]
+        policies: [workspace-isolation]
+    workflows:
+      - id: critical-alert-response
+        name: Critical Alert Response
+        trigger: critical-alert-opened
+        steps:
+          - id: open
+            name: Open and Classify Alert
+            uses: open-operational-alert
+            agent: laura
+            on_success: notify
+            on_failure: escalate
+          - id: notify
+            name: Notify Human Owner
+            uses: supervise-platform-operations
+            agent: laura
+            on_success: finish
+            on_failure: escalate
+        emits: [operational-alert-opened]
+    ui_surfaces:
+      - id: executive-command-center
+        name: Executive Command Center
+        kind: dashboard
+        entity: business-goal
+        route: /mission-control
+        capabilities: [supervise-platform-operations, manage-goals-and-priorities]
+        components: [GoalProgressGrid, AgentHealthPanel, ApprovalQueue, AlertFeed, CostOverview, DomainStatusGrid, ActivityTimeline]
+        actions: [create-goal, reprioritize, open-run, decide-approval, acknowledge-alert]
+      - id: operational-timeline
+        name: Operational Timeline
+        kind: timeline
+        entity: operational-alert
+        route: /mission-control/timeline
+        capabilities: [supervise-platform-operations]
+        components: [EventStream, DomainFilter, CorrelationTrace, EvidenceDrawer]
+        actions: [filter, inspect-correlation, export-audit]
+    metrics:
+      - id: goal-achievement-rate
+        name: Goal Achievement Rate
+        unit: ratio
+        source: business-goal.status
+        aggregation: ratio
+      - id: critical-alert-resolution-time
+        name: Critical Alert Resolution Time
+        unit: seconds
+        source: incident
+        aggregation: avg

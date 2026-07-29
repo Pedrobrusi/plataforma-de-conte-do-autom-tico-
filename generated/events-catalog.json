@@ -1,0 +1,543 @@
+{
+  "events": [
+    {
+      "aggregate": "workspace",
+      "consumers": [
+        "mission-control"
+      ],
+      "domain": "foundation",
+      "fqid": "event:foundation.workspace-created",
+      "id": "workspace-created",
+      "name": "Workspace Created",
+      "payload": [
+        {
+          "default": null,
+          "description": "",
+          "immutable": false,
+          "indexed": false,
+          "name": "workspace_id",
+          "required": true,
+          "sensitive": false,
+          "type": {
+            "dimensions": null,
+            "items": null,
+            "kind": "uuid",
+            "target": null,
+            "values": []
+          },
+          "unique": false
+        }
+      ],
+      "producers": [
+        "manage-workspaces"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "approval-request",
+      "consumers": [
+        "aios",
+        "mission-control"
+      ],
+      "domain": "foundation",
+      "fqid": "event:foundation.approval-recorded",
+      "id": "approval-recorded",
+      "name": "Approval Recorded",
+      "payload": [
+        {
+          "default": null,
+          "description": "",
+          "immutable": false,
+          "indexed": false,
+          "name": "approval_id",
+          "required": true,
+          "sensitive": false,
+          "type": {
+            "dimensions": null,
+            "items": null,
+            "kind": "uuid",
+            "target": null,
+            "values": []
+          },
+          "unique": false
+        },
+        {
+          "default": null,
+          "description": "",
+          "immutable": false,
+          "indexed": false,
+          "name": "decision",
+          "required": true,
+          "sensitive": false,
+          "type": {
+            "dimensions": null,
+            "items": null,
+            "kind": "enum",
+            "target": null,
+            "values": [
+              "approved",
+              "rejected",
+              "expired"
+            ]
+          },
+          "unique": false
+        }
+      ],
+      "producers": [
+        "govern-approvals"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "audit-entry",
+      "consumers": [
+        "mission-control"
+      ],
+      "domain": "foundation",
+      "fqid": "event:foundation.audit-entry-created",
+      "id": "audit-entry-created",
+      "name": "Audit Entry Created",
+      "payload": [],
+      "producers": [
+        "audit-platform-actions"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "agent-run",
+      "consumers": [
+        "mission-control"
+      ],
+      "domain": "aios",
+      "fqid": "event:aios.agent-run-started",
+      "id": "agent-run-started",
+      "name": "Agent Run Started",
+      "payload": [],
+      "producers": [
+        "execute-agent-runs"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "agent-run",
+      "consumers": [
+        "evaluate-agent-output",
+        "mission-control",
+        "analytics"
+      ],
+      "domain": "aios",
+      "fqid": "event:aios.agent-run-finished",
+      "id": "agent-run-finished",
+      "name": "Agent Run Finished",
+      "payload": [],
+      "producers": [
+        "execute-agent-runs"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "agent-evaluation",
+      "consumers": [
+        "manage-agent-memory",
+        "mission-control"
+      ],
+      "domain": "aios",
+      "fqid": "event:aios.agent-output-evaluated",
+      "id": "agent-output-evaluated",
+      "name": "Agent Output Evaluated",
+      "payload": [],
+      "producers": [
+        "evaluate-agent-output"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "knowledge-source",
+      "consumers": [
+        "index-knowledge",
+        "mission-control"
+      ],
+      "domain": "knowledge",
+      "fqid": "event:knowledge.knowledge-source-added",
+      "id": "knowledge-source-added",
+      "name": "Knowledge Source Added",
+      "payload": [],
+      "producers": [
+        "ingest-knowledge"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "knowledge-document",
+      "consumers": [
+        "aios",
+        "mission-control"
+      ],
+      "domain": "knowledge",
+      "fqid": "event:knowledge.knowledge-indexed",
+      "id": "knowledge-indexed",
+      "name": "Knowledge Indexed",
+      "payload": [],
+      "producers": [
+        "index-knowledge"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "offer-reference",
+      "consumers": [
+        "score-offer-opportunity",
+        "mission-control"
+      ],
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-reference-discovered",
+      "id": "offer-reference-discovered",
+      "name": "Offer Reference Discovered",
+      "payload": [],
+      "producers": [
+        "discover-scaled-offers"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "offer-watch",
+      "consumers": [
+        "monitor-offer-activity",
+        "mission-control"
+      ],
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-watch-created",
+      "id": "offer-watch-created",
+      "name": "Offer Watch Created",
+      "payload": [],
+      "producers": [
+        "create-offer-watch"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "offer-snapshot",
+      "consumers": [
+        "score-offer-opportunity",
+        "analytics",
+        "mission-control"
+      ],
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-snapshot-captured",
+      "id": "offer-snapshot-captured",
+      "name": "Offer Snapshot Captured",
+      "payload": [],
+      "producers": [
+        "monitor-offer-activity"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "offer-alert",
+      "consumers": [
+        "laura",
+        "mission-control"
+      ],
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-alert-triggered",
+      "id": "offer-alert-triggered",
+      "name": "Offer Alert Triggered",
+      "payload": [],
+      "producers": [
+        "monitor-offer-activity"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "crawl-run",
+      "consumers": [
+        "offer-modeling",
+        "knowledge",
+        "mission-control"
+      ],
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-graph-crawled",
+      "id": "offer-graph-crawled",
+      "name": "Offer Graph Crawled",
+      "payload": [],
+      "producers": [
+        "crawl-offer-graph"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "opportunity-score",
+      "consumers": [
+        "laura",
+        "offer-modeling",
+        "mission-control"
+      ],
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.opportunity-scored",
+      "id": "opportunity-scored",
+      "name": "Opportunity Scored",
+      "payload": [],
+      "producers": [
+        "score-offer-opportunity"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "offer-structure",
+      "consumers": [
+        "model-original-offer",
+        "knowledge"
+      ],
+      "domain": "offer-modeling",
+      "fqid": "event:offer-modeling.offer-structure-extracted",
+      "id": "offer-structure-extracted",
+      "name": "Offer Structure Extracted",
+      "payload": [],
+      "producers": [
+        "extract-offer-structure"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "offer",
+      "consumers": [
+        "review-offer-quality",
+        "content-studio",
+        "mission-control"
+      ],
+      "domain": "offer-modeling",
+      "fqid": "event:offer-modeling.original-offer-drafted",
+      "id": "original-offer-drafted",
+      "name": "Original Offer Drafted",
+      "payload": [],
+      "producers": [
+        "model-original-offer"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "offer",
+      "consumers": [
+        "content-studio",
+        "mission-control",
+        "analytics"
+      ],
+      "domain": "offer-modeling",
+      "fqid": "event:offer-modeling.offer-approved",
+      "id": "offer-approved",
+      "name": "Offer Approved",
+      "payload": [],
+      "producers": [
+        "review-offer-quality"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "funnel-blueprint",
+      "consumers": [
+        "mission-control"
+      ],
+      "domain": "offer-modeling",
+      "fqid": "event:offer-modeling.funnel-blueprint-created",
+      "id": "funnel-blueprint-created",
+      "name": "Funnel Blueprint Created",
+      "payload": [],
+      "producers": [
+        "generate-funnel-blueprint"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "content-brief",
+      "consumers": [
+        "generate-ai-carousel",
+        "mission-control"
+      ],
+      "domain": "content-studio",
+      "fqid": "event:content-studio.content-brief-created",
+      "id": "content-brief-created",
+      "name": "Content Brief Created",
+      "payload": [],
+      "producers": [
+        "plan-editorial-content"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "design-document",
+      "consumers": [
+        "edit-design-document",
+        "mission-control"
+      ],
+      "domain": "content-studio",
+      "fqid": "event:content-studio.carousel-generated",
+      "id": "carousel-generated",
+      "name": "Carousel Generated",
+      "payload": [],
+      "producers": [
+        "generate-ai-carousel"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "design-document",
+      "consumers": [
+        "mission-control"
+      ],
+      "domain": "content-studio",
+      "fqid": "event:content-studio.design-document-updated",
+      "id": "design-document-updated",
+      "name": "Design Document Updated",
+      "payload": [],
+      "producers": [
+        "edit-design-document"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "render-job",
+      "consumers": [
+        "approve-content",
+        "mission-control"
+      ],
+      "domain": "content-studio",
+      "fqid": "event:content-studio.content-rendered",
+      "id": "content-rendered",
+      "name": "Content Rendered",
+      "payload": [],
+      "producers": [
+        "render-content-assets"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "content-approval",
+      "consumers": [
+        "publish-content",
+        "mission-control"
+      ],
+      "domain": "content-studio",
+      "fqid": "event:content-studio.content-approved",
+      "id": "content-approved",
+      "name": "Content Approved",
+      "payload": [],
+      "producers": [
+        "approve-content"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "publication",
+      "consumers": [
+        "analytics",
+        "mission-control"
+      ],
+      "domain": "content-studio",
+      "fqid": "event:content-studio.content-published",
+      "id": "content-published",
+      "name": "Content Published",
+      "payload": [],
+      "producers": [
+        "publish-content"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "metric-observation",
+      "consumers": [
+        "calculate-business-metrics",
+        "mission-control"
+      ],
+      "domain": "analytics",
+      "fqid": "event:analytics.metric-observed",
+      "id": "metric-observed",
+      "name": "Metric Observed",
+      "payload": [],
+      "producers": [
+        "collect-analytics-events"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "insight",
+      "consumers": [
+        "laura",
+        "mission-control"
+      ],
+      "domain": "analytics",
+      "fqid": "event:analytics.insight-generated",
+      "id": "insight-generated",
+      "name": "Insight Generated",
+      "payload": [],
+      "producers": [
+        "generate-actionable-insights"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "learning-record",
+      "consumers": [
+        "knowledge",
+        "aios",
+        "mission-control"
+      ],
+      "domain": "analytics",
+      "fqid": "event:analytics.learning-promoted",
+      "id": "learning-promoted",
+      "name": "Learning Promoted",
+      "payload": [],
+      "producers": [
+        "promote-reviewed-learning"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "business-goal",
+      "consumers": [
+        "laura"
+      ],
+      "domain": "mission-control",
+      "fqid": "event:mission-control.goal-created",
+      "id": "goal-created",
+      "name": "Goal Created",
+      "payload": [],
+      "producers": [
+        "manage-goals-and-priorities"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "operational-alert",
+      "consumers": [
+        "respond-to-operational-alerts",
+        "laura"
+      ],
+      "domain": "mission-control",
+      "fqid": "event:mission-control.operational-alert-opened",
+      "id": "operational-alert-opened",
+      "name": "Operational Alert Opened",
+      "payload": [],
+      "producers": [
+        "supervise-platform-operations"
+      ],
+      "schema_version": 1
+    },
+    {
+      "aggregate": "incident",
+      "consumers": [
+        "analytics",
+        "knowledge"
+      ],
+      "domain": "mission-control",
+      "fqid": "event:mission-control.incident-resolved",
+      "id": "incident-resolved",
+      "name": "Incident Resolved",
+      "payload": [],
+      "producers": [
+        "respond-to-operational-alerts"
+      ],
+      "schema_version": 1
+    }
+  ],
+  "version": "1.0"
+}

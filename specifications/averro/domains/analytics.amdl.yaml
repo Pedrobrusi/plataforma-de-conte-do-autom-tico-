@@ -1,0 +1,151 @@
+domains:
+  - id: analytics
+    name: Analytics and Learning
+    description: Collect normalized events, calculate metrics, surface insights and promote reviewed learning.
+    owner: Iris
+    depends_on: [foundation, aios, knowledge]
+    capabilities:
+      - id: collect-analytics-events
+        name: Collect Analytics Events
+        inputs: [domain-event, external-metric]
+        outputs: [metric-observation]
+      - id: calculate-business-metrics
+        name: Calculate Business Metrics
+        inputs: [metric-observation]
+        outputs: [metric-series]
+      - id: generate-actionable-insights
+        name: Generate Actionable Insights
+        inputs: [metric-series, business-context]
+        outputs: [insight]
+      - id: promote-reviewed-learning
+        name: Promote Reviewed Learning
+        inputs: [insight, evaluation]
+        outputs: [learning-record]
+    entities:
+      - id: metric-observation
+        name: Metric Observation
+        soft_delete: false
+        fields:
+          - {name: metric_key, type: string, required: true, indexed: true}
+          - {name: subject_type, type: string, required: true, indexed: true}
+          - {name: subject_id, type: uuid, indexed: true}
+          - {name: value, type: number, required: true}
+          - {name: unit, type: string, required: true}
+          - {name: dimensions, type: json, required: true}
+          - {name: observed_at, type: datetime, required: true, indexed: true}
+          - {name: source_event_id, type: uuid}
+      - id: insight
+        name: Insight
+        fields:
+          - {name: title, type: string, required: true}
+          - {name: summary, type: text, required: true}
+          - {name: evidence, type: json, required: true}
+          - {name: confidence, type: number, required: true}
+          - {name: recommended_action, type: text}
+          - {name: impact_estimate, type: json}
+          - {name: expires_at, type: datetime}
+        states: [draft, reviewed, accepted, rejected, expired]
+      - id: learning-record
+        name: Learning Record
+        versioned: true
+        fields:
+          - {name: insight_id, type: "ref:insight", required: true, indexed: true}
+          - {name: pattern, type: text, required: true}
+          - {name: applicability, type: json, required: true}
+          - {name: evidence_refs, type: array:string, required: true}
+          - {name: confidence, type: number, required: true}
+          - {name: approved_by, type: uuid, required: true}
+        states: [candidate, active, superseded, retired]
+    events:
+      - id: metric-observed
+        name: Metric Observed
+        aggregate: metric-observation
+        producers: [collect-analytics-events]
+        consumers: [calculate-business-metrics, mission-control]
+      - id: insight-generated
+        name: Insight Generated
+        aggregate: insight
+        producers: [generate-actionable-insights]
+        consumers: [laura, mission-control]
+      - id: learning-promoted
+        name: Learning Promoted
+        aggregate: learning-record
+        producers: [promote-reviewed-learning]
+        consumers: [knowledge, aios, mission-control]
+    policies:
+      - id: analytics-source-traceability
+        name: Analytics Source Traceability
+        effect: require
+        condition: observation.source_event_id != null OR observation.dimensions.external_source != null
+        enforcement: both
+        severity: high
+      - id: learning-human-review
+        name: Learning Human Review
+        effect: require
+        condition: learning.approved_by != null AND learning.confidence >= 0.8
+        enforcement: runtime
+        severity: critical
+    use_cases:
+      - id: ingest-metric-observation
+        name: Ingest Metric Observation
+        capability: collect-analytics-events
+        actor: system
+        input: [event-or-metric]
+        output: [metric-observation]
+        emits: [metric-observed]
+        policies: [analytics-source-traceability]
+      - id: produce-insight
+        name: Produce Insight
+        capability: generate-actionable-insights
+        actor: iris
+        input: [metric-series, context]
+        output: [insight]
+        emits: [insight-generated]
+        policies: [analytics-source-traceability, citation-required-for-claims]
+      - id: approve-learning
+        name: Approve Learning
+        capability: promote-reviewed-learning
+        actor: workspace-owner-or-admin
+        input: [insight]
+        output: [learning-record]
+        emits: [learning-promoted]
+        policies: [learning-human-review]
+        approval: required
+    tools:
+      - id: analytics-query-tool
+        name: Analytics Query
+        kind: database
+        permissions: [analytics:read]
+    agents:
+      - id: iris
+        name: Iris
+        role: Analytics and learning specialist
+        mission: Turn trustworthy observations into clear insights and reviewed organizational learning.
+        capabilities: [calculate-business-metrics, generate-actionable-insights, promote-reviewed-learning]
+        tools: [analytics-query-tool, knowledge-search-tool]
+        consumes: [agent-run-finished, content-published, offer-snapshot-captured, offer-approved]
+        produces: [insight-generated]
+        policies: [analytics-source-traceability, learning-human-review]
+        memory: [permanent, operational, shared]
+        max_cost_per_run: 3.0
+    api_resources:
+      - id: insights-api
+        name: Insights API
+        entity: insight
+        path: /analytics/insights
+        operations: [list, get, update, archive]
+    ui_surfaces:
+      - id: analytics-insights-dashboard
+        name: Analytics Insights Dashboard
+        kind: dashboard
+        entity: insight
+        route: /analytics
+        capabilities: [calculate-business-metrics, generate-actionable-insights]
+        components: [MetricGrid, TrendChart, InsightFeed, ConfidenceBadge, EvidenceDrawer]
+        actions: [accept-insight, reject-insight, create-experiment]
+    metrics:
+      - id: insight-acceptance-rate
+        name: Insight Acceptance Rate
+        unit: ratio
+        source: insight.status
+        aggregation: ratio

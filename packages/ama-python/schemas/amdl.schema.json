@@ -1,0 +1,2345 @@
+{
+  "$defs": {
+    "AgentSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_boundary": {
+          "default": "External writes require human approval",
+          "title": "Approval Boundary",
+          "type": "string"
+        },
+        "capabilities": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "consumes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Consumes",
+          "type": "array"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "max_cost_per_run": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Cost Per Run"
+        },
+        "memory": {
+          "items": {
+            "enum": [
+              "permanent",
+              "operational",
+              "episodic",
+              "shared"
+            ],
+            "type": "string"
+          },
+          "title": "Memory",
+          "type": "array"
+        },
+        "mission": {
+          "title": "Mission",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "policies": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Policies",
+          "type": "array"
+        },
+        "produces": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Produces",
+          "type": "array"
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "tools": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tools",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "role",
+        "mission",
+        "capabilities"
+      ],
+      "title": "AgentSpec",
+      "type": "object"
+    },
+    "ApiResourceSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "auth": {
+          "default": true,
+          "title": "Auth",
+          "type": "boolean"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "entity": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "operations": {
+          "items": {
+            "enum": [
+              "list",
+              "get",
+              "create",
+              "update",
+              "archive",
+              "execute"
+            ],
+            "type": "string"
+          },
+          "title": "Operations",
+          "type": "array"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "v1",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "path",
+        "operations"
+      ],
+      "title": "ApiResourceSpec",
+      "type": "object"
+    },
+    "CapabilitySpec": {
+      "additionalProperties": false,
+      "properties": {
+        "depends_on": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "inputs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Inputs",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "outputs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Outputs",
+          "type": "array"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "quality_gates": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Quality Gates",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "CapabilitySpec",
+      "type": "object"
+    },
+    "Defaults": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_for_external_writes": {
+          "default": true,
+          "title": "Approval For External Writes",
+          "type": "boolean"
+        },
+        "audited": {
+          "default": true,
+          "title": "Audited",
+          "type": "boolean"
+        },
+        "soft_delete": {
+          "default": true,
+          "title": "Soft Delete",
+          "type": "boolean"
+        },
+        "versioned": {
+          "default": false,
+          "title": "Versioned",
+          "type": "boolean"
+        },
+        "workspace_scoped": {
+          "default": true,
+          "title": "Workspace Scoped",
+          "type": "boolean"
+        }
+      },
+      "title": "Defaults",
+      "type": "object"
+    },
+    "DeploymentTargetSpec": {
+      "additionalProperties": false,
+      "description": "A concrete environment the system is deployed to.",
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "environment": {
+          "enum": [
+            "development",
+            "staging",
+            "production"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "platform": {
+          "enum": [
+            "supabase",
+            "vercel",
+            "cloudflare",
+            "docker",
+            "kubernetes",
+            "other"
+          ],
+          "title": "Platform",
+          "type": "string"
+        },
+        "region": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Region"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "platform",
+        "environment"
+      ],
+      "title": "DeploymentTargetSpec",
+      "type": "object"
+    },
+    "DomainSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "agents": {
+          "items": {
+            "$ref": "#/$defs/AgentSpec"
+          },
+          "title": "Agents",
+          "type": "array"
+        },
+        "api_resources": {
+          "items": {
+            "$ref": "#/$defs/ApiResourceSpec"
+          },
+          "title": "Api Resources",
+          "type": "array"
+        },
+        "capabilities": {
+          "items": {
+            "$ref": "#/$defs/CapabilitySpec"
+          },
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "depends_on": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        },
+        "deployment_targets": {
+          "items": {
+            "$ref": "#/$defs/DeploymentTargetSpec"
+          },
+          "title": "Deployment Targets",
+          "type": "array"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "entities": {
+          "items": {
+            "$ref": "#/$defs/EntitySpec"
+          },
+          "title": "Entities",
+          "type": "array"
+        },
+        "evaluations": {
+          "items": {
+            "$ref": "#/$defs/EvaluationSpec"
+          },
+          "title": "Evaluations",
+          "type": "array"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/EventSpec"
+          },
+          "title": "Events",
+          "type": "array"
+        },
+        "feature_flags": {
+          "items": {
+            "$ref": "#/$defs/FeatureFlagSpec"
+          },
+          "title": "Feature Flags",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "integrations": {
+          "items": {
+            "$ref": "#/$defs/IntegrationSpec"
+          },
+          "title": "Integrations",
+          "type": "array"
+        },
+        "metrics": {
+          "items": {
+            "$ref": "#/$defs/MetricSpec"
+          },
+          "title": "Metrics",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Owner"
+        },
+        "permissions": {
+          "items": {
+            "$ref": "#/$defs/PermissionSpec"
+          },
+          "title": "Permissions",
+          "type": "array"
+        },
+        "policies": {
+          "items": {
+            "$ref": "#/$defs/PolicySpec"
+          },
+          "title": "Policies",
+          "type": "array"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/RoleSpec"
+          },
+          "title": "Roles",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "test_specs": {
+          "items": {
+            "$ref": "#/$defs/TestSpec"
+          },
+          "title": "Test Specs",
+          "type": "array"
+        },
+        "tools": {
+          "items": {
+            "$ref": "#/$defs/ToolSpec"
+          },
+          "title": "Tools",
+          "type": "array"
+        },
+        "ui_surfaces": {
+          "items": {
+            "$ref": "#/$defs/UISurfaceSpec"
+          },
+          "title": "Ui Surfaces",
+          "type": "array"
+        },
+        "use_cases": {
+          "items": {
+            "$ref": "#/$defs/UseCaseSpec"
+          },
+          "title": "Use Cases",
+          "type": "array"
+        },
+        "value_objects": {
+          "items": {
+            "$ref": "#/$defs/ValueObjectSpec"
+          },
+          "title": "Value Objects",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        },
+        "workflows": {
+          "items": {
+            "$ref": "#/$defs/WorkflowSpec"
+          },
+          "title": "Workflows",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "DomainSpec",
+      "type": "object"
+    },
+    "EntitySpec": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aggregate"
+        },
+        "audited": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Audited"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/$defs/FieldSpec"
+          },
+          "title": "Fields",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "indexes": {
+          "items": {
+            "$ref": "#/$defs/IndexSpec"
+          },
+          "title": "Indexes",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "ownership": {
+          "default": "workspace",
+          "enum": [
+            "domain",
+            "workspace",
+            "system"
+          ],
+          "title": "Ownership",
+          "type": "string"
+        },
+        "soft_delete": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Soft Delete"
+        },
+        "states": {
+          "items": {
+            "type": "string"
+          },
+          "title": "States",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "table": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Table"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        },
+        "versioned": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Versioned"
+        },
+        "workspace_scoped": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Workspace Scoped"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "EntitySpec",
+      "type": "object"
+    },
+    "EvaluationSpec": {
+      "additionalProperties": false,
+      "description": "A measurable quality/eval gate bound to an agent or capability.",
+      "properties": {
+        "dataset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dataset"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "metric": {
+          "title": "Metric",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "target": {
+          "title": "Target",
+          "type": "string"
+        },
+        "threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Threshold"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "target",
+        "metric"
+      ],
+      "title": "EvaluationSpec",
+      "type": "object"
+    },
+    "EventSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregate": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Aggregate"
+        },
+        "consumers": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Consumers",
+          "type": "array"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "payload": {
+          "items": {
+            "$ref": "#/$defs/FieldSpec"
+          },
+          "title": "Payload",
+          "type": "array"
+        },
+        "producers": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Producers",
+          "type": "array"
+        },
+        "schema_version": {
+          "default": 1,
+          "title": "Schema Version",
+          "type": "integer"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "EventSpec",
+      "type": "object"
+    },
+    "FeatureFlagSpec": {
+      "additionalProperties": false,
+      "description": "A governed rollout toggle for a capability or surface.",
+      "properties": {
+        "capability": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Capability"
+        },
+        "default_enabled": {
+          "default": false,
+          "title": "Default Enabled",
+          "type": "boolean"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "rollout": {
+          "default": "off",
+          "enum": [
+            "off",
+            "internal",
+            "beta",
+            "ga"
+          ],
+          "title": "Rollout",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "FeatureFlagSpec",
+      "type": "object"
+    },
+    "FieldSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "default": {
+          "default": null,
+          "title": "Default"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "immutable": {
+          "default": false,
+          "title": "Immutable",
+          "type": "boolean"
+        },
+        "indexed": {
+          "default": false,
+          "title": "Indexed",
+          "type": "boolean"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "required": {
+          "default": false,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "sensitive": {
+          "default": false,
+          "title": "Sensitive",
+          "type": "boolean"
+        },
+        "type": {
+          "$ref": "#/$defs/TypeSpec"
+        },
+        "unique": {
+          "default": false,
+          "title": "Unique",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "title": "FieldSpec",
+      "type": "object"
+    },
+    "IndexSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fields",
+          "type": "array"
+        },
+        "method": {
+          "default": "btree",
+          "enum": [
+            "btree",
+            "gin",
+            "gist",
+            "hnsw",
+            "ivfflat"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "unique": {
+          "default": false,
+          "title": "Unique",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "fields"
+      ],
+      "title": "IndexSpec",
+      "type": "object"
+    },
+    "IntegrationSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "auth": {
+          "default": "oauth",
+          "enum": [
+            "oauth",
+            "api_key",
+            "service_account",
+            "none",
+            "custom"
+          ],
+          "title": "Auth",
+          "type": "string"
+        },
+        "capabilities": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "data_classification": {
+          "default": "internal",
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ],
+          "title": "Data Classification",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "source",
+            "destination",
+            "bidirectional",
+            "infrastructure"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "permission_mode": {
+          "default": "authorized",
+          "enum": [
+            "owner_only",
+            "authorized",
+            "public_reference",
+            "not_applicable"
+          ],
+          "title": "Permission Mode",
+          "type": "string"
+        },
+        "rate_limit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rate Limit"
+        },
+        "respect_robots": {
+          "default": true,
+          "title": "Respect Robots",
+          "type": "boolean"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "kind"
+      ],
+      "title": "IntegrationSpec",
+      "type": "object"
+    },
+    "Metadata": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "Metadata",
+      "type": "object"
+    },
+    "MetricSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "aggregation": {
+          "default": "count",
+          "enum": [
+            "sum",
+            "avg",
+            "min",
+            "max",
+            "count",
+            "latest",
+            "ratio"
+          ],
+          "title": "Aggregation",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "unit": {
+          "default": "count",
+          "title": "Unit",
+          "type": "string"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "source"
+      ],
+      "title": "MetricSpec",
+      "type": "object"
+    },
+    "PermissionSpec": {
+      "additionalProperties": false,
+      "description": "A discrete, checkable authorization (an action on a resource).",
+      "properties": {
+        "action": {
+          "title": "Action",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "resource": {
+          "default": "",
+          "title": "Resource",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "action"
+      ],
+      "title": "PermissionSpec",
+      "type": "object"
+    },
+    "PolicySpec": {
+      "additionalProperties": false,
+      "properties": {
+        "condition": {
+          "default": "",
+          "title": "Condition",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "effect": {
+          "default": "require",
+          "enum": [
+            "allow",
+            "deny",
+            "require",
+            "transform",
+            "audit"
+          ],
+          "title": "Effect",
+          "type": "string"
+        },
+        "enforcement": {
+          "default": "both",
+          "enum": [
+            "compile",
+            "runtime",
+            "both"
+          ],
+          "title": "Enforcement",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "severity": {
+          "default": "medium",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "PolicySpec",
+      "type": "object"
+    },
+    "RoleSpec": {
+      "additionalProperties": false,
+      "description": "A named bundle of permissions assignable to members or agents.",
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "inherits": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Inherits",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Permissions",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "RoleSpec",
+      "type": "object"
+    },
+    "TestSpec": {
+      "additionalProperties": false,
+      "description": "A declared verification bound to one or more architecture objects.",
+      "properties": {
+        "covers": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Covers",
+          "type": "array"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "level": {
+          "default": "unit",
+          "enum": [
+            "unit",
+            "integration",
+            "e2e",
+            "contract",
+            "governance"
+          ],
+          "title": "Level",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "TestSpec",
+      "type": "object"
+    },
+    "ToolSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "external_writes": {
+          "default": false,
+          "title": "External Writes",
+          "type": "boolean"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "api",
+            "browser",
+            "database",
+            "storage",
+            "model",
+            "worker",
+            "internal"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "permissions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Permissions",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "kind"
+      ],
+      "title": "ToolSpec",
+      "type": "object"
+    },
+    "TypeSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "dimensions": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dimensions"
+        },
+        "items": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Items"
+        },
+        "kind": {
+          "enum": [
+            "string",
+            "text",
+            "integer",
+            "number",
+            "boolean",
+            "uuid",
+            "date",
+            "datetime",
+            "money",
+            "url",
+            "email",
+            "json",
+            "enum",
+            "array",
+            "reference",
+            "vector"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target"
+        },
+        "values": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "TypeSpec",
+      "type": "object"
+    },
+    "UISurfaceSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "capabilities": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "components": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "entity": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entity"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "dashboard",
+            "list",
+            "detail",
+            "editor",
+            "wizard",
+            "timeline",
+            "settings"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "route": {
+          "title": "Route",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "kind",
+        "route"
+      ],
+      "title": "UISurfaceSpec",
+      "type": "object"
+    },
+    "UseCaseSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "title": "Actor",
+          "type": "string"
+        },
+        "approval": {
+          "default": "none",
+          "enum": [
+            "none",
+            "optional",
+            "required"
+          ],
+          "title": "Approval",
+          "type": "string"
+        },
+        "capability": {
+          "title": "Capability",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "emits": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Emits",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "input": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Input",
+          "type": "array"
+        },
+        "kind": {
+          "default": "command",
+          "enum": [
+            "command",
+            "query"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "output": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Output",
+          "type": "array"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "policies": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Policies",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "capability",
+        "actor"
+      ],
+      "title": "UseCaseSpec",
+      "type": "object"
+    },
+    "ValueObjectSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/$defs/FieldSpec"
+          },
+          "title": "Fields",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "title": "ValueObjectSpec",
+      "type": "object"
+    },
+    "WorkflowSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "emits": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Emits",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "owners": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Owners",
+          "type": "array"
+        },
+        "schedule": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Schedule"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "retired"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/WorkflowStepSpec"
+          },
+          "title": "Steps",
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "trigger": {
+          "title": "Trigger",
+          "type": "string"
+        },
+        "version": {
+          "default": "0.1.0",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "trigger",
+        "steps"
+      ],
+      "title": "WorkflowSpec",
+      "type": "object"
+    },
+    "WorkflowStepSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Agent"
+        },
+        "approval": {
+          "default": "none",
+          "enum": [
+            "none",
+            "optional",
+            "required"
+          ],
+          "title": "Approval",
+          "type": "string"
+        },
+        "condition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Condition"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "on_failure": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "On Failure"
+        },
+        "on_success": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "On Success"
+        },
+        "retry": {
+          "default": 0,
+          "title": "Retry",
+          "type": "integer"
+        },
+        "timeout_seconds": {
+          "default": 300,
+          "title": "Timeout Seconds",
+          "type": "integer"
+        },
+        "uses": {
+          "title": "Uses",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "uses"
+      ],
+      "title": "WorkflowStepSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "amdl": {
+      "default": "1.0",
+      "title": "Amdl",
+      "type": "string"
+    },
+    "defaults": {
+      "$ref": "#/$defs/Defaults"
+    },
+    "domains": {
+      "items": {
+        "$ref": "#/$defs/DomainSpec"
+      },
+      "title": "Domains",
+      "type": "array"
+    },
+    "includes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Includes",
+      "type": "array"
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata"
+    }
+  },
+  "required": [
+    "metadata"
+  ],
+  "title": "AMDLDocument",
+  "type": "object"
+}

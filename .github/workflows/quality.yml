@@ -1,0 +1,76 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# This workflow is offline-safe: it never applies migrations, touches Supabase
+# or Vercel, deploys, or reads production secrets. E2E (which needs a live
+# environment) is intentionally excluded.
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Set up AMA/AMDL (Python)
+        run: |
+          python -m venv packages/ama-python/.venv
+          packages/ama-python/.venv/bin/pip install --upgrade pip
+          packages/ama-python/.venv/bin/pip install -e "packages/ama-python[dev]"
+
+      - name: Secret scan (basic)
+        run: bash scripts/scan-secrets.sh
+
+      - name: Env safety check
+        run: bash scripts/check-env.sh
+
+      - name: Validate AMDL
+        run: npm run ama:validate
+
+      - name: AMA/AMDL tests
+        run: npm run ama:test
+
+      - name: Compile architecture
+        run: npm run ama:compile
+
+      - name: Architecture drift check
+        run: npm run ama:drift
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload architecture reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: architecture-reports
+          path: |
+            generated/compilation-report.json
+            generated/architecture/report
+          if-no-files-found: ignore

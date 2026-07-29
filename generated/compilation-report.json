@@ -1,0 +1,61 @@
+{
+  "artifacts": {
+    "by_kind": {
+      "agent": 6,
+      "agent-index": 1,
+      "blueprint": 9,
+      "catalog": 4,
+      "component-manifest": 1,
+      "diagram": 2,
+      "governance": 2,
+      "graph": 3,
+      "html": 1,
+      "json-schema": 43,
+      "json-schema-index": 1,
+      "manifest": 1,
+      "openapi": 1,
+      "prompt": 6,
+      "registry": 1,
+      "sql": 1,
+      "test-plan": 1,
+      "typescript": 1,
+      "ui-manifest": 1,
+      "workflow": 7
+    },
+    "total": 93
+  },
+  "compiler": "averro-ama-amdl/0.1.0",
+  "diagnostics": {
+    "by_severity": {},
+    "total": 0
+  },
+  "fingerprint": "09cce0db8c0089fe349d17db168207f949d761b356a8bc836bf7496dcb72e8d1",
+  "objects": {
+    "by_kind": {
+      "agent": 6,
+      "api_resource": 13,
+      "capability": 31,
+      "deployment_target": 3,
+      "domain": 8,
+      "entity": 43,
+      "evaluation": 1,
+      "event": 30,
+      "feature_flag": 2,
+      "integration": 5,
+      "metric": 15,
+      "permission": 5,
+      "policy": 22,
+      "role": 4,
+      "test_spec": 1,
+      "tool": 13,
+      "ui_surface": 16,
+      "use_case": 27,
+      "workflow": 7
+    },
+    "total": 252
+  },
+  "success": true,
+  "volatile_fields": [
+    "ama-manifest.json:generated_at"
+  ]
+}

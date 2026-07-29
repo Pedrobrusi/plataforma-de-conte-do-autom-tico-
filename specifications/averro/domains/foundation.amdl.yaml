@@ -1,0 +1,199 @@
+domains:
+  - id: foundation
+    name: Platform Foundation
+    description: Identity, workspaces, approvals, audit, configuration and shared platform contracts.
+    owner: Laura
+    capabilities:
+      - id: manage-workspaces
+        name: Manage Workspaces
+        description: Create and administer isolated organizations and memberships.
+        outputs: [workspace, workspace-membership]
+      - id: govern-approvals
+        name: Govern Approvals
+        description: Pause sensitive operations until an authorized human records a decision.
+        outputs: [approval-request]
+      - id: audit-platform-actions
+        name: Audit Platform Actions
+        description: Record actors, agents, evidence, correlation, cost and effects for material actions.
+        outputs: [audit-entry]
+    entities:
+      - id: workspace
+        name: Workspace
+        description: Tenant root for all platform data and operations.
+        table: workspaces
+        workspace_scoped: false
+        soft_delete: false
+        ownership: system
+        fields:
+          - {name: name, type: string, required: true}
+          - {name: slug, type: string, required: true, unique: true, indexed: true}
+          - {name: plan, type: "enum:internal|starter|growth|scale|enterprise", required: true, default: internal}
+          - {name: settings, type: json, required: true, default: {}}
+        states: [active, suspended, archived]
+      - id: workspace-membership
+        name: Workspace Membership
+        table: workspace_memberships
+        fields:
+          - {name: user_id, type: uuid, required: true, indexed: true}
+          - {name: role, type: "enum:owner|admin|editor|viewer", required: true}
+          - {name: joined_at, type: datetime, required: true}
+        indexes:
+          - {name: uq_workspace_member, fields: [workspace_id, user_id], unique: true}
+      - id: approval-request
+        name: Approval Request
+        fields:
+          - {name: operation, type: string, required: true, indexed: true}
+          - {name: requested_by_type, type: "enum:human|agent|system", required: true}
+          - {name: requested_by_id, type: uuid}
+          - {name: risk_level, type: "enum:low|medium|high|critical", required: true}
+          - {name: evidence, type: json, required: true}
+          - {name: decision, type: "enum:pending|approved|rejected|expired", required: true, default: pending}
+          - {name: decided_by, type: uuid}
+          - {name: decided_at, type: datetime}
+        states: [pending, approved, rejected, expired]
+      - id: audit-entry
+        name: Audit Entry
+        table: audit_entries
+        soft_delete: false
+        fields:
+          - {name: actor_type, type: "enum:human|agent|system", required: true, indexed: true}
+          - {name: actor_id, type: uuid}
+          - {name: action, type: string, required: true, indexed: true}
+          - {name: target_type, type: string, indexed: true}
+          - {name: target_id, type: uuid, indexed: true}
+          - {name: evidence, type: json, required: true}
+          - {name: outcome, type: "enum:success|failure|denied|cancelled", required: true}
+          - {name: cost_amount, type: money}
+          - {name: duration_ms, type: integer}
+    events:
+      - id: workspace-created
+        name: Workspace Created
+        aggregate: workspace
+        producers: [manage-workspaces]
+        consumers: [mission-control]
+        payload:
+          - {name: workspace_id, type: uuid, required: true}
+      - id: approval-recorded
+        name: Approval Recorded
+        aggregate: approval-request
+        producers: [govern-approvals]
+        consumers: [aios, mission-control]
+        payload:
+          - {name: approval_id, type: uuid, required: true}
+          - {name: decision, type: "enum:approved|rejected|expired", required: true}
+      - id: audit-entry-created
+        name: Audit Entry Created
+        aggregate: audit-entry
+        producers: [audit-platform-actions]
+        consumers: [mission-control]
+    policies:
+      - id: workspace-isolation
+        name: Workspace Isolation
+        description: Every tenant-owned read and write must be constrained by workspace membership.
+        effect: require
+        condition: actor.workspace_id == resource.workspace_id
+        enforcement: both
+        severity: critical
+      - id: human-approval-external-write
+        name: Human Approval for External Writes
+        description: Publishing, ad activation, spending and destructive operations require human approval.
+        effect: require
+        condition: operation.external_write == false OR approval.decision == approved
+        enforcement: runtime
+        severity: critical
+      - id: secrets-redaction
+        name: Secrets Redaction
+        description: Secrets are stored only in a vault and are redacted from logs, events and prompts.
+        effect: transform
+        condition: field.sensitive == true
+        enforcement: both
+        severity: critical
+    use_cases:
+      - id: create-workspace
+        name: Create Workspace
+        capability: manage-workspaces
+        actor: authenticated-user
+        input: [name, slug]
+        output: [workspace]
+        emits: [workspace-created]
+        policies: [workspace-isolation]
+      - id: decide-approval
+        name: Decide Approval
+        capability: govern-approvals
+        actor: workspace-owner-or-admin
+        input: [approval-request, decision]
+        output: [approval-request]
+        emits: [approval-recorded]
+        policies: [workspace-isolation]
+    api_resources:
+      - id: workspaces-api
+        name: Workspaces API
+        entity: workspace
+        path: /workspaces
+        operations: [list, get, create, update, archive]
+      - id: approvals-api
+        name: Approvals API
+        entity: approval-request
+        path: /approvals
+        operations: [list, get, update]
+    ui_surfaces:
+      - id: workspace-settings
+        name: Workspace Settings
+        kind: settings
+        entity: workspace
+        route: /settings/workspace
+        capabilities: [manage-workspaces]
+        components: [SettingsForm, MemberTable, RoleBadge]
+        actions: [invite-member, change-role, archive-workspace]
+      - id: approval-inbox
+        name: Approval Inbox
+        kind: list
+        entity: approval-request
+        route: /approvals
+        capabilities: [govern-approvals]
+        components: [ApprovalQueue, RiskBadge, EvidenceDrawer]
+        actions: [approve, reject]
+    metrics:
+      - id: approval-lead-time
+        name: Approval Lead Time
+        unit: seconds
+        source: approval-request
+        aggregation: avg
+    permissions:
+      - {id: workspace-read, name: Read Workspace Data, action: read, resource: workspace}
+      - {id: workspace-write, name: Write Workspace Data, action: write, resource: workspace}
+      - {id: workspace-admin, name: Administer Workspace, action: admin, resource: workspace}
+      - {id: approval-decide, name: Decide Approvals, action: decide, resource: approval-request}
+      - {id: audit-read, name: Read Audit Trail, action: read, resource: audit-entry}
+    roles:
+      - {id: viewer, name: Viewer, permissions: [workspace-read]}
+      - {id: editor, name: Editor, permissions: [workspace-write], inherits: [viewer]}
+      - {id: admin, name: Admin, permissions: [workspace-admin, approval-decide, audit-read], inherits: [editor]}
+      - {id: owner, name: Owner, permissions: [workspace-admin, approval-decide, audit-read], inherits: [admin]}
+    feature_flags:
+      - id: workspace-self-serve
+        name: Workspace Self-Serve Signup
+        default_enabled: false
+        rollout: internal
+        capability: manage-workspaces
+      - id: mandatory-approvals
+        name: Mandatory External-Write Approvals
+        default_enabled: true
+        rollout: ga
+        capability: govern-approvals
+    deployment_targets:
+      - {id: supabase-prod, name: Supabase Production, platform: supabase, environment: production, region: us-east-1}
+      - {id: vercel-prod, name: Vercel Production, platform: vercel, environment: production}
+      - {id: supabase-staging, name: Supabase Staging, platform: supabase, environment: staging}
+    evaluations:
+      - id: approval-latency-eval
+        name: Approval Latency Evaluation
+        target: govern-approvals
+        metric: approval-lead-time-seconds
+        threshold: 3600
+    test_specs:
+      - id: workspace-isolation-suite
+        name: Workspace Isolation Suite
+        level: governance
+        target: workspace-isolation
+        covers: [create-workspace, workspaces-api]

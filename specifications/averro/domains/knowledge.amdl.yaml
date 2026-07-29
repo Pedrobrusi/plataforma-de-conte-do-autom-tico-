@@ -1,0 +1,140 @@
+domains:
+  - id: knowledge
+    name: Knowledge Engine
+    description: Ingest, process, index, retrieve and cite institutional knowledge with provenance.
+    owner: Nilo
+    depends_on: [foundation]
+    capabilities:
+      - id: ingest-knowledge
+        name: Ingest Knowledge
+        inputs: [file, url, connector-record]
+        outputs: [knowledge-source, knowledge-document]
+      - id: index-knowledge
+        name: Index Knowledge
+        inputs: [knowledge-document]
+        outputs: [knowledge-chunk, embedding]
+      - id: retrieve-knowledge
+        name: Retrieve Knowledge
+        inputs: [query, workspace-scope]
+        outputs: [citation-set]
+    entities:
+      - id: knowledge-source
+        name: Knowledge Source
+        fields:
+          - {name: source_type, type: "enum:pdf|video|audio|url|text|slack|drive|notion|database", required: true, indexed: true}
+          - {name: title, type: string, required: true}
+          - {name: origin_uri, type: url}
+          - {name: storage_path, type: string}
+          - {name: mime_type, type: string}
+          - {name: checksum, type: string, required: true, indexed: true}
+          - {name: provenance, type: json, required: true}
+          - {name: permission_basis, type: "enum:owned|licensed|authorized|public_reference", required: true}
+        states: [pending, processing, ready, failed, archived]
+      - id: knowledge-document
+        name: Knowledge Document
+        versioned: true
+        fields:
+          - {name: source_id, type: "ref:knowledge-source", required: true, indexed: true}
+          - {name: normalized_text, type: text, required: true}
+          - {name: language, type: string, indexed: true}
+          - {name: structure, type: json, required: true}
+          - {name: processing_metadata, type: json, required: true}
+      - id: knowledge-chunk
+        name: Knowledge Chunk
+        table: source_chunks
+        fields:
+          - {name: document_id, type: "ref:knowledge-document", required: true, indexed: true}
+          - {name: ordinal, type: integer, required: true}
+          - {name: content, type: text, required: true}
+          - {name: token_count, type: integer, required: true}
+          - {name: locator, type: json, required: true}
+          - {name: embedding, type: {kind: vector, dimensions: 1536}}
+        indexes:
+          - {name: idx_source_chunks_document_ordinal, fields: [document_id, ordinal], unique: true}
+      - id: citation
+        name: Citation
+        fields:
+          - {name: chunk_id, type: "ref:knowledge-chunk", required: true, indexed: true}
+          - {name: claim, type: text, required: true}
+          - {name: quote, type: text}
+          - {name: locator, type: json, required: true}
+          - {name: confidence, type: number, required: true}
+    events:
+      - id: knowledge-source-added
+        name: Knowledge Source Added
+        aggregate: knowledge-source
+        producers: [ingest-knowledge]
+        consumers: [index-knowledge, mission-control]
+      - id: knowledge-indexed
+        name: Knowledge Indexed
+        aggregate: knowledge-document
+        producers: [index-knowledge]
+        consumers: [aios, mission-control]
+    policies:
+      - id: provenance-required
+        name: Provenance Required
+        effect: require
+        condition: source.provenance != null AND source.permission_basis != null
+        enforcement: both
+        severity: critical
+      - id: citation-required-for-claims
+        name: Citation Required for Material Claims
+        effect: require
+        condition: output.material_claims.all_have_citations == true
+        enforcement: runtime
+        severity: high
+    use_cases:
+      - id: add-knowledge-source
+        name: Add Knowledge Source
+        capability: ingest-knowledge
+        actor: workspace-editor
+        input: [source]
+        output: [knowledge-source]
+        emits: [knowledge-source-added]
+        policies: [workspace-isolation, provenance-required]
+      - id: process-knowledge-source
+        name: Process Knowledge Source
+        capability: index-knowledge
+        actor: indexing-worker
+        input: [knowledge-source]
+        output: [knowledge-document, knowledge-chunk]
+        emits: [knowledge-indexed]
+        policies: [provenance-required]
+    integrations:
+      - id: google-drive-source
+        name: Google Drive
+        kind: source
+        auth: oauth
+        capabilities: [ingest-knowledge]
+        rate_limit: provider-default
+        permission_mode: authorized
+        data_classification: confidential
+      - id: slack-source
+        name: Slack
+        kind: source
+        auth: oauth
+        capabilities: [ingest-knowledge]
+        rate_limit: provider-default
+        permission_mode: authorized
+        data_classification: confidential
+    api_resources:
+      - id: knowledge-sources-api
+        name: Knowledge Sources API
+        entity: knowledge-source
+        path: /knowledge/sources
+        operations: [list, get, create, archive]
+    ui_surfaces:
+      - id: knowledge-library
+        name: Knowledge Library
+        kind: list
+        entity: knowledge-source
+        route: /knowledge
+        capabilities: [ingest-knowledge, retrieve-knowledge]
+        components: [SourceTable, UploadDropzone, ConnectorPicker, ProcessingStatus]
+        actions: [upload, connect-source, reindex, archive]
+    metrics:
+      - id: knowledge-retrieval-grounded-rate
+        name: Grounded Retrieval Rate
+        unit: ratio
+        source: citation
+        aggregation: ratio

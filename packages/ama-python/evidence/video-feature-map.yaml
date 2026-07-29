@@ -1,0 +1,86 @@
+version: 1
+method: timestamped visual inspection of uploaded MP4 files
+sources:
+  - id: video-offer-monitoring
+    file: YTDown.com_YouTube_Aprenda-Monitorar-Ofertas-Com-a-Aurax_Media_GrSu0rXz9KU_001_1080p.mp4
+    duration: 00:06:10
+    observations:
+      - timestamp: 00:01:48
+        evidence: New monitoring form with offer name, Meta Ads Library URL, tags, languages, site URL and checkout URL.
+        maps_to:
+          - capability: offer-intelligence.monitor-offer-activity
+          - entity: offer-intelligence.offer-watch
+          - surface: offer-intelligence.offer-monitoring-dashboard
+      - timestamp: 00:03:51
+        evidence: Detail metrics for current ads, previous count, daily variation, weekly average, peak and consecutive active days.
+        maps_to:
+          - entity: offer-intelligence.offer-snapshot
+          - surface: offer-intelligence.offer-watch-detail
+      - timestamp: 00:05:54
+        evidence: Historical chart with alternate windows and summary statistics.
+        maps_to:
+          - metric: offer-intelligence.monitored-active-ad-count
+          - metric: offer-intelligence.offer-daily-variation
+  - id: video-offer-cloning
+    file: YTDown.com_YouTube_Como-Clonar-qualquer-oferta-com-a-Aurax_Media_DeQ9dQYjIKk_001_1080p.mp4
+    duration: 00:01:11
+    observations:
+      - timestamp: 00:00:14
+        evidence: Job dashboard with simple and advanced capture modes, URL input and processing counters.
+        maps_to:
+          - capability: offer-modeling.extract-offer-structure
+          - policy: offer-modeling.authorized-source-use
+          - policy: offer-modeling.originality-guard
+      - timestamp: 00:00:56
+        evidence: Completed job history with status and preview/download-style actions.
+        maps_to:
+          - entity: offer-modeling.offer-structure
+          - workflow: offer-modeling.reference-to-original-offer
+    adaptation: Literal cloning is replaced by authorized structural extraction and independently generated output.
+  - id: video-url-extractor
+    file: YTDown.com_YouTube_Como-Encontrar-todas-as-paginas-da-ofert_Media_tNY7l2z8pAs_001_1080p.mp4
+    duration: 00:01:49
+    observations:
+      - timestamp: 00:01:08
+        evidence: Discovered URL list with page-type labels, relevance percentages, search, filters, copy and open actions.
+        maps_to:
+          - capability: offer-intelligence.crawl-offer-graph
+          - entity: offer-intelligence.offer-page
+          - entity: offer-intelligence.offer-page-edge
+          - surface: offer-intelligence.offer-url-extractor
+  - id: video-ai-carousels
+    file: YTDown.com_YouTube_Crie-Carrosseis-Virais-com-IA-Passo-a-Pa_Media_Zy1VDV3mzqA_001_1080p(1).mp4
+    duration: 00:21:38
+    observations:
+      - timestamp: 00:01:21
+        evidence: AI wizard with topic, optional reference image, slide count and image mode.
+        maps_to:
+          - capability: content-studio.generate-ai-carousel
+          - surface: content-studio.carousel-ai-wizard
+      - timestamp: 00:06:45
+        evidence: Multi-slide editor and side control panel.
+        maps_to:
+          - capability: content-studio.edit-design-document
+          - entity: content-studio.design-document
+          - surface: content-studio.carousel-editor
+      - timestamp: 00:10:22
+        evidence: Title/subtitle, font, scale, position, AI regeneration, slide download and ZIP export controls.
+        maps_to:
+          - entity: content-studio.design-document-version
+          - capability: content-studio.render-content-assets
+      - timestamp: 00:13:58
+        evidence: Background image, position, zoom and overlay/shadow controls.
+        maps_to:
+          - surface: content-studio.carousel-editor
+          - entity: content-studio.media-asset
+  - id: video-scaled-offer-swipe
+    file: YTDown.com_YouTube_Ofertas-Mais-Escaladas-de-Infoprodutos-A_Media_hsZZJiYnoh0_001_1080p.mp4
+    duration: 00:05:30
+    observations:
+      - timestamp: 00:02:31
+        evidence: Search and advanced filters for keyword, platform, niche, funnel type, ad-count range, date and trend-score sorting.
+        maps_to:
+          - capability: offer-intelligence.discover-scaled-offers
+          - entity: offer-intelligence.offer-reference
+          - entity: offer-intelligence.opportunity-score
+          - surface: offer-intelligence.offer-swipe-library

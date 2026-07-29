@@ -1,0 +1,302 @@
+{
+  "policies": [
+    {
+      "condition": "actor.workspace_id == resource.workspace_id",
+      "domain": "foundation",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:foundation.create-workspace",
+        "use_case:foundation.decide-approval"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:foundation.workspace-isolation",
+      "id": "workspace-isolation",
+      "name": "Workspace Isolation",
+      "severity": "critical"
+    },
+    {
+      "condition": "operation.external_write == false OR approval.decision == approved",
+      "domain": "foundation",
+      "effect": "require",
+      "enforced_by": [],
+      "enforcement": "runtime",
+      "fqid": "policy:foundation.human-approval-external-write",
+      "id": "human-approval-external-write",
+      "name": "Human Approval for External Writes",
+      "severity": "critical"
+    },
+    {
+      "condition": "field.sensitive == true",
+      "domain": "foundation",
+      "effect": "transform",
+      "enforced_by": [],
+      "enforcement": "both",
+      "fqid": "policy:foundation.secrets-redaction",
+      "id": "secrets-redaction",
+      "name": "Secrets Redaction",
+      "severity": "critical"
+    },
+    {
+      "condition": "requested_tool in agent.allowed_tools",
+      "domain": "aios",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:aios.run-agent"
+      ],
+      "enforcement": "runtime",
+      "fqid": "policy:aios.least-privilege-tools",
+      "id": "least-privilege-tools",
+      "name": "Least Privilege Tools",
+      "severity": "critical"
+    },
+    {
+      "condition": "projected_cost > agent.max_cost_per_run",
+      "domain": "aios",
+      "effect": "deny",
+      "enforced_by": [
+        "use_case:aios.run-agent"
+      ],
+      "enforcement": "runtime",
+      "fqid": "policy:aios.agent-budget-limit",
+      "id": "agent-budget-limit",
+      "name": "Agent Budget Limit",
+      "severity": "high"
+    },
+    {
+      "condition": "evaluation.quality_score >= 0.8 AND evidence_refs.count > 0",
+      "domain": "aios",
+      "effect": "require",
+      "enforced_by": [],
+      "enforcement": "runtime",
+      "fqid": "policy:aios.evidence-before-learning",
+      "id": "evidence-before-learning",
+      "name": "Evidence Before Learning",
+      "severity": "high"
+    },
+    {
+      "condition": "source.provenance != null AND source.permission_basis != null",
+      "domain": "knowledge",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:knowledge.add-knowledge-source",
+        "use_case:knowledge.process-knowledge-source"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:knowledge.provenance-required",
+      "id": "provenance-required",
+      "name": "Provenance Required",
+      "severity": "critical"
+    },
+    {
+      "condition": "output.material_claims.all_have_citations == true",
+      "domain": "knowledge",
+      "effect": "require",
+      "enforced_by": [],
+      "enforcement": "runtime",
+      "fqid": "policy:knowledge.citation-required-for-claims",
+      "id": "citation-required-for-claims",
+      "name": "Citation Required for Material Claims",
+      "severity": "high"
+    },
+    {
+      "condition": "crawl.permission_basis in [owned, licensed, authorized, public_reference]",
+      "domain": "offer-intelligence",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:offer-intelligence.capture-offer-snapshot",
+        "use_case:offer-intelligence.create-offer-watch",
+        "use_case:offer-intelligence.extract-offer-urls"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:offer-intelligence.authorized-web-evidence",
+      "id": "authorized-web-evidence",
+      "name": "Authorized Web Evidence",
+      "severity": "critical"
+    },
+    {
+      "condition": "crawler.bypasses_access_control == false AND crawler.rate_limited == true",
+      "domain": "offer-intelligence",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:offer-intelligence.capture-offer-snapshot",
+        "use_case:offer-intelligence.extract-offer-urls"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:offer-intelligence.respectful-crawl",
+      "id": "respectful-crawl",
+      "name": "Respectful Crawl",
+      "severity": "critical"
+    },
+    {
+      "condition": "output.labels_signals_as_estimates == true",
+      "domain": "offer-intelligence",
+      "effect": "transform",
+      "enforced_by": [
+        "use_case:offer-intelligence.calculate-opportunity-score",
+        "use_case:offer-intelligence.capture-offer-snapshot",
+        "use_case:offer-intelligence.search-offer-swipe"
+      ],
+      "enforcement": "runtime",
+      "fqid": "policy:offer-intelligence.evidence-not-revenue-claim",
+      "id": "evidence-not-revenue-claim",
+      "name": "Evidence Is Not a Revenue Claim",
+      "severity": "high"
+    },
+    {
+      "condition": "source.permission_basis in [owned, licensed, authorized, public_reference]",
+      "domain": "offer-modeling",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:offer-modeling.analyze-reference-offer",
+        "use_case:offer-modeling.draft-original-offer"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:offer-modeling.authorized-source-use",
+      "id": "authorized-source-use",
+      "name": "Authorized Source Use",
+      "severity": "critical"
+    },
+    {
+      "condition": "output.originality_score >= 0.8 AND output.protected_expression_overlap <= 0.1",
+      "domain": "offer-modeling",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:offer-modeling.analyze-reference-offer",
+        "use_case:offer-modeling.create-funnel-blueprint",
+        "use_case:offer-modeling.draft-original-offer",
+        "use_case:offer-modeling.review-offer"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:offer-modeling.originality-guard",
+      "id": "originality-guard",
+      "name": "Originality Guard",
+      "severity": "critical"
+    },
+    {
+      "condition": "offer.claims_register.all_material_claims_supported == true",
+      "domain": "offer-modeling",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:offer-modeling.create-funnel-blueprint",
+        "use_case:offer-modeling.draft-original-offer",
+        "use_case:offer-modeling.review-offer"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:offer-modeling.substantiated-claims",
+      "id": "substantiated-claims",
+      "name": "Substantiated Claims",
+      "severity": "critical"
+    },
+    {
+      "condition": "social_proof.is_fabricated == true",
+      "domain": "offer-modeling",
+      "effect": "deny",
+      "enforced_by": [
+        "use_case:offer-modeling.draft-original-offer",
+        "use_case:offer-modeling.review-offer"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:offer-modeling.no-fabricated-social-proof",
+      "id": "no-fabricated-social-proof",
+      "name": "No Fabricated Social Proof",
+      "severity": "critical"
+    },
+    {
+      "condition": "output.protected_expression_overlap <= 0.1",
+      "domain": "content-studio",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:content-studio.generate-carousel-draft",
+        "use_case:content-studio.review-content"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:content-studio.content-originality",
+      "id": "content-originality",
+      "name": "Content Originality",
+      "severity": "critical"
+    },
+    {
+      "condition": "output.brand_compliance_score >= 0.85",
+      "domain": "content-studio",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:content-studio.apply-design-edit",
+        "use_case:content-studio.generate-carousel-draft",
+        "use_case:content-studio.review-content"
+      ],
+      "enforcement": "runtime",
+      "fqid": "policy:content-studio.brand-guide-compliance",
+      "id": "brand-guide-compliance",
+      "name": "Brand Guide Compliance",
+      "severity": "high"
+    },
+    {
+      "condition": "visual_asset.alt_text != null AND text.contrast_passes == true",
+      "domain": "content-studio",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:content-studio.render-content",
+        "use_case:content-studio.review-content"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:content-studio.accessible-media",
+      "id": "accessible-media",
+      "name": "Accessible Media",
+      "severity": "high"
+    },
+    {
+      "condition": "content_approval.decision == approved",
+      "domain": "content-studio",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:content-studio.publish-approved-content"
+      ],
+      "enforcement": "runtime",
+      "fqid": "policy:content-studio.publication-human-approval",
+      "id": "publication-human-approval",
+      "name": "Publication Human Approval",
+      "severity": "critical"
+    },
+    {
+      "condition": "observation.source_event_id != null OR observation.dimensions.external_source != null",
+      "domain": "analytics",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:analytics.ingest-metric-observation",
+        "use_case:analytics.produce-insight"
+      ],
+      "enforcement": "both",
+      "fqid": "policy:analytics.analytics-source-traceability",
+      "id": "analytics-source-traceability",
+      "name": "Analytics Source Traceability",
+      "severity": "high"
+    },
+    {
+      "condition": "learning.approved_by != null AND learning.confidence >= 0.8",
+      "domain": "analytics",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:analytics.approve-learning"
+      ],
+      "enforcement": "runtime",
+      "fqid": "policy:analytics.learning-human-review",
+      "id": "learning-human-review",
+      "name": "Learning Human Review",
+      "severity": "critical"
+    },
+    {
+      "condition": "alert.severity != critical OR alert.human_notified == true",
+      "domain": "mission-control",
+      "effect": "require",
+      "enforced_by": [
+        "use_case:mission-control.open-operational-alert"
+      ],
+      "enforcement": "runtime",
+      "fqid": "policy:mission-control.critical-alert-escalation",
+      "id": "critical-alert-escalation",
+      "name": "Critical Alert Escalation",
+      "severity": "critical"
+    }
+  ],
+  "version": "1.0"
+}
