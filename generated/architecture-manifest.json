@@ -1,0 +1,681 @@
+{
+  "artifacts": [
+    {
+      "kind": "registry",
+      "path": "registry/meta-registry.json",
+      "source_ids": []
+    },
+    {
+      "kind": "graph",
+      "path": "graph/meta-graph.json",
+      "source_ids": []
+    },
+    {
+      "kind": "diagram",
+      "path": "graph/meta-graph.mmd",
+      "source_ids": []
+    },
+    {
+      "kind": "graph",
+      "path": "graph/dependency-graph.json",
+      "source_ids": []
+    },
+    {
+      "kind": "diagram",
+      "path": "graph/dependency-graph.mmd",
+      "source_ids": []
+    },
+    {
+      "kind": "graph",
+      "path": "graph/impact-graph.json",
+      "source_ids": []
+    },
+    {
+      "kind": "blueprint",
+      "path": "blueprint/README.md",
+      "source_ids": []
+    },
+    {
+      "kind": "blueprint",
+      "path": "blueprint/domains/foundation.md",
+      "source_ids": [
+        "domain:foundation.workspace",
+        "domain:foundation.workspace-membership",
+        "domain:foundation.approval-request",
+        "domain:foundation.audit-entry"
+      ]
+    },
+    {
+      "kind": "blueprint",
+      "path": "blueprint/domains/aios.md",
+      "source_ids": [
+        "domain:aios.agent-definition",
+        "domain:aios.agent-run",
+        "domain:aios.tool-call",
+        "domain:aios.agent-evaluation",
+        "domain:aios.agent-memory"
+      ]
+    },
+    {
+      "kind": "blueprint",
+      "path": "blueprint/domains/knowledge.md",
+      "source_ids": [
+        "domain:knowledge.knowledge-source",
+        "domain:knowledge.knowledge-document",
+        "domain:knowledge.knowledge-chunk",
+        "domain:knowledge.citation"
+      ]
+    },
+    {
+      "kind": "blueprint",
+      "path": "blueprint/domains/offer-intelligence.md",
+      "source_ids": [
+        "domain:offer-intelligence.offer-reference",
+        "domain:offer-intelligence.offer-watch",
+        "domain:offer-intelligence.offer-snapshot",
+        "domain:offer-intelligence.offer-alert",
+        "domain:offer-intelligence.crawl-run",
+        "domain:offer-intelligence.offer-page",
+        "domain:offer-intelligence.offer-page-edge",
+        "domain:offer-intelligence.opportunity-score"
+      ]
+    },
+    {
+      "kind": "blueprint",
+      "path": "blueprint/domains/offer-modeling.md",
+      "source_ids": [
+        "domain:offer-modeling.offer-structure",
+        "domain:offer-modeling.customer-model",
+        "domain:offer-modeling.offer",
+        "domain:offer-modeling.offer-version",
+        "domain:offer-modeling.funnel-blueprint",
+        "domain:offer-modeling.offer-review"
+      ]
+    },
+    {
+      "kind": "blueprint",
+      "path": "blueprint/domains/content-studio.md",
+      "source_ids": [
+        "domain:content-studio.brand-profile",
+        "domain:content-studio.content-brief",
+        "domain:content-studio.content-item",
+        "domain:content-studio.design-document",
+        "domain:content-studio.design-document-version",
+        "domain:content-studio.media-asset",
+        "domain:content-studio.render-job",
+        "domain:content-studio.content-approval",
+        "domain:content-studio.publication"
+      ]
+    },
+    {
+      "kind": "blueprint",
+      "path": "blueprint/domains/analytics.md",
+      "source_ids": [
+        "domain:analytics.metric-observation",
+        "domain:analytics.insight",
+        "domain:analytics.learning-record"
+      ]
+    },
+    {
+      "kind": "blueprint",
+      "path": "blueprint/domains/mission-control.md",
+      "source_ids": [
+        "domain:mission-control.business-goal",
+        "domain:mission-control.initiative",
+        "domain:mission-control.operational-alert",
+        "domain:mission-control.incident"
+      ]
+    },
+    {
+      "kind": "sql",
+      "path": "schema/supabase-migration.sql",
+      "source_ids": []
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/foundation.workspace.schema.json",
+      "source_ids": [
+        "entity:foundation.workspace"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/foundation.workspace-membership.schema.json",
+      "source_ids": [
+        "entity:foundation.workspace-membership"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/foundation.approval-request.schema.json",
+      "source_ids": [
+        "entity:foundation.approval-request"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/foundation.audit-entry.schema.json",
+      "source_ids": [
+        "entity:foundation.audit-entry"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/aios.agent-definition.schema.json",
+      "source_ids": [
+        "entity:aios.agent-definition"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/aios.agent-run.schema.json",
+      "source_ids": [
+        "entity:aios.agent-run"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/aios.tool-call.schema.json",
+      "source_ids": [
+        "entity:aios.tool-call"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/aios.agent-evaluation.schema.json",
+      "source_ids": [
+        "entity:aios.agent-evaluation"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/aios.agent-memory.schema.json",
+      "source_ids": [
+        "entity:aios.agent-memory"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/knowledge.knowledge-source.schema.json",
+      "source_ids": [
+        "entity:knowledge.knowledge-source"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/knowledge.knowledge-document.schema.json",
+      "source_ids": [
+        "entity:knowledge.knowledge-document"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/knowledge.knowledge-chunk.schema.json",
+      "source_ids": [
+        "entity:knowledge.knowledge-chunk"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/knowledge.citation.schema.json",
+      "source_ids": [
+        "entity:knowledge.citation"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-intelligence.offer-reference.schema.json",
+      "source_ids": [
+        "entity:offer-intelligence.offer-reference"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-intelligence.offer-watch.schema.json",
+      "source_ids": [
+        "entity:offer-intelligence.offer-watch"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-intelligence.offer-snapshot.schema.json",
+      "source_ids": [
+        "entity:offer-intelligence.offer-snapshot"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-intelligence.offer-alert.schema.json",
+      "source_ids": [
+        "entity:offer-intelligence.offer-alert"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-intelligence.crawl-run.schema.json",
+      "source_ids": [
+        "entity:offer-intelligence.crawl-run"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-intelligence.offer-page.schema.json",
+      "source_ids": [
+        "entity:offer-intelligence.offer-page"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-intelligence.offer-page-edge.schema.json",
+      "source_ids": [
+        "entity:offer-intelligence.offer-page-edge"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-intelligence.opportunity-score.schema.json",
+      "source_ids": [
+        "entity:offer-intelligence.opportunity-score"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-modeling.offer-structure.schema.json",
+      "source_ids": [
+        "entity:offer-modeling.offer-structure"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-modeling.customer-model.schema.json",
+      "source_ids": [
+        "entity:offer-modeling.customer-model"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-modeling.offer.schema.json",
+      "source_ids": [
+        "entity:offer-modeling.offer"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-modeling.offer-version.schema.json",
+      "source_ids": [
+        "entity:offer-modeling.offer-version"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-modeling.funnel-blueprint.schema.json",
+      "source_ids": [
+        "entity:offer-modeling.funnel-blueprint"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/offer-modeling.offer-review.schema.json",
+      "source_ids": [
+        "entity:offer-modeling.offer-review"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/content-studio.brand-profile.schema.json",
+      "source_ids": [
+        "entity:content-studio.brand-profile"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/content-studio.content-brief.schema.json",
+      "source_ids": [
+        "entity:content-studio.content-brief"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/content-studio.content-item.schema.json",
+      "source_ids": [
+        "entity:content-studio.content-item"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/content-studio.design-document.schema.json",
+      "source_ids": [
+        "entity:content-studio.design-document"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/content-studio.design-document-version.schema.json",
+      "source_ids": [
+        "entity:content-studio.design-document-version"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/content-studio.media-asset.schema.json",
+      "source_ids": [
+        "entity:content-studio.media-asset"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/content-studio.render-job.schema.json",
+      "source_ids": [
+        "entity:content-studio.render-job"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/content-studio.content-approval.schema.json",
+      "source_ids": [
+        "entity:content-studio.content-approval"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/content-studio.publication.schema.json",
+      "source_ids": [
+        "entity:content-studio.publication"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/analytics.metric-observation.schema.json",
+      "source_ids": [
+        "entity:analytics.metric-observation"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/analytics.insight.schema.json",
+      "source_ids": [
+        "entity:analytics.insight"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/analytics.learning-record.schema.json",
+      "source_ids": [
+        "entity:analytics.learning-record"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/mission-control.business-goal.schema.json",
+      "source_ids": [
+        "entity:mission-control.business-goal"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/mission-control.initiative.schema.json",
+      "source_ids": [
+        "entity:mission-control.initiative"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/mission-control.operational-alert.schema.json",
+      "source_ids": [
+        "entity:mission-control.operational-alert"
+      ]
+    },
+    {
+      "kind": "json-schema",
+      "path": "schema/json/mission-control.incident.schema.json",
+      "source_ids": [
+        "entity:mission-control.incident"
+      ]
+    },
+    {
+      "kind": "json-schema-index",
+      "path": "schema/json/index.json",
+      "source_ids": []
+    },
+    {
+      "kind": "openapi",
+      "path": "api/openapi.json",
+      "source_ids": []
+    },
+    {
+      "kind": "typescript",
+      "path": "contracts/domain.ts",
+      "source_ids": []
+    },
+    {
+      "kind": "agent",
+      "path": "agents/laura.json",
+      "source_ids": [
+        "agent:aios.laura"
+      ]
+    },
+    {
+      "kind": "prompt",
+      "path": "prompts/agents/laura.md",
+      "source_ids": [
+        "agent:aios.laura"
+      ]
+    },
+    {
+      "kind": "agent",
+      "path": "agents/nexo.json",
+      "source_ids": [
+        "agent:aios.nexo"
+      ]
+    },
+    {
+      "kind": "prompt",
+      "path": "prompts/agents/nexo.md",
+      "source_ids": [
+        "agent:aios.nexo"
+      ]
+    },
+    {
+      "kind": "agent",
+      "path": "agents/mika.json",
+      "source_ids": [
+        "agent:offer-intelligence.mika"
+      ]
+    },
+    {
+      "kind": "prompt",
+      "path": "prompts/agents/mika.md",
+      "source_ids": [
+        "agent:offer-intelligence.mika"
+      ]
+    },
+    {
+      "kind": "agent",
+      "path": "agents/cora.json",
+      "source_ids": [
+        "agent:offer-modeling.cora"
+      ]
+    },
+    {
+      "kind": "prompt",
+      "path": "prompts/agents/cora.md",
+      "source_ids": [
+        "agent:offer-modeling.cora"
+      ]
+    },
+    {
+      "kind": "agent",
+      "path": "agents/lia.json",
+      "source_ids": [
+        "agent:content-studio.lia"
+      ]
+    },
+    {
+      "kind": "prompt",
+      "path": "prompts/agents/lia.md",
+      "source_ids": [
+        "agent:content-studio.lia"
+      ]
+    },
+    {
+      "kind": "agent",
+      "path": "agents/iris.json",
+      "source_ids": [
+        "agent:analytics.iris"
+      ]
+    },
+    {
+      "kind": "prompt",
+      "path": "prompts/agents/iris.md",
+      "source_ids": [
+        "agent:analytics.iris"
+      ]
+    },
+    {
+      "kind": "agent-index",
+      "path": "agents/index.json",
+      "source_ids": []
+    },
+    {
+      "kind": "workflow",
+      "path": "workflows/governed-agent-execution.json",
+      "source_ids": [
+        "workflow:aios.governed-agent-execution"
+      ]
+    },
+    {
+      "kind": "workflow",
+      "path": "workflows/daily-offer-monitoring.json",
+      "source_ids": [
+        "workflow:offer-intelligence.daily-offer-monitoring"
+      ]
+    },
+    {
+      "kind": "workflow",
+      "path": "workflows/governed-offer-graph-discovery.json",
+      "source_ids": [
+        "workflow:offer-intelligence.governed-offer-graph-discovery"
+      ]
+    },
+    {
+      "kind": "workflow",
+      "path": "workflows/reference-to-original-offer.json",
+      "source_ids": [
+        "workflow:offer-modeling.reference-to-original-offer"
+      ]
+    },
+    {
+      "kind": "workflow",
+      "path": "workflows/ai-carousel-production.json",
+      "source_ids": [
+        "workflow:content-studio.ai-carousel-production"
+      ]
+    },
+    {
+      "kind": "workflow",
+      "path": "workflows/approved-content-publication.json",
+      "source_ids": [
+        "workflow:content-studio.approved-content-publication"
+      ]
+    },
+    {
+      "kind": "workflow",
+      "path": "workflows/critical-alert-response.json",
+      "source_ids": [
+        "workflow:mission-control.critical-alert-response"
+      ]
+    },
+    {
+      "kind": "ui-manifest",
+      "path": "ui/surface-manifest.json",
+      "source_ids": []
+    },
+    {
+      "kind": "component-manifest",
+      "path": "ui/component-manifest.json",
+      "source_ids": []
+    },
+    {
+      "kind": "catalog",
+      "path": "catalog/event-catalog.json",
+      "source_ids": []
+    },
+    {
+      "kind": "catalog",
+      "path": "catalog/event-catalog.md",
+      "source_ids": []
+    },
+    {
+      "kind": "catalog",
+      "path": "catalog/policy-catalog.json",
+      "source_ids": []
+    },
+    {
+      "kind": "catalog",
+      "path": "catalog/policy-catalog.md",
+      "source_ids": []
+    },
+    {
+      "kind": "test-plan",
+      "path": "tests/verification-plan.md",
+      "source_ids": []
+    },
+    {
+      "kind": "html",
+      "path": "explorer/index.html",
+      "source_ids": []
+    },
+    {
+      "kind": "governance",
+      "path": "governance/governance-report.json",
+      "source_ids": []
+    },
+    {
+      "kind": "governance",
+      "path": "governance/governance-report.md",
+      "source_ids": []
+    }
+  ],
+  "compiler": "averro-ama-amdl/0.1.0",
+  "diagnostics": [],
+  "fingerprint": "09cce0db8c0089fe349d17db168207f949d761b356a8bc836bf7496dcb72e8d1",
+  "generators": [
+    "agents",
+    "blueprint",
+    "components",
+    "dependency-graph",
+    "event-catalog",
+    "explorer",
+    "governance",
+    "graph",
+    "impact-graph",
+    "json-schema",
+    "openapi",
+    "policy-catalog",
+    "registry",
+    "schema",
+    "test-plan",
+    "typescript",
+    "ui",
+    "workflows"
+  ],
+  "object_count": 252,
+  "source": "specifications/averro/system.amdl.yaml",
+  "system": {
+    "description": "AI-native operating platform for discovering markets, understanding customers, building original direct-response offers, producing content, distributing work, measuring outcomes and learning under human governance.",
+    "id": "averro-platform",
+    "name": "Averro Platform",
+    "owners": [
+      "Pedro Brusi",
+      "Laura"
+    ],
+    "status": "active",
+    "tags": [
+      "ai-native",
+      "workspace-first",
+      "event-driven",
+      "human-approval"
+    ],
+    "version": "1.0.0"
+  }
+}

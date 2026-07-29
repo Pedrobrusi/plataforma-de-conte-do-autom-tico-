@@ -1,0 +1,2273 @@
+{
+  "fingerprint": "09cce0db8c0089fe349d17db168207f949d761b356a8bc836bf7496dcb72e8d1",
+  "objects": [
+    {
+      "domain": "aios",
+      "fqid": "agent:aios.laura",
+      "id": "laura",
+      "kind": "agent",
+      "name": "Laura",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "agent:aios.nexo",
+      "id": "nexo",
+      "kind": "agent",
+      "name": "Nexo",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "agent:analytics.iris",
+      "id": "iris",
+      "kind": "agent",
+      "name": "Iris",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "agent:content-studio.lia",
+      "id": "lia",
+      "kind": "agent",
+      "name": "Lia",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "agent:offer-intelligence.mika",
+      "id": "mika",
+      "kind": "agent",
+      "name": "Mika",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "agent:offer-modeling.cora",
+      "id": "cora",
+      "kind": "agent",
+      "name": "Cora",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "api_resource:aios.agent-runs-api",
+      "id": "agent-runs-api",
+      "kind": "api_resource",
+      "name": "Agent Runs API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "api_resource:analytics.insights-api",
+      "id": "insights-api",
+      "kind": "api_resource",
+      "name": "Insights API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "api_resource:content-studio.content-items-api",
+      "id": "content-items-api",
+      "kind": "api_resource",
+      "name": "Content Items API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "api_resource:content-studio.design-documents-api",
+      "id": "design-documents-api",
+      "kind": "api_resource",
+      "name": "Design Documents API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "api_resource:content-studio.render-jobs-api",
+      "id": "render-jobs-api",
+      "kind": "api_resource",
+      "name": "Render Jobs API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "api_resource:foundation.approvals-api",
+      "id": "approvals-api",
+      "kind": "api_resource",
+      "name": "Approvals API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "api_resource:foundation.workspaces-api",
+      "id": "workspaces-api",
+      "kind": "api_resource",
+      "name": "Workspaces API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "api_resource:knowledge.knowledge-sources-api",
+      "id": "knowledge-sources-api",
+      "kind": "api_resource",
+      "name": "Knowledge Sources API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "api_resource:offer-intelligence.offer-crawls-api",
+      "id": "offer-crawls-api",
+      "kind": "api_resource",
+      "name": "Offer Crawls API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "api_resource:offer-intelligence.offer-references-api",
+      "id": "offer-references-api",
+      "kind": "api_resource",
+      "name": "Offer References API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "api_resource:offer-intelligence.offer-watches-api",
+      "id": "offer-watches-api",
+      "kind": "api_resource",
+      "name": "Offer Watches API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "api_resource:offer-modeling.funnel-blueprints-api",
+      "id": "funnel-blueprints-api",
+      "kind": "api_resource",
+      "name": "Funnel Blueprints API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "api_resource:offer-modeling.offers-api",
+      "id": "offers-api",
+      "kind": "api_resource",
+      "name": "Offers API",
+      "status": "active",
+      "version": "v1"
+    },
+    {
+      "domain": "aios",
+      "fqid": "capability:aios.evaluate-agent-output",
+      "id": "evaluate-agent-output",
+      "kind": "capability",
+      "name": "Evaluate Agent Output",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "capability:aios.execute-agent-runs",
+      "id": "execute-agent-runs",
+      "kind": "capability",
+      "name": "Execute Agent Runs",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "capability:aios.manage-agent-memory",
+      "id": "manage-agent-memory",
+      "kind": "capability",
+      "name": "Manage Agent Memory",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "capability:aios.route-agent-tasks",
+      "id": "route-agent-tasks",
+      "kind": "capability",
+      "name": "Route Agent Tasks",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "capability:analytics.calculate-business-metrics",
+      "id": "calculate-business-metrics",
+      "kind": "capability",
+      "name": "Calculate Business Metrics",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "capability:analytics.collect-analytics-events",
+      "id": "collect-analytics-events",
+      "kind": "capability",
+      "name": "Collect Analytics Events",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "capability:analytics.generate-actionable-insights",
+      "id": "generate-actionable-insights",
+      "kind": "capability",
+      "name": "Generate Actionable Insights",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "capability:analytics.promote-reviewed-learning",
+      "id": "promote-reviewed-learning",
+      "kind": "capability",
+      "name": "Promote Reviewed Learning",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "capability:content-studio.approve-content",
+      "id": "approve-content",
+      "kind": "capability",
+      "name": "Approve Content",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "capability:content-studio.edit-design-document",
+      "id": "edit-design-document",
+      "kind": "capability",
+      "name": "Edit Design Document",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "capability:content-studio.generate-ai-carousel",
+      "id": "generate-ai-carousel",
+      "kind": "capability",
+      "name": "Generate AI Carousel",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "capability:content-studio.plan-editorial-content",
+      "id": "plan-editorial-content",
+      "kind": "capability",
+      "name": "Plan Editorial Content",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "capability:content-studio.publish-content",
+      "id": "publish-content",
+      "kind": "capability",
+      "name": "Publish Content",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "capability:content-studio.render-content-assets",
+      "id": "render-content-assets",
+      "kind": "capability",
+      "name": "Render Content Assets",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "capability:foundation.audit-platform-actions",
+      "id": "audit-platform-actions",
+      "kind": "capability",
+      "name": "Audit Platform Actions",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "capability:foundation.govern-approvals",
+      "id": "govern-approvals",
+      "kind": "capability",
+      "name": "Govern Approvals",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "capability:foundation.manage-workspaces",
+      "id": "manage-workspaces",
+      "kind": "capability",
+      "name": "Manage Workspaces",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "capability:knowledge.index-knowledge",
+      "id": "index-knowledge",
+      "kind": "capability",
+      "name": "Index Knowledge",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "capability:knowledge.ingest-knowledge",
+      "id": "ingest-knowledge",
+      "kind": "capability",
+      "name": "Ingest Knowledge",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "capability:knowledge.retrieve-knowledge",
+      "id": "retrieve-knowledge",
+      "kind": "capability",
+      "name": "Retrieve Knowledge",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "capability:mission-control.manage-goals-and-priorities",
+      "id": "manage-goals-and-priorities",
+      "kind": "capability",
+      "name": "Manage Goals and Priorities",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "capability:mission-control.respond-to-operational-alerts",
+      "id": "respond-to-operational-alerts",
+      "kind": "capability",
+      "name": "Respond to Operational Alerts",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "capability:mission-control.supervise-platform-operations",
+      "id": "supervise-platform-operations",
+      "kind": "capability",
+      "name": "Supervise Platform Operations",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "capability:offer-intelligence.crawl-offer-graph",
+      "id": "crawl-offer-graph",
+      "kind": "capability",
+      "name": "Crawl Offer Graph",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "capability:offer-intelligence.discover-scaled-offers",
+      "id": "discover-scaled-offers",
+      "kind": "capability",
+      "name": "Discover Scaled Offers",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "capability:offer-intelligence.monitor-offer-activity",
+      "id": "monitor-offer-activity",
+      "kind": "capability",
+      "name": "Monitor Offer Activity",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "capability:offer-intelligence.score-offer-opportunity",
+      "id": "score-offer-opportunity",
+      "kind": "capability",
+      "name": "Score Offer Opportunity",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "capability:offer-modeling.extract-offer-structure",
+      "id": "extract-offer-structure",
+      "kind": "capability",
+      "name": "Extract Offer Structure",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "capability:offer-modeling.generate-funnel-blueprint",
+      "id": "generate-funnel-blueprint",
+      "kind": "capability",
+      "name": "Generate Funnel Blueprint",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "capability:offer-modeling.model-original-offer",
+      "id": "model-original-offer",
+      "kind": "capability",
+      "name": "Model Original Offer",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "capability:offer-modeling.review-offer-quality",
+      "id": "review-offer-quality",
+      "kind": "capability",
+      "name": "Review Offer Quality",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "deployment_target:foundation.supabase-prod",
+      "id": "supabase-prod",
+      "kind": "deployment_target",
+      "name": "Supabase Production",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "deployment_target:foundation.supabase-staging",
+      "id": "supabase-staging",
+      "kind": "deployment_target",
+      "name": "Supabase Staging",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "deployment_target:foundation.vercel-prod",
+      "id": "vercel-prod",
+      "kind": "deployment_target",
+      "name": "Vercel Production",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": null,
+      "fqid": "domain:aios",
+      "id": "aios",
+      "kind": "domain",
+      "name": "AI Operating System",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": null,
+      "fqid": "domain:analytics",
+      "id": "analytics",
+      "kind": "domain",
+      "name": "Analytics and Learning",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": null,
+      "fqid": "domain:content-studio",
+      "id": "content-studio",
+      "kind": "domain",
+      "name": "Content Studio",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": null,
+      "fqid": "domain:foundation",
+      "id": "foundation",
+      "kind": "domain",
+      "name": "Platform Foundation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": null,
+      "fqid": "domain:knowledge",
+      "id": "knowledge",
+      "kind": "domain",
+      "name": "Knowledge Engine",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": null,
+      "fqid": "domain:mission-control",
+      "id": "mission-control",
+      "kind": "domain",
+      "name": "Mission Control",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": null,
+      "fqid": "domain:offer-intelligence",
+      "id": "offer-intelligence",
+      "kind": "domain",
+      "name": "Offer Intelligence",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": null,
+      "fqid": "domain:offer-modeling",
+      "id": "offer-modeling",
+      "kind": "domain",
+      "name": "Offer Modeling Studio",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "entity:aios.agent-definition",
+      "id": "agent-definition",
+      "kind": "entity",
+      "name": "Agent Definition",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "entity:aios.agent-evaluation",
+      "id": "agent-evaluation",
+      "kind": "entity",
+      "name": "Agent Evaluation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "entity:aios.agent-memory",
+      "id": "agent-memory",
+      "kind": "entity",
+      "name": "Agent Memory",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "entity:aios.agent-run",
+      "id": "agent-run",
+      "kind": "entity",
+      "name": "Agent Run",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "entity:aios.tool-call",
+      "id": "tool-call",
+      "kind": "entity",
+      "name": "Tool Call",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "entity:analytics.insight",
+      "id": "insight",
+      "kind": "entity",
+      "name": "Insight",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "entity:analytics.learning-record",
+      "id": "learning-record",
+      "kind": "entity",
+      "name": "Learning Record",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "entity:analytics.metric-observation",
+      "id": "metric-observation",
+      "kind": "entity",
+      "name": "Metric Observation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "entity:content-studio.brand-profile",
+      "id": "brand-profile",
+      "kind": "entity",
+      "name": "Brand Profile",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "entity:content-studio.content-approval",
+      "id": "content-approval",
+      "kind": "entity",
+      "name": "Content Approval",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "entity:content-studio.content-brief",
+      "id": "content-brief",
+      "kind": "entity",
+      "name": "Content Brief",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "entity:content-studio.content-item",
+      "id": "content-item",
+      "kind": "entity",
+      "name": "Content Item",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "entity:content-studio.design-document",
+      "id": "design-document",
+      "kind": "entity",
+      "name": "Design Document",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "entity:content-studio.design-document-version",
+      "id": "design-document-version",
+      "kind": "entity",
+      "name": "Design Document Version",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "entity:content-studio.media-asset",
+      "id": "media-asset",
+      "kind": "entity",
+      "name": "Media Asset",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "entity:content-studio.publication",
+      "id": "publication",
+      "kind": "entity",
+      "name": "Publication",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "entity:content-studio.render-job",
+      "id": "render-job",
+      "kind": "entity",
+      "name": "Render Job",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "entity:foundation.approval-request",
+      "id": "approval-request",
+      "kind": "entity",
+      "name": "Approval Request",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "entity:foundation.audit-entry",
+      "id": "audit-entry",
+      "kind": "entity",
+      "name": "Audit Entry",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "entity:foundation.workspace",
+      "id": "workspace",
+      "kind": "entity",
+      "name": "Workspace",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "entity:foundation.workspace-membership",
+      "id": "workspace-membership",
+      "kind": "entity",
+      "name": "Workspace Membership",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "entity:knowledge.citation",
+      "id": "citation",
+      "kind": "entity",
+      "name": "Citation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "entity:knowledge.knowledge-chunk",
+      "id": "knowledge-chunk",
+      "kind": "entity",
+      "name": "Knowledge Chunk",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "entity:knowledge.knowledge-document",
+      "id": "knowledge-document",
+      "kind": "entity",
+      "name": "Knowledge Document",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "entity:knowledge.knowledge-source",
+      "id": "knowledge-source",
+      "kind": "entity",
+      "name": "Knowledge Source",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "entity:mission-control.business-goal",
+      "id": "business-goal",
+      "kind": "entity",
+      "name": "Business Goal",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "entity:mission-control.incident",
+      "id": "incident",
+      "kind": "entity",
+      "name": "Incident",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "entity:mission-control.initiative",
+      "id": "initiative",
+      "kind": "entity",
+      "name": "Initiative",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "entity:mission-control.operational-alert",
+      "id": "operational-alert",
+      "kind": "entity",
+      "name": "Operational Alert",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "entity:offer-intelligence.crawl-run",
+      "id": "crawl-run",
+      "kind": "entity",
+      "name": "Crawl Run",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "entity:offer-intelligence.offer-alert",
+      "id": "offer-alert",
+      "kind": "entity",
+      "name": "Offer Alert",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "entity:offer-intelligence.offer-page",
+      "id": "offer-page",
+      "kind": "entity",
+      "name": "Offer Page",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "entity:offer-intelligence.offer-page-edge",
+      "id": "offer-page-edge",
+      "kind": "entity",
+      "name": "Offer Page Edge",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "entity:offer-intelligence.offer-reference",
+      "id": "offer-reference",
+      "kind": "entity",
+      "name": "Offer Reference",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "entity:offer-intelligence.offer-snapshot",
+      "id": "offer-snapshot",
+      "kind": "entity",
+      "name": "Offer Snapshot",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "entity:offer-intelligence.offer-watch",
+      "id": "offer-watch",
+      "kind": "entity",
+      "name": "Offer Watch",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "entity:offer-intelligence.opportunity-score",
+      "id": "opportunity-score",
+      "kind": "entity",
+      "name": "Opportunity Score",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "entity:offer-modeling.customer-model",
+      "id": "customer-model",
+      "kind": "entity",
+      "name": "Customer Model",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "entity:offer-modeling.funnel-blueprint",
+      "id": "funnel-blueprint",
+      "kind": "entity",
+      "name": "Funnel Blueprint",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "entity:offer-modeling.offer",
+      "id": "offer",
+      "kind": "entity",
+      "name": "Offer",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "entity:offer-modeling.offer-review",
+      "id": "offer-review",
+      "kind": "entity",
+      "name": "Offer Review",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "entity:offer-modeling.offer-structure",
+      "id": "offer-structure",
+      "kind": "entity",
+      "name": "Offer Structure",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "entity:offer-modeling.offer-version",
+      "id": "offer-version",
+      "kind": "entity",
+      "name": "Offer Version",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "evaluation:foundation.approval-latency-eval",
+      "id": "approval-latency-eval",
+      "kind": "evaluation",
+      "name": "Approval Latency Evaluation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "event:aios.agent-output-evaluated",
+      "id": "agent-output-evaluated",
+      "kind": "event",
+      "name": "Agent Output Evaluated",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "event:aios.agent-run-finished",
+      "id": "agent-run-finished",
+      "kind": "event",
+      "name": "Agent Run Finished",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "event:aios.agent-run-started",
+      "id": "agent-run-started",
+      "kind": "event",
+      "name": "Agent Run Started",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "event:analytics.insight-generated",
+      "id": "insight-generated",
+      "kind": "event",
+      "name": "Insight Generated",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "event:analytics.learning-promoted",
+      "id": "learning-promoted",
+      "kind": "event",
+      "name": "Learning Promoted",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "event:analytics.metric-observed",
+      "id": "metric-observed",
+      "kind": "event",
+      "name": "Metric Observed",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "event:content-studio.carousel-generated",
+      "id": "carousel-generated",
+      "kind": "event",
+      "name": "Carousel Generated",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "event:content-studio.content-approved",
+      "id": "content-approved",
+      "kind": "event",
+      "name": "Content Approved",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "event:content-studio.content-brief-created",
+      "id": "content-brief-created",
+      "kind": "event",
+      "name": "Content Brief Created",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "event:content-studio.content-published",
+      "id": "content-published",
+      "kind": "event",
+      "name": "Content Published",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "event:content-studio.content-rendered",
+      "id": "content-rendered",
+      "kind": "event",
+      "name": "Content Rendered",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "event:content-studio.design-document-updated",
+      "id": "design-document-updated",
+      "kind": "event",
+      "name": "Design Document Updated",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "event:foundation.approval-recorded",
+      "id": "approval-recorded",
+      "kind": "event",
+      "name": "Approval Recorded",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "event:foundation.audit-entry-created",
+      "id": "audit-entry-created",
+      "kind": "event",
+      "name": "Audit Entry Created",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "event:foundation.workspace-created",
+      "id": "workspace-created",
+      "kind": "event",
+      "name": "Workspace Created",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "event:knowledge.knowledge-indexed",
+      "id": "knowledge-indexed",
+      "kind": "event",
+      "name": "Knowledge Indexed",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "event:knowledge.knowledge-source-added",
+      "id": "knowledge-source-added",
+      "kind": "event",
+      "name": "Knowledge Source Added",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "event:mission-control.goal-created",
+      "id": "goal-created",
+      "kind": "event",
+      "name": "Goal Created",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "event:mission-control.incident-resolved",
+      "id": "incident-resolved",
+      "kind": "event",
+      "name": "Incident Resolved",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "event:mission-control.operational-alert-opened",
+      "id": "operational-alert-opened",
+      "kind": "event",
+      "name": "Operational Alert Opened",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-alert-triggered",
+      "id": "offer-alert-triggered",
+      "kind": "event",
+      "name": "Offer Alert Triggered",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-graph-crawled",
+      "id": "offer-graph-crawled",
+      "kind": "event",
+      "name": "Offer Graph Crawled",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-reference-discovered",
+      "id": "offer-reference-discovered",
+      "kind": "event",
+      "name": "Offer Reference Discovered",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-snapshot-captured",
+      "id": "offer-snapshot-captured",
+      "kind": "event",
+      "name": "Offer Snapshot Captured",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.offer-watch-created",
+      "id": "offer-watch-created",
+      "kind": "event",
+      "name": "Offer Watch Created",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "event:offer-intelligence.opportunity-scored",
+      "id": "opportunity-scored",
+      "kind": "event",
+      "name": "Opportunity Scored",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "event:offer-modeling.funnel-blueprint-created",
+      "id": "funnel-blueprint-created",
+      "kind": "event",
+      "name": "Funnel Blueprint Created",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "event:offer-modeling.offer-approved",
+      "id": "offer-approved",
+      "kind": "event",
+      "name": "Offer Approved",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "event:offer-modeling.offer-structure-extracted",
+      "id": "offer-structure-extracted",
+      "kind": "event",
+      "name": "Offer Structure Extracted",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "event:offer-modeling.original-offer-drafted",
+      "id": "original-offer-drafted",
+      "kind": "event",
+      "name": "Original Offer Drafted",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "feature_flag:foundation.mandatory-approvals",
+      "id": "mandatory-approvals",
+      "kind": "feature_flag",
+      "name": "Mandatory External-Write Approvals",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "feature_flag:foundation.workspace-self-serve",
+      "id": "workspace-self-serve",
+      "kind": "feature_flag",
+      "name": "Workspace Self-Serve Signup",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "integration:content-studio.social-publishing-connectors",
+      "id": "social-publishing-connectors",
+      "kind": "integration",
+      "name": "Social Publishing Connectors",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "integration:knowledge.google-drive-source",
+      "id": "google-drive-source",
+      "kind": "integration",
+      "name": "Google Drive",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "integration:knowledge.slack-source",
+      "id": "slack-source",
+      "kind": "integration",
+      "name": "Slack",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "integration:offer-intelligence.authorized-web-capture",
+      "id": "authorized-web-capture",
+      "kind": "integration",
+      "name": "Authorized Web Capture",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "integration:offer-intelligence.meta-ad-library",
+      "id": "meta-ad-library",
+      "kind": "integration",
+      "name": "Meta Ad Library",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "metric:aios.agent-cost-per-approved-output",
+      "id": "agent-cost-per-approved-output",
+      "kind": "metric",
+      "name": "Agent Cost per Approved Output",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "metric:aios.agent-run-success-rate",
+      "id": "agent-run-success-rate",
+      "kind": "metric",
+      "name": "Agent Run Success Rate",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "metric:analytics.insight-acceptance-rate",
+      "id": "insight-acceptance-rate",
+      "kind": "metric",
+      "name": "Insight Acceptance Rate",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "metric:content-studio.carousel-generation-lead-time",
+      "id": "carousel-generation-lead-time",
+      "kind": "metric",
+      "name": "Carousel Generation Lead Time",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "metric:content-studio.content-cost-per-approved-asset",
+      "id": "content-cost-per-approved-asset",
+      "kind": "metric",
+      "name": "Cost per Approved Asset",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "metric:content-studio.content-first-pass-approval-rate",
+      "id": "content-first-pass-approval-rate",
+      "kind": "metric",
+      "name": "First-Pass Approval Rate",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "metric:foundation.approval-lead-time",
+      "id": "approval-lead-time",
+      "kind": "metric",
+      "name": "Approval Lead Time",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "metric:knowledge.knowledge-retrieval-grounded-rate",
+      "id": "knowledge-retrieval-grounded-rate",
+      "kind": "metric",
+      "name": "Grounded Retrieval Rate",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "metric:mission-control.critical-alert-resolution-time",
+      "id": "critical-alert-resolution-time",
+      "kind": "metric",
+      "name": "Critical Alert Resolution Time",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "metric:mission-control.goal-achievement-rate",
+      "id": "goal-achievement-rate",
+      "kind": "metric",
+      "name": "Goal Achievement Rate",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "metric:offer-intelligence.crawl-classification-confidence",
+      "id": "crawl-classification-confidence",
+      "kind": "metric",
+      "name": "Crawl Classification Confidence",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "metric:offer-intelligence.monitored-active-ad-count",
+      "id": "monitored-active-ad-count",
+      "kind": "metric",
+      "name": "Monitored Active Ad Count",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "metric:offer-intelligence.offer-daily-variation",
+      "id": "offer-daily-variation",
+      "kind": "metric",
+      "name": "Offer Daily Variation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "metric:offer-modeling.offer-approval-rate",
+      "id": "offer-approval-rate",
+      "kind": "metric",
+      "name": "Offer Approval Rate",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "metric:offer-modeling.offer-originality-score",
+      "id": "offer-originality-score",
+      "kind": "metric",
+      "name": "Offer Originality Score",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "permission:foundation.approval-decide",
+      "id": "approval-decide",
+      "kind": "permission",
+      "name": "Decide Approvals",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "permission:foundation.audit-read",
+      "id": "audit-read",
+      "kind": "permission",
+      "name": "Read Audit Trail",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "permission:foundation.workspace-admin",
+      "id": "workspace-admin",
+      "kind": "permission",
+      "name": "Administer Workspace",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "permission:foundation.workspace-read",
+      "id": "workspace-read",
+      "kind": "permission",
+      "name": "Read Workspace Data",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "permission:foundation.workspace-write",
+      "id": "workspace-write",
+      "kind": "permission",
+      "name": "Write Workspace Data",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "policy:aios.agent-budget-limit",
+      "id": "agent-budget-limit",
+      "kind": "policy",
+      "name": "Agent Budget Limit",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "policy:aios.evidence-before-learning",
+      "id": "evidence-before-learning",
+      "kind": "policy",
+      "name": "Evidence Before Learning",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "policy:aios.least-privilege-tools",
+      "id": "least-privilege-tools",
+      "kind": "policy",
+      "name": "Least Privilege Tools",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "policy:analytics.analytics-source-traceability",
+      "id": "analytics-source-traceability",
+      "kind": "policy",
+      "name": "Analytics Source Traceability",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "policy:analytics.learning-human-review",
+      "id": "learning-human-review",
+      "kind": "policy",
+      "name": "Learning Human Review",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "policy:content-studio.accessible-media",
+      "id": "accessible-media",
+      "kind": "policy",
+      "name": "Accessible Media",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "policy:content-studio.brand-guide-compliance",
+      "id": "brand-guide-compliance",
+      "kind": "policy",
+      "name": "Brand Guide Compliance",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "policy:content-studio.content-originality",
+      "id": "content-originality",
+      "kind": "policy",
+      "name": "Content Originality",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "policy:content-studio.publication-human-approval",
+      "id": "publication-human-approval",
+      "kind": "policy",
+      "name": "Publication Human Approval",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "policy:foundation.human-approval-external-write",
+      "id": "human-approval-external-write",
+      "kind": "policy",
+      "name": "Human Approval for External Writes",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "policy:foundation.secrets-redaction",
+      "id": "secrets-redaction",
+      "kind": "policy",
+      "name": "Secrets Redaction",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "policy:foundation.workspace-isolation",
+      "id": "workspace-isolation",
+      "kind": "policy",
+      "name": "Workspace Isolation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "policy:knowledge.citation-required-for-claims",
+      "id": "citation-required-for-claims",
+      "kind": "policy",
+      "name": "Citation Required for Material Claims",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "policy:knowledge.provenance-required",
+      "id": "provenance-required",
+      "kind": "policy",
+      "name": "Provenance Required",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "policy:mission-control.critical-alert-escalation",
+      "id": "critical-alert-escalation",
+      "kind": "policy",
+      "name": "Critical Alert Escalation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "policy:offer-intelligence.authorized-web-evidence",
+      "id": "authorized-web-evidence",
+      "kind": "policy",
+      "name": "Authorized Web Evidence",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "policy:offer-intelligence.evidence-not-revenue-claim",
+      "id": "evidence-not-revenue-claim",
+      "kind": "policy",
+      "name": "Evidence Is Not a Revenue Claim",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "policy:offer-intelligence.respectful-crawl",
+      "id": "respectful-crawl",
+      "kind": "policy",
+      "name": "Respectful Crawl",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "policy:offer-modeling.authorized-source-use",
+      "id": "authorized-source-use",
+      "kind": "policy",
+      "name": "Authorized Source Use",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "policy:offer-modeling.no-fabricated-social-proof",
+      "id": "no-fabricated-social-proof",
+      "kind": "policy",
+      "name": "No Fabricated Social Proof",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "policy:offer-modeling.originality-guard",
+      "id": "originality-guard",
+      "kind": "policy",
+      "name": "Originality Guard",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "policy:offer-modeling.substantiated-claims",
+      "id": "substantiated-claims",
+      "kind": "policy",
+      "name": "Substantiated Claims",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "role:foundation.admin",
+      "id": "admin",
+      "kind": "role",
+      "name": "Admin",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "role:foundation.editor",
+      "id": "editor",
+      "kind": "role",
+      "name": "Editor",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "role:foundation.owner",
+      "id": "owner",
+      "kind": "role",
+      "name": "Owner",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "role:foundation.viewer",
+      "id": "viewer",
+      "kind": "role",
+      "name": "Viewer",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "test_spec:foundation.workspace-isolation-suite",
+      "id": "workspace-isolation-suite",
+      "kind": "test_spec",
+      "name": "Workspace Isolation Suite",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "tool:aios.browser-capture-tool",
+      "id": "browser-capture-tool",
+      "kind": "tool",
+      "name": "Governed Browser Capture",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "tool:aios.image-generation-tool",
+      "id": "image-generation-tool",
+      "kind": "tool",
+      "name": "Image Generation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "tool:aios.knowledge-search-tool",
+      "id": "knowledge-search-tool",
+      "kind": "tool",
+      "name": "Knowledge Search",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "tool:aios.notification-tool",
+      "id": "notification-tool",
+      "kind": "tool",
+      "name": "Notification Delivery",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "tool:aios.render-worker-tool",
+      "id": "render-worker-tool",
+      "kind": "tool",
+      "name": "Render Worker",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "tool:analytics.analytics-query-tool",
+      "id": "analytics-query-tool",
+      "kind": "tool",
+      "name": "Analytics Query",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "tool:content-studio.channel-publisher-tool",
+      "id": "channel-publisher-tool",
+      "kind": "tool",
+      "name": "Social Channel Publisher",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "tool:content-studio.design-document-renderer-tool",
+      "id": "design-document-renderer-tool",
+      "kind": "tool",
+      "name": "Design Document Renderer",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "tool:offer-intelligence.governed-crawler-tool",
+      "id": "governed-crawler-tool",
+      "kind": "tool",
+      "name": "Governed Funnel Crawler",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "tool:offer-intelligence.public-ad-library-tool",
+      "id": "public-ad-library-tool",
+      "kind": "tool",
+      "name": "Public Ad Library Reader",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "tool:offer-intelligence.scheduler-tool",
+      "id": "scheduler-tool",
+      "kind": "tool",
+      "name": "Scheduler",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "tool:offer-modeling.claim-evidence-tool",
+      "id": "claim-evidence-tool",
+      "kind": "tool",
+      "name": "Claim Evidence Checker",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "tool:offer-modeling.originality-analysis-tool",
+      "id": "originality-analysis-tool",
+      "kind": "tool",
+      "name": "Originality Analysis",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "ui_surface:aios.agent-run-console",
+      "id": "agent-run-console",
+      "kind": "ui_surface",
+      "name": "Agent Run Console",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "ui_surface:analytics.analytics-insights-dashboard",
+      "id": "analytics-insights-dashboard",
+      "kind": "ui_surface",
+      "name": "Analytics Insights Dashboard",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "ui_surface:content-studio.carousel-ai-wizard",
+      "id": "carousel-ai-wizard",
+      "kind": "ui_surface",
+      "name": "Carousel AI Wizard",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "ui_surface:content-studio.carousel-editor",
+      "id": "carousel-editor",
+      "kind": "ui_surface",
+      "name": "Carousel Editor",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "ui_surface:content-studio.carousel-project-library",
+      "id": "carousel-project-library",
+      "kind": "ui_surface",
+      "name": "Carousel Project Library",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "ui_surface:content-studio.content-approval-detail",
+      "id": "content-approval-detail",
+      "kind": "ui_surface",
+      "name": "Content Approval Detail",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "ui_surface:foundation.approval-inbox",
+      "id": "approval-inbox",
+      "kind": "ui_surface",
+      "name": "Approval Inbox",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "ui_surface:foundation.workspace-settings",
+      "id": "workspace-settings",
+      "kind": "ui_surface",
+      "name": "Workspace Settings",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "ui_surface:knowledge.knowledge-library",
+      "id": "knowledge-library",
+      "kind": "ui_surface",
+      "name": "Knowledge Library",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "ui_surface:mission-control.executive-command-center",
+      "id": "executive-command-center",
+      "kind": "ui_surface",
+      "name": "Executive Command Center",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "ui_surface:mission-control.operational-timeline",
+      "id": "operational-timeline",
+      "kind": "ui_surface",
+      "name": "Operational Timeline",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "ui_surface:offer-intelligence.offer-monitoring-dashboard",
+      "id": "offer-monitoring-dashboard",
+      "kind": "ui_surface",
+      "name": "Offer Monitoring Dashboard",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "ui_surface:offer-intelligence.offer-swipe-library",
+      "id": "offer-swipe-library",
+      "kind": "ui_surface",
+      "name": "Offer Swipe Library",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "ui_surface:offer-intelligence.offer-url-extractor",
+      "id": "offer-url-extractor",
+      "kind": "ui_surface",
+      "name": "Offer URL Extractor",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "ui_surface:offer-intelligence.offer-watch-detail",
+      "id": "offer-watch-detail",
+      "kind": "ui_surface",
+      "name": "Offer Watch Detail",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "ui_surface:offer-modeling.offer-modeling-workbench",
+      "id": "offer-modeling-workbench",
+      "kind": "ui_surface",
+      "name": "Offer Modeling Workbench",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "use_case:aios.evaluate-run",
+      "id": "evaluate-run",
+      "kind": "use_case",
+      "name": "Evaluate Run",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "use_case:aios.run-agent",
+      "id": "run-agent",
+      "kind": "use_case",
+      "name": "Run Agent",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "use_case:analytics.approve-learning",
+      "id": "approve-learning",
+      "kind": "use_case",
+      "name": "Approve Learning",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "use_case:analytics.ingest-metric-observation",
+      "id": "ingest-metric-observation",
+      "kind": "use_case",
+      "name": "Ingest Metric Observation",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "analytics",
+      "fqid": "use_case:analytics.produce-insight",
+      "id": "produce-insight",
+      "kind": "use_case",
+      "name": "Produce Insight",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "use_case:content-studio.apply-design-edit",
+      "id": "apply-design-edit",
+      "kind": "use_case",
+      "name": "Apply Design Edit",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "use_case:content-studio.create-content-brief",
+      "id": "create-content-brief",
+      "kind": "use_case",
+      "name": "Create Content Brief",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "use_case:content-studio.generate-carousel-draft",
+      "id": "generate-carousel-draft",
+      "kind": "use_case",
+      "name": "Generate Carousel Draft",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "use_case:content-studio.publish-approved-content",
+      "id": "publish-approved-content",
+      "kind": "use_case",
+      "name": "Publish Approved Content",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "use_case:content-studio.render-content",
+      "id": "render-content",
+      "kind": "use_case",
+      "name": "Render Content",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "use_case:content-studio.review-content",
+      "id": "review-content",
+      "kind": "use_case",
+      "name": "Review Content",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "use_case:foundation.create-workspace",
+      "id": "create-workspace",
+      "kind": "use_case",
+      "name": "Create Workspace",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "foundation",
+      "fqid": "use_case:foundation.decide-approval",
+      "id": "decide-approval",
+      "kind": "use_case",
+      "name": "Decide Approval",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "use_case:knowledge.add-knowledge-source",
+      "id": "add-knowledge-source",
+      "kind": "use_case",
+      "name": "Add Knowledge Source",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "knowledge",
+      "fqid": "use_case:knowledge.process-knowledge-source",
+      "id": "process-knowledge-source",
+      "kind": "use_case",
+      "name": "Process Knowledge Source",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "use_case:mission-control.create-business-goal",
+      "id": "create-business-goal",
+      "kind": "use_case",
+      "name": "Create Business Goal",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "use_case:mission-control.open-operational-alert",
+      "id": "open-operational-alert",
+      "kind": "use_case",
+      "name": "Open Operational Alert",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "use_case:mission-control.resolve-incident",
+      "id": "resolve-incident",
+      "kind": "use_case",
+      "name": "Resolve Incident",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "use_case:offer-intelligence.calculate-opportunity-score",
+      "id": "calculate-opportunity-score",
+      "kind": "use_case",
+      "name": "Calculate Opportunity Score",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "use_case:offer-intelligence.capture-offer-snapshot",
+      "id": "capture-offer-snapshot",
+      "kind": "use_case",
+      "name": "Capture Offer Snapshot",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "use_case:offer-intelligence.create-offer-watch",
+      "id": "create-offer-watch",
+      "kind": "use_case",
+      "name": "Create Offer Watch",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "use_case:offer-intelligence.extract-offer-urls",
+      "id": "extract-offer-urls",
+      "kind": "use_case",
+      "name": "Extract Offer URLs",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "use_case:offer-intelligence.search-offer-swipe",
+      "id": "search-offer-swipe",
+      "kind": "use_case",
+      "name": "Search Offer Swipe",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "use_case:offer-modeling.analyze-reference-offer",
+      "id": "analyze-reference-offer",
+      "kind": "use_case",
+      "name": "Analyze Reference Offer",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "use_case:offer-modeling.create-funnel-blueprint",
+      "id": "create-funnel-blueprint",
+      "kind": "use_case",
+      "name": "Create Funnel Blueprint",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "use_case:offer-modeling.draft-original-offer",
+      "id": "draft-original-offer",
+      "kind": "use_case",
+      "name": "Draft Original Offer",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "use_case:offer-modeling.review-offer",
+      "id": "review-offer",
+      "kind": "use_case",
+      "name": "Review Offer",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "aios",
+      "fqid": "workflow:aios.governed-agent-execution",
+      "id": "governed-agent-execution",
+      "kind": "workflow",
+      "name": "Governed Agent Execution",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "workflow:content-studio.ai-carousel-production",
+      "id": "ai-carousel-production",
+      "kind": "workflow",
+      "name": "AI Carousel Production",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "content-studio",
+      "fqid": "workflow:content-studio.approved-content-publication",
+      "id": "approved-content-publication",
+      "kind": "workflow",
+      "name": "Approved Content Publication",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "mission-control",
+      "fqid": "workflow:mission-control.critical-alert-response",
+      "id": "critical-alert-response",
+      "kind": "workflow",
+      "name": "Critical Alert Response",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "workflow:offer-intelligence.daily-offer-monitoring",
+      "id": "daily-offer-monitoring",
+      "kind": "workflow",
+      "name": "Daily Offer Monitoring",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-intelligence",
+      "fqid": "workflow:offer-intelligence.governed-offer-graph-discovery",
+      "id": "governed-offer-graph-discovery",
+      "kind": "workflow",
+      "name": "Governed Offer Graph Discovery",
+      "status": "active",
+      "version": "0.1.0"
+    },
+    {
+      "domain": "offer-modeling",
+      "fqid": "workflow:offer-modeling.reference-to-original-offer",
+      "id": "reference-to-original-offer",
+      "kind": "workflow",
+      "name": "Reference to Original Offer",
+      "status": "active",
+      "version": "0.1.0"
+    }
+  ]
+}

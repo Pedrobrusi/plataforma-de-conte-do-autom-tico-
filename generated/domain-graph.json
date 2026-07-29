@@ -1,0 +1,4373 @@
+{
+  "edges": [
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "capability:foundation.manage-workspaces"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "capability:foundation.govern-approvals"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "capability:foundation.audit-platform-actions"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "entity:foundation.workspace"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "entity:foundation.workspace-membership"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "entity:foundation.approval-request"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "entity:foundation.audit-entry"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "event:foundation.workspace-created"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "event:foundation.approval-recorded"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "event:foundation.audit-entry-created"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "policy:foundation.human-approval-external-write"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "policy:foundation.secrets-redaction"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "use_case:foundation.create-workspace"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "use_case:foundation.decide-approval"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "api_resource:foundation.workspaces-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "api_resource:foundation.approvals-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "ui_surface:foundation.workspace-settings"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "ui_surface:foundation.approval-inbox"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "metric:foundation.approval-lead-time"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "role:foundation.viewer"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "role:foundation.editor"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "role:foundation.admin"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "role:foundation.owner"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "permission:foundation.workspace-read"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "permission:foundation.workspace-write"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "permission:foundation.workspace-admin"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "permission:foundation.approval-decide"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "permission:foundation.audit-read"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "feature_flag:foundation.workspace-self-serve"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "feature_flag:foundation.mandatory-approvals"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "deployment_target:foundation.supabase-prod"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "deployment_target:foundation.vercel-prod"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "deployment_target:foundation.supabase-staging"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "evaluation:foundation.approval-latency-eval"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:foundation",
+      "target": "test_spec:foundation.workspace-isolation-suite"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:foundation.manage-workspaces",
+      "target": "event:foundation.workspace-created"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:foundation.govern-approvals",
+      "target": "event:foundation.approval-recorded"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:foundation.audit-platform-actions",
+      "target": "event:foundation.audit-entry-created"
+    },
+    {
+      "relation": "about",
+      "source": "event:foundation.workspace-created",
+      "target": "entity:foundation.workspace"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:foundation.workspace-created",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:foundation.approval-recorded",
+      "target": "entity:foundation.approval-request"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:foundation.approval-recorded",
+      "target": "domain:aios"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:foundation.approval-recorded",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:foundation.audit-entry-created",
+      "target": "entity:foundation.audit-entry"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:foundation.audit-entry-created",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:foundation.create-workspace",
+      "target": "capability:foundation.manage-workspaces"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:foundation.create-workspace",
+      "target": "event:foundation.workspace-created"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:foundation.create-workspace",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:foundation.decide-approval",
+      "target": "capability:foundation.govern-approvals"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:foundation.decide-approval",
+      "target": "event:foundation.approval-recorded"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:foundation.decide-approval",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "grants",
+      "source": "role:foundation.viewer",
+      "target": "permission:foundation.workspace-read"
+    },
+    {
+      "relation": "grants",
+      "source": "role:foundation.editor",
+      "target": "permission:foundation.workspace-write"
+    },
+    {
+      "relation": "inherits",
+      "source": "role:foundation.editor",
+      "target": "role:foundation.viewer"
+    },
+    {
+      "relation": "grants",
+      "source": "role:foundation.admin",
+      "target": "permission:foundation.workspace-admin"
+    },
+    {
+      "relation": "grants",
+      "source": "role:foundation.admin",
+      "target": "permission:foundation.approval-decide"
+    },
+    {
+      "relation": "grants",
+      "source": "role:foundation.admin",
+      "target": "permission:foundation.audit-read"
+    },
+    {
+      "relation": "inherits",
+      "source": "role:foundation.admin",
+      "target": "role:foundation.editor"
+    },
+    {
+      "relation": "grants",
+      "source": "role:foundation.owner",
+      "target": "permission:foundation.workspace-admin"
+    },
+    {
+      "relation": "grants",
+      "source": "role:foundation.owner",
+      "target": "permission:foundation.approval-decide"
+    },
+    {
+      "relation": "grants",
+      "source": "role:foundation.owner",
+      "target": "permission:foundation.audit-read"
+    },
+    {
+      "relation": "inherits",
+      "source": "role:foundation.owner",
+      "target": "role:foundation.admin"
+    },
+    {
+      "relation": "guards",
+      "source": "feature_flag:foundation.workspace-self-serve",
+      "target": "capability:foundation.manage-workspaces"
+    },
+    {
+      "relation": "guards",
+      "source": "feature_flag:foundation.mandatory-approvals",
+      "target": "capability:foundation.govern-approvals"
+    },
+    {
+      "relation": "evaluates",
+      "source": "evaluation:foundation.approval-latency-eval",
+      "target": "capability:foundation.govern-approvals"
+    },
+    {
+      "relation": "verifies",
+      "source": "test_spec:foundation.workspace-isolation-suite",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "verifies",
+      "source": "test_spec:foundation.workspace-isolation-suite",
+      "target": "use_case:foundation.create-workspace"
+    },
+    {
+      "relation": "verifies",
+      "source": "test_spec:foundation.workspace-isolation-suite",
+      "target": "api_resource:foundation.workspaces-api"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:aios",
+      "target": "domain:foundation"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:aios",
+      "target": "domain:knowledge"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "capability:aios.execute-agent-runs"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "capability:aios.route-agent-tasks"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "capability:aios.evaluate-agent-output"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "capability:aios.manage-agent-memory"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "entity:aios.agent-definition"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "entity:aios.agent-run"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "entity:aios.tool-call"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "entity:aios.agent-evaluation"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "entity:aios.agent-memory"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "event:aios.agent-run-started"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "event:aios.agent-run-finished"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "event:aios.agent-output-evaluated"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "policy:aios.least-privilege-tools"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "policy:aios.agent-budget-limit"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "policy:aios.evidence-before-learning"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "use_case:aios.run-agent"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "use_case:aios.evaluate-run"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "workflow:aios.governed-agent-execution"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "agent:aios.laura"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "agent:aios.nexo"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "tool:aios.knowledge-search-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "tool:aios.browser-capture-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "tool:aios.image-generation-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "tool:aios.render-worker-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "tool:aios.notification-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "api_resource:aios.agent-runs-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "ui_surface:aios.agent-run-console"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "metric:aios.agent-run-success-rate"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:aios",
+      "target": "metric:aios.agent-cost-per-approved-output"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:aios.execute-agent-runs",
+      "target": "event:aios.agent-run-started"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:aios.execute-agent-runs",
+      "target": "event:aios.agent-run-finished"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:aios.evaluate-agent-output",
+      "target": "event:aios.agent-output-evaluated"
+    },
+    {
+      "relation": "about",
+      "source": "event:aios.agent-run-started",
+      "target": "entity:aios.agent-run"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:aios.agent-run-started",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:aios.agent-run-finished",
+      "target": "entity:aios.agent-run"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:aios.agent-run-finished",
+      "target": "capability:aios.evaluate-agent-output"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:aios.agent-run-finished",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:aios.agent-run-finished",
+      "target": "domain:analytics"
+    },
+    {
+      "relation": "about",
+      "source": "event:aios.agent-output-evaluated",
+      "target": "entity:aios.agent-evaluation"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:aios.agent-output-evaluated",
+      "target": "capability:aios.manage-agent-memory"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:aios.agent-output-evaluated",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:aios.run-agent",
+      "target": "capability:aios.execute-agent-runs"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:aios.run-agent",
+      "target": "event:aios.agent-run-started"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:aios.run-agent",
+      "target": "event:aios.agent-run-finished"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:aios.run-agent",
+      "target": "policy:aios.least-privilege-tools"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:aios.run-agent",
+      "target": "policy:aios.agent-budget-limit"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:aios.run-agent",
+      "target": "policy:foundation.human-approval-external-write"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:aios.evaluate-run",
+      "target": "capability:aios.evaluate-agent-output"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:aios.evaluate-run",
+      "target": "event:aios.agent-output-evaluated"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:aios.evaluate-run",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:aios.governed-agent-execution",
+      "target": "capability:aios.execute-agent-runs"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:aios.governed-agent-execution",
+      "target": "capability:aios.route-agent-tasks"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:aios.governed-agent-execution",
+      "target": "use_case:aios.run-agent"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:aios.governed-agent-execution",
+      "target": "use_case:aios.evaluate-run"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:aios.laura",
+      "target": "capability:aios.route-agent-tasks"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:aios.laura",
+      "target": "capability:aios.evaluate-agent-output"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:aios.laura",
+      "target": "capability:aios.manage-agent-memory"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:aios.laura",
+      "target": "tool:aios.knowledge-search-tool"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:aios.laura",
+      "target": "tool:aios.notification-tool"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:aios.nexo",
+      "target": "capability:aios.evaluate-agent-output"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:aios.nexo",
+      "target": "capability:aios.manage-agent-memory"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:aios.nexo",
+      "target": "tool:aios.knowledge-search-tool"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:knowledge",
+      "target": "domain:foundation"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "capability:knowledge.ingest-knowledge"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "capability:knowledge.index-knowledge"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "capability:knowledge.retrieve-knowledge"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "entity:knowledge.knowledge-source"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "entity:knowledge.knowledge-document"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "entity:knowledge.knowledge-chunk"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "entity:knowledge.citation"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "event:knowledge.knowledge-source-added"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "event:knowledge.knowledge-indexed"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "policy:knowledge.provenance-required"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "policy:knowledge.citation-required-for-claims"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "use_case:knowledge.add-knowledge-source"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "use_case:knowledge.process-knowledge-source"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "integration:knowledge.google-drive-source"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "integration:knowledge.slack-source"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "api_resource:knowledge.knowledge-sources-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "ui_surface:knowledge.knowledge-library"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:knowledge",
+      "target": "metric:knowledge.knowledge-retrieval-grounded-rate"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:knowledge.ingest-knowledge",
+      "target": "event:knowledge.knowledge-source-added"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:knowledge.index-knowledge",
+      "target": "event:knowledge.knowledge-indexed"
+    },
+    {
+      "relation": "about",
+      "source": "event:knowledge.knowledge-source-added",
+      "target": "entity:knowledge.knowledge-source"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:knowledge.knowledge-source-added",
+      "target": "capability:knowledge.index-knowledge"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:knowledge.knowledge-source-added",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:knowledge.knowledge-indexed",
+      "target": "entity:knowledge.knowledge-document"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:knowledge.knowledge-indexed",
+      "target": "domain:aios"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:knowledge.knowledge-indexed",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:knowledge.add-knowledge-source",
+      "target": "capability:knowledge.ingest-knowledge"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:knowledge.add-knowledge-source",
+      "target": "event:knowledge.knowledge-source-added"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:knowledge.add-knowledge-source",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:knowledge.add-knowledge-source",
+      "target": "policy:knowledge.provenance-required"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:knowledge.process-knowledge-source",
+      "target": "capability:knowledge.index-knowledge"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:knowledge.process-knowledge-source",
+      "target": "event:knowledge.knowledge-indexed"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:knowledge.process-knowledge-source",
+      "target": "policy:knowledge.provenance-required"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:offer-intelligence",
+      "target": "domain:foundation"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:offer-intelligence",
+      "target": "domain:aios"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:offer-intelligence",
+      "target": "domain:knowledge"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "capability:offer-intelligence.discover-scaled-offers"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "capability:offer-intelligence.monitor-offer-activity"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "capability:offer-intelligence.crawl-offer-graph"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "capability:offer-intelligence.score-offer-opportunity"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "entity:offer-intelligence.offer-reference"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "entity:offer-intelligence.offer-watch"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "entity:offer-intelligence.offer-snapshot"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "entity:offer-intelligence.offer-alert"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "entity:offer-intelligence.crawl-run"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "entity:offer-intelligence.offer-page"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "entity:offer-intelligence.offer-page-edge"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "entity:offer-intelligence.opportunity-score"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "event:offer-intelligence.offer-reference-discovered"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "event:offer-intelligence.offer-watch-created"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "event:offer-intelligence.offer-snapshot-captured"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "event:offer-intelligence.offer-alert-triggered"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "event:offer-intelligence.offer-graph-crawled"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "event:offer-intelligence.opportunity-scored"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "policy:offer-intelligence.authorized-web-evidence"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "policy:offer-intelligence.respectful-crawl"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "policy:offer-intelligence.evidence-not-revenue-claim"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "use_case:offer-intelligence.search-offer-swipe"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "use_case:offer-intelligence.create-offer-watch"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "use_case:offer-intelligence.capture-offer-snapshot"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "use_case:offer-intelligence.extract-offer-urls"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "use_case:offer-intelligence.calculate-opportunity-score"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "workflow:offer-intelligence.daily-offer-monitoring"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "workflow:offer-intelligence.governed-offer-graph-discovery"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "agent:offer-intelligence.mika"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "tool:offer-intelligence.public-ad-library-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "tool:offer-intelligence.governed-crawler-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "tool:offer-intelligence.scheduler-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "integration:offer-intelligence.meta-ad-library"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "integration:offer-intelligence.authorized-web-capture"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "api_resource:offer-intelligence.offer-references-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "api_resource:offer-intelligence.offer-watches-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "api_resource:offer-intelligence.offer-crawls-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "ui_surface:offer-intelligence.offer-swipe-library"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "ui_surface:offer-intelligence.offer-monitoring-dashboard"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "ui_surface:offer-intelligence.offer-watch-detail"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "ui_surface:offer-intelligence.offer-url-extractor"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "metric:offer-intelligence.monitored-active-ad-count"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "metric:offer-intelligence.offer-daily-variation"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-intelligence",
+      "target": "metric:offer-intelligence.crawl-classification-confidence"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:offer-intelligence.discover-scaled-offers",
+      "target": "event:offer-intelligence.offer-reference-discovered"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:offer-intelligence.monitor-offer-activity",
+      "target": "event:offer-intelligence.offer-snapshot-captured"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:offer-intelligence.monitor-offer-activity",
+      "target": "event:offer-intelligence.offer-alert-triggered"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:offer-intelligence.crawl-offer-graph",
+      "target": "event:offer-intelligence.offer-graph-crawled"
+    },
+    {
+      "relation": "depends_on",
+      "source": "capability:offer-intelligence.score-offer-opportunity",
+      "target": "capability:offer-intelligence.discover-scaled-offers"
+    },
+    {
+      "relation": "depends_on",
+      "source": "capability:offer-intelligence.score-offer-opportunity",
+      "target": "capability:offer-intelligence.monitor-offer-activity"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:offer-intelligence.score-offer-opportunity",
+      "target": "event:offer-intelligence.opportunity-scored"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-intelligence.offer-reference-discovered",
+      "target": "entity:offer-intelligence.offer-reference"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-reference-discovered",
+      "target": "capability:offer-intelligence.score-offer-opportunity"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-reference-discovered",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-intelligence.offer-watch-created",
+      "target": "entity:offer-intelligence.offer-watch"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-watch-created",
+      "target": "capability:offer-intelligence.monitor-offer-activity"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-watch-created",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-intelligence.offer-snapshot-captured",
+      "target": "entity:offer-intelligence.offer-snapshot"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-snapshot-captured",
+      "target": "capability:offer-intelligence.score-offer-opportunity"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-snapshot-captured",
+      "target": "domain:analytics"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-snapshot-captured",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-intelligence.offer-alert-triggered",
+      "target": "entity:offer-intelligence.offer-alert"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-alert-triggered",
+      "target": "agent:aios.laura"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-alert-triggered",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-intelligence.offer-graph-crawled",
+      "target": "entity:offer-intelligence.crawl-run"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-graph-crawled",
+      "target": "domain:offer-modeling"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-graph-crawled",
+      "target": "domain:knowledge"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.offer-graph-crawled",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-intelligence.opportunity-scored",
+      "target": "entity:offer-intelligence.opportunity-score"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.opportunity-scored",
+      "target": "agent:aios.laura"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.opportunity-scored",
+      "target": "domain:offer-modeling"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-intelligence.opportunity-scored",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:offer-intelligence.search-offer-swipe",
+      "target": "capability:offer-intelligence.discover-scaled-offers"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-intelligence.search-offer-swipe",
+      "target": "event:offer-intelligence.offer-reference-discovered"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.search-offer-swipe",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.search-offer-swipe",
+      "target": "policy:offer-intelligence.evidence-not-revenue-claim"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-intelligence.create-offer-watch",
+      "target": "event:offer-intelligence.offer-watch-created"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:offer-intelligence.create-offer-watch",
+      "target": "capability:offer-intelligence.monitor-offer-activity"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.create-offer-watch",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.create-offer-watch",
+      "target": "policy:offer-intelligence.authorized-web-evidence"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:offer-intelligence.capture-offer-snapshot",
+      "target": "capability:offer-intelligence.monitor-offer-activity"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-intelligence.capture-offer-snapshot",
+      "target": "event:offer-intelligence.offer-snapshot-captured"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-intelligence.capture-offer-snapshot",
+      "target": "event:offer-intelligence.offer-alert-triggered"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.capture-offer-snapshot",
+      "target": "policy:offer-intelligence.authorized-web-evidence"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.capture-offer-snapshot",
+      "target": "policy:offer-intelligence.respectful-crawl"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.capture-offer-snapshot",
+      "target": "policy:offer-intelligence.evidence-not-revenue-claim"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:offer-intelligence.extract-offer-urls",
+      "target": "capability:offer-intelligence.crawl-offer-graph"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-intelligence.extract-offer-urls",
+      "target": "event:offer-intelligence.offer-graph-crawled"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.extract-offer-urls",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.extract-offer-urls",
+      "target": "policy:offer-intelligence.authorized-web-evidence"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.extract-offer-urls",
+      "target": "policy:offer-intelligence.respectful-crawl"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:offer-intelligence.calculate-opportunity-score",
+      "target": "capability:offer-intelligence.score-offer-opportunity"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-intelligence.calculate-opportunity-score",
+      "target": "event:offer-intelligence.opportunity-scored"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-intelligence.calculate-opportunity-score",
+      "target": "policy:offer-intelligence.evidence-not-revenue-claim"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:offer-intelligence.daily-offer-monitoring",
+      "target": "use_case:offer-intelligence.capture-offer-snapshot"
+    },
+    {
+      "relation": "assigns",
+      "source": "workflow:offer-intelligence.daily-offer-monitoring",
+      "target": "agent:offer-intelligence.mika"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:offer-intelligence.daily-offer-monitoring",
+      "target": "use_case:offer-intelligence.calculate-opportunity-score"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:offer-intelligence.governed-offer-graph-discovery",
+      "target": "use_case:offer-intelligence.extract-offer-urls"
+    },
+    {
+      "relation": "assigns",
+      "source": "workflow:offer-intelligence.governed-offer-graph-discovery",
+      "target": "agent:offer-intelligence.mika"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:offer-intelligence.mika",
+      "target": "capability:offer-intelligence.discover-scaled-offers"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:offer-intelligence.mika",
+      "target": "capability:offer-intelligence.monitor-offer-activity"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:offer-intelligence.mika",
+      "target": "capability:offer-intelligence.crawl-offer-graph"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:offer-intelligence.mika",
+      "target": "capability:offer-intelligence.score-offer-opportunity"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:offer-intelligence.mika",
+      "target": "tool:offer-intelligence.public-ad-library-tool"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:offer-intelligence.mika",
+      "target": "tool:offer-intelligence.governed-crawler-tool"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:offer-intelligence.mika",
+      "target": "tool:aios.knowledge-search-tool"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:offer-intelligence.mika",
+      "target": "tool:offer-intelligence.scheduler-tool"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:offer-modeling",
+      "target": "domain:foundation"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:offer-modeling",
+      "target": "domain:aios"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:offer-modeling",
+      "target": "domain:knowledge"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:offer-modeling",
+      "target": "domain:offer-intelligence"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "capability:offer-modeling.extract-offer-structure"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "capability:offer-modeling.model-original-offer"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "capability:offer-modeling.generate-funnel-blueprint"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "capability:offer-modeling.review-offer-quality"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "entity:offer-modeling.offer-structure"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "entity:offer-modeling.customer-model"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "entity:offer-modeling.offer"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "entity:offer-modeling.offer-version"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "entity:offer-modeling.funnel-blueprint"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "entity:offer-modeling.offer-review"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "event:offer-modeling.offer-structure-extracted"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "event:offer-modeling.original-offer-drafted"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "event:offer-modeling.offer-approved"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "event:offer-modeling.funnel-blueprint-created"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "policy:offer-modeling.authorized-source-use"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "policy:offer-modeling.originality-guard"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "policy:offer-modeling.substantiated-claims"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "policy:offer-modeling.no-fabricated-social-proof"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "use_case:offer-modeling.analyze-reference-offer"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "use_case:offer-modeling.draft-original-offer"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "use_case:offer-modeling.create-funnel-blueprint"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "use_case:offer-modeling.review-offer"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "workflow:offer-modeling.reference-to-original-offer"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "agent:offer-modeling.cora"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "tool:offer-modeling.originality-analysis-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "tool:offer-modeling.claim-evidence-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "api_resource:offer-modeling.offers-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "api_resource:offer-modeling.funnel-blueprints-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "ui_surface:offer-modeling.offer-modeling-workbench"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "metric:offer-modeling.offer-originality-score"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:offer-modeling",
+      "target": "metric:offer-modeling.offer-approval-rate"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:offer-modeling.extract-offer-structure",
+      "target": "event:offer-modeling.offer-structure-extracted"
+    },
+    {
+      "relation": "depends_on",
+      "source": "capability:offer-modeling.model-original-offer",
+      "target": "capability:offer-modeling.extract-offer-structure"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:offer-modeling.model-original-offer",
+      "target": "event:offer-modeling.original-offer-drafted"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:offer-modeling.generate-funnel-blueprint",
+      "target": "event:offer-modeling.funnel-blueprint-created"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:offer-modeling.review-offer-quality",
+      "target": "event:offer-modeling.offer-approved"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-modeling.offer-structure-extracted",
+      "target": "entity:offer-modeling.offer-structure"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-modeling.offer-structure-extracted",
+      "target": "capability:offer-modeling.model-original-offer"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-modeling.offer-structure-extracted",
+      "target": "domain:knowledge"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-modeling.original-offer-drafted",
+      "target": "entity:offer-modeling.offer"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-modeling.original-offer-drafted",
+      "target": "capability:offer-modeling.review-offer-quality"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-modeling.original-offer-drafted",
+      "target": "domain:content-studio"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-modeling.original-offer-drafted",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-modeling.offer-approved",
+      "target": "entity:offer-modeling.offer"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-modeling.offer-approved",
+      "target": "domain:content-studio"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-modeling.offer-approved",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-modeling.offer-approved",
+      "target": "domain:analytics"
+    },
+    {
+      "relation": "about",
+      "source": "event:offer-modeling.funnel-blueprint-created",
+      "target": "entity:offer-modeling.funnel-blueprint"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:offer-modeling.funnel-blueprint-created",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:offer-modeling.analyze-reference-offer",
+      "target": "capability:offer-modeling.extract-offer-structure"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-modeling.analyze-reference-offer",
+      "target": "event:offer-modeling.offer-structure-extracted"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.analyze-reference-offer",
+      "target": "policy:offer-modeling.authorized-source-use"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.analyze-reference-offer",
+      "target": "policy:offer-modeling.originality-guard"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:offer-modeling.draft-original-offer",
+      "target": "capability:offer-modeling.model-original-offer"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-modeling.draft-original-offer",
+      "target": "event:offer-modeling.original-offer-drafted"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.draft-original-offer",
+      "target": "policy:offer-modeling.authorized-source-use"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.draft-original-offer",
+      "target": "policy:offer-modeling.originality-guard"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.draft-original-offer",
+      "target": "policy:offer-modeling.substantiated-claims"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.draft-original-offer",
+      "target": "policy:offer-modeling.no-fabricated-social-proof"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:offer-modeling.create-funnel-blueprint",
+      "target": "capability:offer-modeling.generate-funnel-blueprint"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-modeling.create-funnel-blueprint",
+      "target": "event:offer-modeling.funnel-blueprint-created"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.create-funnel-blueprint",
+      "target": "policy:offer-modeling.originality-guard"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.create-funnel-blueprint",
+      "target": "policy:offer-modeling.substantiated-claims"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:offer-modeling.review-offer",
+      "target": "capability:offer-modeling.review-offer-quality"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:offer-modeling.review-offer",
+      "target": "event:offer-modeling.offer-approved"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.review-offer",
+      "target": "policy:offer-modeling.originality-guard"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.review-offer",
+      "target": "policy:offer-modeling.substantiated-claims"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:offer-modeling.review-offer",
+      "target": "policy:offer-modeling.no-fabricated-social-proof"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:offer-modeling.reference-to-original-offer",
+      "target": "use_case:offer-modeling.analyze-reference-offer"
+    },
+    {
+      "relation": "assigns",
+      "source": "workflow:offer-modeling.reference-to-original-offer",
+      "target": "agent:offer-modeling.cora"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:offer-modeling.reference-to-original-offer",
+      "target": "use_case:offer-modeling.draft-original-offer"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:offer-modeling.reference-to-original-offer",
+      "target": "use_case:offer-modeling.create-funnel-blueprint"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:offer-modeling.reference-to-original-offer",
+      "target": "use_case:offer-modeling.review-offer"
+    },
+    {
+      "relation": "assigns",
+      "source": "workflow:offer-modeling.reference-to-original-offer",
+      "target": "agent:aios.laura"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:offer-modeling.cora",
+      "target": "capability:offer-modeling.extract-offer-structure"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:offer-modeling.cora",
+      "target": "capability:offer-modeling.model-original-offer"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:offer-modeling.cora",
+      "target": "capability:offer-modeling.generate-funnel-blueprint"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:offer-modeling.cora",
+      "target": "capability:offer-modeling.review-offer-quality"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:offer-modeling.cora",
+      "target": "tool:aios.knowledge-search-tool"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:offer-modeling.cora",
+      "target": "tool:offer-modeling.originality-analysis-tool"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:offer-modeling.cora",
+      "target": "tool:offer-modeling.claim-evidence-tool"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:content-studio",
+      "target": "domain:foundation"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:content-studio",
+      "target": "domain:aios"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:content-studio",
+      "target": "domain:knowledge"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:content-studio",
+      "target": "domain:offer-modeling"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "capability:content-studio.plan-editorial-content"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "capability:content-studio.generate-ai-carousel"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "capability:content-studio.edit-design-document"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "capability:content-studio.render-content-assets"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "capability:content-studio.approve-content"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "capability:content-studio.publish-content"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "entity:content-studio.brand-profile"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "entity:content-studio.content-brief"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "entity:content-studio.content-item"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "entity:content-studio.design-document"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "entity:content-studio.design-document-version"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "entity:content-studio.media-asset"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "entity:content-studio.render-job"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "entity:content-studio.content-approval"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "entity:content-studio.publication"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "event:content-studio.content-brief-created"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "event:content-studio.carousel-generated"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "event:content-studio.design-document-updated"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "event:content-studio.content-rendered"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "event:content-studio.content-approved"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "event:content-studio.content-published"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "policy:content-studio.content-originality"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "policy:content-studio.brand-guide-compliance"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "policy:content-studio.accessible-media"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "policy:content-studio.publication-human-approval"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "use_case:content-studio.create-content-brief"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "use_case:content-studio.generate-carousel-draft"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "use_case:content-studio.apply-design-edit"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "use_case:content-studio.render-content"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "use_case:content-studio.review-content"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "use_case:content-studio.publish-approved-content"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "workflow:content-studio.ai-carousel-production"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "workflow:content-studio.approved-content-publication"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "agent:content-studio.lia"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "tool:content-studio.design-document-renderer-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "tool:content-studio.channel-publisher-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "integration:content-studio.social-publishing-connectors"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "api_resource:content-studio.content-items-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "api_resource:content-studio.design-documents-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "api_resource:content-studio.render-jobs-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "ui_surface:content-studio.carousel-project-library"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "ui_surface:content-studio.carousel-ai-wizard"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "ui_surface:content-studio.carousel-editor"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "ui_surface:content-studio.content-approval-detail"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "metric:content-studio.carousel-generation-lead-time"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "metric:content-studio.content-first-pass-approval-rate"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:content-studio",
+      "target": "metric:content-studio.content-cost-per-approved-asset"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:content-studio.plan-editorial-content",
+      "target": "event:content-studio.content-brief-created"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:content-studio.generate-ai-carousel",
+      "target": "event:content-studio.carousel-generated"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:content-studio.edit-design-document",
+      "target": "event:content-studio.design-document-updated"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:content-studio.render-content-assets",
+      "target": "event:content-studio.content-rendered"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:content-studio.approve-content",
+      "target": "event:content-studio.content-approved"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:content-studio.publish-content",
+      "target": "event:content-studio.content-published"
+    },
+    {
+      "relation": "about",
+      "source": "event:content-studio.content-brief-created",
+      "target": "entity:content-studio.content-brief"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.content-brief-created",
+      "target": "capability:content-studio.generate-ai-carousel"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.content-brief-created",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:content-studio.carousel-generated",
+      "target": "entity:content-studio.design-document"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.carousel-generated",
+      "target": "capability:content-studio.edit-design-document"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.carousel-generated",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:content-studio.design-document-updated",
+      "target": "entity:content-studio.design-document"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.design-document-updated",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:content-studio.content-rendered",
+      "target": "entity:content-studio.render-job"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.content-rendered",
+      "target": "capability:content-studio.approve-content"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.content-rendered",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:content-studio.content-approved",
+      "target": "entity:content-studio.content-approval"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.content-approved",
+      "target": "capability:content-studio.publish-content"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.content-approved",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:content-studio.content-published",
+      "target": "entity:content-studio.publication"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.content-published",
+      "target": "domain:analytics"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:content-studio.content-published",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:content-studio.create-content-brief",
+      "target": "capability:content-studio.plan-editorial-content"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:content-studio.create-content-brief",
+      "target": "event:content-studio.content-brief-created"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.create-content-brief",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.create-content-brief",
+      "target": "policy:knowledge.citation-required-for-claims"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:content-studio.generate-carousel-draft",
+      "target": "capability:content-studio.generate-ai-carousel"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:content-studio.generate-carousel-draft",
+      "target": "event:content-studio.carousel-generated"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.generate-carousel-draft",
+      "target": "policy:content-studio.content-originality"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.generate-carousel-draft",
+      "target": "policy:content-studio.brand-guide-compliance"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.generate-carousel-draft",
+      "target": "policy:knowledge.citation-required-for-claims"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:content-studio.apply-design-edit",
+      "target": "capability:content-studio.edit-design-document"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:content-studio.apply-design-edit",
+      "target": "event:content-studio.design-document-updated"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.apply-design-edit",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.apply-design-edit",
+      "target": "policy:content-studio.brand-guide-compliance"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:content-studio.render-content",
+      "target": "capability:content-studio.render-content-assets"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:content-studio.render-content",
+      "target": "event:content-studio.content-rendered"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.render-content",
+      "target": "policy:content-studio.accessible-media"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:content-studio.review-content",
+      "target": "capability:content-studio.approve-content"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:content-studio.review-content",
+      "target": "event:content-studio.content-approved"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.review-content",
+      "target": "policy:content-studio.content-originality"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.review-content",
+      "target": "policy:content-studio.brand-guide-compliance"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.review-content",
+      "target": "policy:content-studio.accessible-media"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:content-studio.publish-approved-content",
+      "target": "capability:content-studio.publish-content"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:content-studio.publish-approved-content",
+      "target": "event:content-studio.content-published"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.publish-approved-content",
+      "target": "policy:content-studio.publication-human-approval"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:content-studio.publish-approved-content",
+      "target": "policy:foundation.human-approval-external-write"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:content-studio.ai-carousel-production",
+      "target": "use_case:content-studio.create-content-brief"
+    },
+    {
+      "relation": "assigns",
+      "source": "workflow:content-studio.ai-carousel-production",
+      "target": "agent:aios.laura"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:content-studio.ai-carousel-production",
+      "target": "use_case:content-studio.generate-carousel-draft"
+    },
+    {
+      "relation": "assigns",
+      "source": "workflow:content-studio.ai-carousel-production",
+      "target": "agent:content-studio.lia"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:content-studio.ai-carousel-production",
+      "target": "use_case:content-studio.render-content"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:content-studio.ai-carousel-production",
+      "target": "use_case:content-studio.review-content"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:content-studio.approved-content-publication",
+      "target": "use_case:content-studio.publish-approved-content"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:content-studio.lia",
+      "target": "capability:content-studio.generate-ai-carousel"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:content-studio.lia",
+      "target": "capability:content-studio.edit-design-document"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:content-studio.lia",
+      "target": "capability:content-studio.render-content-assets"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:content-studio.lia",
+      "target": "capability:content-studio.approve-content"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:content-studio.lia",
+      "target": "tool:aios.knowledge-search-tool"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:content-studio.lia",
+      "target": "tool:aios.image-generation-tool"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:content-studio.lia",
+      "target": "tool:content-studio.design-document-renderer-tool"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:analytics",
+      "target": "domain:foundation"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:analytics",
+      "target": "domain:aios"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:analytics",
+      "target": "domain:knowledge"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "capability:analytics.collect-analytics-events"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "capability:analytics.calculate-business-metrics"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "capability:analytics.generate-actionable-insights"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "capability:analytics.promote-reviewed-learning"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "entity:analytics.metric-observation"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "entity:analytics.insight"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "entity:analytics.learning-record"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "event:analytics.metric-observed"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "event:analytics.insight-generated"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "event:analytics.learning-promoted"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "policy:analytics.analytics-source-traceability"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "policy:analytics.learning-human-review"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "use_case:analytics.ingest-metric-observation"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "use_case:analytics.produce-insight"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "use_case:analytics.approve-learning"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "agent:analytics.iris"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "tool:analytics.analytics-query-tool"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "api_resource:analytics.insights-api"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "ui_surface:analytics.analytics-insights-dashboard"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:analytics",
+      "target": "metric:analytics.insight-acceptance-rate"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:analytics.collect-analytics-events",
+      "target": "event:analytics.metric-observed"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:analytics.generate-actionable-insights",
+      "target": "event:analytics.insight-generated"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:analytics.promote-reviewed-learning",
+      "target": "event:analytics.learning-promoted"
+    },
+    {
+      "relation": "about",
+      "source": "event:analytics.metric-observed",
+      "target": "entity:analytics.metric-observation"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:analytics.metric-observed",
+      "target": "capability:analytics.calculate-business-metrics"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:analytics.metric-observed",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:analytics.insight-generated",
+      "target": "entity:analytics.insight"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:analytics.insight-generated",
+      "target": "agent:aios.laura"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:analytics.insight-generated",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "about",
+      "source": "event:analytics.learning-promoted",
+      "target": "entity:analytics.learning-record"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:analytics.learning-promoted",
+      "target": "domain:knowledge"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:analytics.learning-promoted",
+      "target": "domain:aios"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:analytics.learning-promoted",
+      "target": "domain:mission-control"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:analytics.ingest-metric-observation",
+      "target": "capability:analytics.collect-analytics-events"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:analytics.ingest-metric-observation",
+      "target": "event:analytics.metric-observed"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:analytics.ingest-metric-observation",
+      "target": "policy:analytics.analytics-source-traceability"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:analytics.produce-insight",
+      "target": "capability:analytics.generate-actionable-insights"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:analytics.produce-insight",
+      "target": "event:analytics.insight-generated"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:analytics.produce-insight",
+      "target": "policy:analytics.analytics-source-traceability"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:analytics.produce-insight",
+      "target": "policy:knowledge.citation-required-for-claims"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:analytics.approve-learning",
+      "target": "capability:analytics.promote-reviewed-learning"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:analytics.approve-learning",
+      "target": "event:analytics.learning-promoted"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:analytics.approve-learning",
+      "target": "policy:analytics.learning-human-review"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:analytics.iris",
+      "target": "capability:analytics.calculate-business-metrics"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:analytics.iris",
+      "target": "capability:analytics.generate-actionable-insights"
+    },
+    {
+      "relation": "can_execute",
+      "source": "agent:analytics.iris",
+      "target": "capability:analytics.promote-reviewed-learning"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:analytics.iris",
+      "target": "tool:analytics.analytics-query-tool"
+    },
+    {
+      "relation": "uses",
+      "source": "agent:analytics.iris",
+      "target": "tool:aios.knowledge-search-tool"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:mission-control",
+      "target": "domain:foundation"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:mission-control",
+      "target": "domain:aios"
+    },
+    {
+      "relation": "depends_on",
+      "source": "domain:mission-control",
+      "target": "domain:analytics"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "capability:mission-control.supervise-platform-operations"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "capability:mission-control.manage-goals-and-priorities"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "capability:mission-control.respond-to-operational-alerts"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "entity:mission-control.business-goal"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "entity:mission-control.initiative"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "entity:mission-control.operational-alert"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "entity:mission-control.incident"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "event:mission-control.goal-created"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "event:mission-control.operational-alert-opened"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "event:mission-control.incident-resolved"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "policy:mission-control.critical-alert-escalation"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "use_case:mission-control.create-business-goal"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "use_case:mission-control.open-operational-alert"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "use_case:mission-control.resolve-incident"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "workflow:mission-control.critical-alert-response"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "ui_surface:mission-control.executive-command-center"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "ui_surface:mission-control.operational-timeline"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "metric:mission-control.goal-achievement-rate"
+    },
+    {
+      "relation": "contains",
+      "source": "domain:mission-control",
+      "target": "metric:mission-control.critical-alert-resolution-time"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:mission-control.supervise-platform-operations",
+      "target": "event:mission-control.operational-alert-opened"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:mission-control.manage-goals-and-priorities",
+      "target": "event:mission-control.goal-created"
+    },
+    {
+      "relation": "emits",
+      "source": "capability:mission-control.respond-to-operational-alerts",
+      "target": "event:mission-control.incident-resolved"
+    },
+    {
+      "relation": "about",
+      "source": "event:mission-control.goal-created",
+      "target": "entity:mission-control.business-goal"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:mission-control.goal-created",
+      "target": "agent:aios.laura"
+    },
+    {
+      "relation": "about",
+      "source": "event:mission-control.operational-alert-opened",
+      "target": "entity:mission-control.operational-alert"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:mission-control.operational-alert-opened",
+      "target": "capability:mission-control.respond-to-operational-alerts"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:mission-control.operational-alert-opened",
+      "target": "agent:aios.laura"
+    },
+    {
+      "relation": "about",
+      "source": "event:mission-control.incident-resolved",
+      "target": "entity:mission-control.incident"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:mission-control.incident-resolved",
+      "target": "domain:analytics"
+    },
+    {
+      "relation": "consumed_by",
+      "source": "event:mission-control.incident-resolved",
+      "target": "domain:knowledge"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:mission-control.create-business-goal",
+      "target": "capability:mission-control.manage-goals-and-priorities"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:mission-control.create-business-goal",
+      "target": "event:mission-control.goal-created"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:mission-control.create-business-goal",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:mission-control.open-operational-alert",
+      "target": "capability:mission-control.supervise-platform-operations"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:mission-control.open-operational-alert",
+      "target": "event:mission-control.operational-alert-opened"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:mission-control.open-operational-alert",
+      "target": "policy:mission-control.critical-alert-escalation"
+    },
+    {
+      "relation": "implements",
+      "source": "use_case:mission-control.resolve-incident",
+      "target": "capability:mission-control.respond-to-operational-alerts"
+    },
+    {
+      "relation": "emits",
+      "source": "use_case:mission-control.resolve-incident",
+      "target": "event:mission-control.incident-resolved"
+    },
+    {
+      "relation": "governed_by",
+      "source": "use_case:mission-control.resolve-incident",
+      "target": "policy:foundation.workspace-isolation"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:mission-control.critical-alert-response",
+      "target": "use_case:mission-control.open-operational-alert"
+    },
+    {
+      "relation": "assigns",
+      "source": "workflow:mission-control.critical-alert-response",
+      "target": "agent:aios.laura"
+    },
+    {
+      "relation": "orchestrates",
+      "source": "workflow:mission-control.critical-alert-response",
+      "target": "capability:mission-control.supervise-platform-operations"
+    }
+  ],
+  "nodes": [
+    {
+      "domain": null,
+      "id": "domain:foundation",
+      "kind": "domain",
+      "label": "Platform Foundation"
+    },
+    {
+      "domain": "foundation",
+      "id": "capability:foundation.manage-workspaces",
+      "kind": "capability",
+      "label": "Manage Workspaces"
+    },
+    {
+      "domain": "foundation",
+      "id": "capability:foundation.govern-approvals",
+      "kind": "capability",
+      "label": "Govern Approvals"
+    },
+    {
+      "domain": "foundation",
+      "id": "capability:foundation.audit-platform-actions",
+      "kind": "capability",
+      "label": "Audit Platform Actions"
+    },
+    {
+      "domain": "foundation",
+      "id": "entity:foundation.workspace",
+      "kind": "entity",
+      "label": "Workspace"
+    },
+    {
+      "domain": "foundation",
+      "id": "entity:foundation.workspace-membership",
+      "kind": "entity",
+      "label": "Workspace Membership"
+    },
+    {
+      "domain": "foundation",
+      "id": "entity:foundation.approval-request",
+      "kind": "entity",
+      "label": "Approval Request"
+    },
+    {
+      "domain": "foundation",
+      "id": "entity:foundation.audit-entry",
+      "kind": "entity",
+      "label": "Audit Entry"
+    },
+    {
+      "domain": "foundation",
+      "id": "event:foundation.workspace-created",
+      "kind": "event",
+      "label": "Workspace Created"
+    },
+    {
+      "domain": "foundation",
+      "id": "event:foundation.approval-recorded",
+      "kind": "event",
+      "label": "Approval Recorded"
+    },
+    {
+      "domain": "foundation",
+      "id": "event:foundation.audit-entry-created",
+      "kind": "event",
+      "label": "Audit Entry Created"
+    },
+    {
+      "domain": "foundation",
+      "id": "policy:foundation.workspace-isolation",
+      "kind": "policy",
+      "label": "Workspace Isolation"
+    },
+    {
+      "domain": "foundation",
+      "id": "policy:foundation.human-approval-external-write",
+      "kind": "policy",
+      "label": "Human Approval for External Writes"
+    },
+    {
+      "domain": "foundation",
+      "id": "policy:foundation.secrets-redaction",
+      "kind": "policy",
+      "label": "Secrets Redaction"
+    },
+    {
+      "domain": "foundation",
+      "id": "use_case:foundation.create-workspace",
+      "kind": "use_case",
+      "label": "Create Workspace"
+    },
+    {
+      "domain": "foundation",
+      "id": "use_case:foundation.decide-approval",
+      "kind": "use_case",
+      "label": "Decide Approval"
+    },
+    {
+      "domain": "foundation",
+      "id": "api_resource:foundation.workspaces-api",
+      "kind": "api_resource",
+      "label": "Workspaces API"
+    },
+    {
+      "domain": "foundation",
+      "id": "api_resource:foundation.approvals-api",
+      "kind": "api_resource",
+      "label": "Approvals API"
+    },
+    {
+      "domain": "foundation",
+      "id": "ui_surface:foundation.workspace-settings",
+      "kind": "ui_surface",
+      "label": "Workspace Settings"
+    },
+    {
+      "domain": "foundation",
+      "id": "ui_surface:foundation.approval-inbox",
+      "kind": "ui_surface",
+      "label": "Approval Inbox"
+    },
+    {
+      "domain": "foundation",
+      "id": "metric:foundation.approval-lead-time",
+      "kind": "metric",
+      "label": "Approval Lead Time"
+    },
+    {
+      "domain": "foundation",
+      "id": "role:foundation.viewer",
+      "kind": "role",
+      "label": "Viewer"
+    },
+    {
+      "domain": "foundation",
+      "id": "role:foundation.editor",
+      "kind": "role",
+      "label": "Editor"
+    },
+    {
+      "domain": "foundation",
+      "id": "role:foundation.admin",
+      "kind": "role",
+      "label": "Admin"
+    },
+    {
+      "domain": "foundation",
+      "id": "role:foundation.owner",
+      "kind": "role",
+      "label": "Owner"
+    },
+    {
+      "domain": "foundation",
+      "id": "permission:foundation.workspace-read",
+      "kind": "permission",
+      "label": "Read Workspace Data"
+    },
+    {
+      "domain": "foundation",
+      "id": "permission:foundation.workspace-write",
+      "kind": "permission",
+      "label": "Write Workspace Data"
+    },
+    {
+      "domain": "foundation",
+      "id": "permission:foundation.workspace-admin",
+      "kind": "permission",
+      "label": "Administer Workspace"
+    },
+    {
+      "domain": "foundation",
+      "id": "permission:foundation.approval-decide",
+      "kind": "permission",
+      "label": "Decide Approvals"
+    },
+    {
+      "domain": "foundation",
+      "id": "permission:foundation.audit-read",
+      "kind": "permission",
+      "label": "Read Audit Trail"
+    },
+    {
+      "domain": "foundation",
+      "id": "feature_flag:foundation.workspace-self-serve",
+      "kind": "feature_flag",
+      "label": "Workspace Self-Serve Signup"
+    },
+    {
+      "domain": "foundation",
+      "id": "feature_flag:foundation.mandatory-approvals",
+      "kind": "feature_flag",
+      "label": "Mandatory External-Write Approvals"
+    },
+    {
+      "domain": "foundation",
+      "id": "deployment_target:foundation.supabase-prod",
+      "kind": "deployment_target",
+      "label": "Supabase Production"
+    },
+    {
+      "domain": "foundation",
+      "id": "deployment_target:foundation.vercel-prod",
+      "kind": "deployment_target",
+      "label": "Vercel Production"
+    },
+    {
+      "domain": "foundation",
+      "id": "deployment_target:foundation.supabase-staging",
+      "kind": "deployment_target",
+      "label": "Supabase Staging"
+    },
+    {
+      "domain": "foundation",
+      "id": "evaluation:foundation.approval-latency-eval",
+      "kind": "evaluation",
+      "label": "Approval Latency Evaluation"
+    },
+    {
+      "domain": "foundation",
+      "id": "test_spec:foundation.workspace-isolation-suite",
+      "kind": "test_spec",
+      "label": "Workspace Isolation Suite"
+    },
+    {
+      "domain": null,
+      "id": "domain:aios",
+      "kind": "domain",
+      "label": "AI Operating System"
+    },
+    {
+      "domain": "aios",
+      "id": "capability:aios.execute-agent-runs",
+      "kind": "capability",
+      "label": "Execute Agent Runs"
+    },
+    {
+      "domain": "aios",
+      "id": "capability:aios.route-agent-tasks",
+      "kind": "capability",
+      "label": "Route Agent Tasks"
+    },
+    {
+      "domain": "aios",
+      "id": "capability:aios.evaluate-agent-output",
+      "kind": "capability",
+      "label": "Evaluate Agent Output"
+    },
+    {
+      "domain": "aios",
+      "id": "capability:aios.manage-agent-memory",
+      "kind": "capability",
+      "label": "Manage Agent Memory"
+    },
+    {
+      "domain": "aios",
+      "id": "entity:aios.agent-definition",
+      "kind": "entity",
+      "label": "Agent Definition"
+    },
+    {
+      "domain": "aios",
+      "id": "entity:aios.agent-run",
+      "kind": "entity",
+      "label": "Agent Run"
+    },
+    {
+      "domain": "aios",
+      "id": "entity:aios.tool-call",
+      "kind": "entity",
+      "label": "Tool Call"
+    },
+    {
+      "domain": "aios",
+      "id": "entity:aios.agent-evaluation",
+      "kind": "entity",
+      "label": "Agent Evaluation"
+    },
+    {
+      "domain": "aios",
+      "id": "entity:aios.agent-memory",
+      "kind": "entity",
+      "label": "Agent Memory"
+    },
+    {
+      "domain": "aios",
+      "id": "event:aios.agent-run-started",
+      "kind": "event",
+      "label": "Agent Run Started"
+    },
+    {
+      "domain": "aios",
+      "id": "event:aios.agent-run-finished",
+      "kind": "event",
+      "label": "Agent Run Finished"
+    },
+    {
+      "domain": "aios",
+      "id": "event:aios.agent-output-evaluated",
+      "kind": "event",
+      "label": "Agent Output Evaluated"
+    },
+    {
+      "domain": "aios",
+      "id": "policy:aios.least-privilege-tools",
+      "kind": "policy",
+      "label": "Least Privilege Tools"
+    },
+    {
+      "domain": "aios",
+      "id": "policy:aios.agent-budget-limit",
+      "kind": "policy",
+      "label": "Agent Budget Limit"
+    },
+    {
+      "domain": "aios",
+      "id": "policy:aios.evidence-before-learning",
+      "kind": "policy",
+      "label": "Evidence Before Learning"
+    },
+    {
+      "domain": "aios",
+      "id": "use_case:aios.run-agent",
+      "kind": "use_case",
+      "label": "Run Agent"
+    },
+    {
+      "domain": "aios",
+      "id": "use_case:aios.evaluate-run",
+      "kind": "use_case",
+      "label": "Evaluate Run"
+    },
+    {
+      "domain": "aios",
+      "id": "workflow:aios.governed-agent-execution",
+      "kind": "workflow",
+      "label": "Governed Agent Execution"
+    },
+    {
+      "domain": "aios",
+      "id": "agent:aios.laura",
+      "kind": "agent",
+      "label": "Laura"
+    },
+    {
+      "domain": "aios",
+      "id": "agent:aios.nexo",
+      "kind": "agent",
+      "label": "Nexo"
+    },
+    {
+      "domain": "aios",
+      "id": "tool:aios.knowledge-search-tool",
+      "kind": "tool",
+      "label": "Knowledge Search"
+    },
+    {
+      "domain": "aios",
+      "id": "tool:aios.browser-capture-tool",
+      "kind": "tool",
+      "label": "Governed Browser Capture"
+    },
+    {
+      "domain": "aios",
+      "id": "tool:aios.image-generation-tool",
+      "kind": "tool",
+      "label": "Image Generation"
+    },
+    {
+      "domain": "aios",
+      "id": "tool:aios.render-worker-tool",
+      "kind": "tool",
+      "label": "Render Worker"
+    },
+    {
+      "domain": "aios",
+      "id": "tool:aios.notification-tool",
+      "kind": "tool",
+      "label": "Notification Delivery"
+    },
+    {
+      "domain": "aios",
+      "id": "api_resource:aios.agent-runs-api",
+      "kind": "api_resource",
+      "label": "Agent Runs API"
+    },
+    {
+      "domain": "aios",
+      "id": "ui_surface:aios.agent-run-console",
+      "kind": "ui_surface",
+      "label": "Agent Run Console"
+    },
+    {
+      "domain": "aios",
+      "id": "metric:aios.agent-run-success-rate",
+      "kind": "metric",
+      "label": "Agent Run Success Rate"
+    },
+    {
+      "domain": "aios",
+      "id": "metric:aios.agent-cost-per-approved-output",
+      "kind": "metric",
+      "label": "Agent Cost per Approved Output"
+    },
+    {
+      "domain": null,
+      "id": "domain:knowledge",
+      "kind": "domain",
+      "label": "Knowledge Engine"
+    },
+    {
+      "domain": "knowledge",
+      "id": "capability:knowledge.ingest-knowledge",
+      "kind": "capability",
+      "label": "Ingest Knowledge"
+    },
+    {
+      "domain": "knowledge",
+      "id": "capability:knowledge.index-knowledge",
+      "kind": "capability",
+      "label": "Index Knowledge"
+    },
+    {
+      "domain": "knowledge",
+      "id": "capability:knowledge.retrieve-knowledge",
+      "kind": "capability",
+      "label": "Retrieve Knowledge"
+    },
+    {
+      "domain": "knowledge",
+      "id": "entity:knowledge.knowledge-source",
+      "kind": "entity",
+      "label": "Knowledge Source"
+    },
+    {
+      "domain": "knowledge",
+      "id": "entity:knowledge.knowledge-document",
+      "kind": "entity",
+      "label": "Knowledge Document"
+    },
+    {
+      "domain": "knowledge",
+      "id": "entity:knowledge.knowledge-chunk",
+      "kind": "entity",
+      "label": "Knowledge Chunk"
+    },
+    {
+      "domain": "knowledge",
+      "id": "entity:knowledge.citation",
+      "kind": "entity",
+      "label": "Citation"
+    },
+    {
+      "domain": "knowledge",
+      "id": "event:knowledge.knowledge-source-added",
+      "kind": "event",
+      "label": "Knowledge Source Added"
+    },
+    {
+      "domain": "knowledge",
+      "id": "event:knowledge.knowledge-indexed",
+      "kind": "event",
+      "label": "Knowledge Indexed"
+    },
+    {
+      "domain": "knowledge",
+      "id": "policy:knowledge.provenance-required",
+      "kind": "policy",
+      "label": "Provenance Required"
+    },
+    {
+      "domain": "knowledge",
+      "id": "policy:knowledge.citation-required-for-claims",
+      "kind": "policy",
+      "label": "Citation Required for Material Claims"
+    },
+    {
+      "domain": "knowledge",
+      "id": "use_case:knowledge.add-knowledge-source",
+      "kind": "use_case",
+      "label": "Add Knowledge Source"
+    },
+    {
+      "domain": "knowledge",
+      "id": "use_case:knowledge.process-knowledge-source",
+      "kind": "use_case",
+      "label": "Process Knowledge Source"
+    },
+    {
+      "domain": "knowledge",
+      "id": "integration:knowledge.google-drive-source",
+      "kind": "integration",
+      "label": "Google Drive"
+    },
+    {
+      "domain": "knowledge",
+      "id": "integration:knowledge.slack-source",
+      "kind": "integration",
+      "label": "Slack"
+    },
+    {
+      "domain": "knowledge",
+      "id": "api_resource:knowledge.knowledge-sources-api",
+      "kind": "api_resource",
+      "label": "Knowledge Sources API"
+    },
+    {
+      "domain": "knowledge",
+      "id": "ui_surface:knowledge.knowledge-library",
+      "kind": "ui_surface",
+      "label": "Knowledge Library"
+    },
+    {
+      "domain": "knowledge",
+      "id": "metric:knowledge.knowledge-retrieval-grounded-rate",
+      "kind": "metric",
+      "label": "Grounded Retrieval Rate"
+    },
+    {
+      "domain": null,
+      "id": "domain:offer-intelligence",
+      "kind": "domain",
+      "label": "Offer Intelligence"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "capability:offer-intelligence.discover-scaled-offers",
+      "kind": "capability",
+      "label": "Discover Scaled Offers"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "capability:offer-intelligence.monitor-offer-activity",
+      "kind": "capability",
+      "label": "Monitor Offer Activity"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "capability:offer-intelligence.crawl-offer-graph",
+      "kind": "capability",
+      "label": "Crawl Offer Graph"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "capability:offer-intelligence.score-offer-opportunity",
+      "kind": "capability",
+      "label": "Score Offer Opportunity"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "entity:offer-intelligence.offer-reference",
+      "kind": "entity",
+      "label": "Offer Reference"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "entity:offer-intelligence.offer-watch",
+      "kind": "entity",
+      "label": "Offer Watch"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "entity:offer-intelligence.offer-snapshot",
+      "kind": "entity",
+      "label": "Offer Snapshot"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "entity:offer-intelligence.offer-alert",
+      "kind": "entity",
+      "label": "Offer Alert"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "entity:offer-intelligence.crawl-run",
+      "kind": "entity",
+      "label": "Crawl Run"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "entity:offer-intelligence.offer-page",
+      "kind": "entity",
+      "label": "Offer Page"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "entity:offer-intelligence.offer-page-edge",
+      "kind": "entity",
+      "label": "Offer Page Edge"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "entity:offer-intelligence.opportunity-score",
+      "kind": "entity",
+      "label": "Opportunity Score"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "event:offer-intelligence.offer-reference-discovered",
+      "kind": "event",
+      "label": "Offer Reference Discovered"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "event:offer-intelligence.offer-watch-created",
+      "kind": "event",
+      "label": "Offer Watch Created"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "event:offer-intelligence.offer-snapshot-captured",
+      "kind": "event",
+      "label": "Offer Snapshot Captured"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "event:offer-intelligence.offer-alert-triggered",
+      "kind": "event",
+      "label": "Offer Alert Triggered"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "event:offer-intelligence.offer-graph-crawled",
+      "kind": "event",
+      "label": "Offer Graph Crawled"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "event:offer-intelligence.opportunity-scored",
+      "kind": "event",
+      "label": "Opportunity Scored"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "policy:offer-intelligence.authorized-web-evidence",
+      "kind": "policy",
+      "label": "Authorized Web Evidence"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "policy:offer-intelligence.respectful-crawl",
+      "kind": "policy",
+      "label": "Respectful Crawl"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "policy:offer-intelligence.evidence-not-revenue-claim",
+      "kind": "policy",
+      "label": "Evidence Is Not a Revenue Claim"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "use_case:offer-intelligence.search-offer-swipe",
+      "kind": "use_case",
+      "label": "Search Offer Swipe"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "use_case:offer-intelligence.create-offer-watch",
+      "kind": "use_case",
+      "label": "Create Offer Watch"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "use_case:offer-intelligence.capture-offer-snapshot",
+      "kind": "use_case",
+      "label": "Capture Offer Snapshot"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "use_case:offer-intelligence.extract-offer-urls",
+      "kind": "use_case",
+      "label": "Extract Offer URLs"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "use_case:offer-intelligence.calculate-opportunity-score",
+      "kind": "use_case",
+      "label": "Calculate Opportunity Score"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "workflow:offer-intelligence.daily-offer-monitoring",
+      "kind": "workflow",
+      "label": "Daily Offer Monitoring"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "workflow:offer-intelligence.governed-offer-graph-discovery",
+      "kind": "workflow",
+      "label": "Governed Offer Graph Discovery"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "agent:offer-intelligence.mika",
+      "kind": "agent",
+      "label": "Mika"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "tool:offer-intelligence.public-ad-library-tool",
+      "kind": "tool",
+      "label": "Public Ad Library Reader"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "tool:offer-intelligence.governed-crawler-tool",
+      "kind": "tool",
+      "label": "Governed Funnel Crawler"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "tool:offer-intelligence.scheduler-tool",
+      "kind": "tool",
+      "label": "Scheduler"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "integration:offer-intelligence.meta-ad-library",
+      "kind": "integration",
+      "label": "Meta Ad Library"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "integration:offer-intelligence.authorized-web-capture",
+      "kind": "integration",
+      "label": "Authorized Web Capture"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "api_resource:offer-intelligence.offer-references-api",
+      "kind": "api_resource",
+      "label": "Offer References API"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "api_resource:offer-intelligence.offer-watches-api",
+      "kind": "api_resource",
+      "label": "Offer Watches API"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "api_resource:offer-intelligence.offer-crawls-api",
+      "kind": "api_resource",
+      "label": "Offer Crawls API"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "ui_surface:offer-intelligence.offer-swipe-library",
+      "kind": "ui_surface",
+      "label": "Offer Swipe Library"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "ui_surface:offer-intelligence.offer-monitoring-dashboard",
+      "kind": "ui_surface",
+      "label": "Offer Monitoring Dashboard"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "ui_surface:offer-intelligence.offer-watch-detail",
+      "kind": "ui_surface",
+      "label": "Offer Watch Detail"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "ui_surface:offer-intelligence.offer-url-extractor",
+      "kind": "ui_surface",
+      "label": "Offer URL Extractor"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "metric:offer-intelligence.monitored-active-ad-count",
+      "kind": "metric",
+      "label": "Monitored Active Ad Count"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "metric:offer-intelligence.offer-daily-variation",
+      "kind": "metric",
+      "label": "Offer Daily Variation"
+    },
+    {
+      "domain": "offer-intelligence",
+      "id": "metric:offer-intelligence.crawl-classification-confidence",
+      "kind": "metric",
+      "label": "Crawl Classification Confidence"
+    },
+    {
+      "domain": null,
+      "id": "domain:offer-modeling",
+      "kind": "domain",
+      "label": "Offer Modeling Studio"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "capability:offer-modeling.extract-offer-structure",
+      "kind": "capability",
+      "label": "Extract Offer Structure"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "capability:offer-modeling.model-original-offer",
+      "kind": "capability",
+      "label": "Model Original Offer"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "capability:offer-modeling.generate-funnel-blueprint",
+      "kind": "capability",
+      "label": "Generate Funnel Blueprint"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "capability:offer-modeling.review-offer-quality",
+      "kind": "capability",
+      "label": "Review Offer Quality"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "entity:offer-modeling.offer-structure",
+      "kind": "entity",
+      "label": "Offer Structure"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "entity:offer-modeling.customer-model",
+      "kind": "entity",
+      "label": "Customer Model"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "entity:offer-modeling.offer",
+      "kind": "entity",
+      "label": "Offer"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "entity:offer-modeling.offer-version",
+      "kind": "entity",
+      "label": "Offer Version"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "entity:offer-modeling.funnel-blueprint",
+      "kind": "entity",
+      "label": "Funnel Blueprint"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "entity:offer-modeling.offer-review",
+      "kind": "entity",
+      "label": "Offer Review"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "event:offer-modeling.offer-structure-extracted",
+      "kind": "event",
+      "label": "Offer Structure Extracted"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "event:offer-modeling.original-offer-drafted",
+      "kind": "event",
+      "label": "Original Offer Drafted"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "event:offer-modeling.offer-approved",
+      "kind": "event",
+      "label": "Offer Approved"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "event:offer-modeling.funnel-blueprint-created",
+      "kind": "event",
+      "label": "Funnel Blueprint Created"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "policy:offer-modeling.authorized-source-use",
+      "kind": "policy",
+      "label": "Authorized Source Use"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "policy:offer-modeling.originality-guard",
+      "kind": "policy",
+      "label": "Originality Guard"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "policy:offer-modeling.substantiated-claims",
+      "kind": "policy",
+      "label": "Substantiated Claims"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "policy:offer-modeling.no-fabricated-social-proof",
+      "kind": "policy",
+      "label": "No Fabricated Social Proof"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "use_case:offer-modeling.analyze-reference-offer",
+      "kind": "use_case",
+      "label": "Analyze Reference Offer"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "use_case:offer-modeling.draft-original-offer",
+      "kind": "use_case",
+      "label": "Draft Original Offer"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "use_case:offer-modeling.create-funnel-blueprint",
+      "kind": "use_case",
+      "label": "Create Funnel Blueprint"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "use_case:offer-modeling.review-offer",
+      "kind": "use_case",
+      "label": "Review Offer"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "workflow:offer-modeling.reference-to-original-offer",
+      "kind": "workflow",
+      "label": "Reference to Original Offer"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "agent:offer-modeling.cora",
+      "kind": "agent",
+      "label": "Cora"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "tool:offer-modeling.originality-analysis-tool",
+      "kind": "tool",
+      "label": "Originality Analysis"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "tool:offer-modeling.claim-evidence-tool",
+      "kind": "tool",
+      "label": "Claim Evidence Checker"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "api_resource:offer-modeling.offers-api",
+      "kind": "api_resource",
+      "label": "Offers API"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "api_resource:offer-modeling.funnel-blueprints-api",
+      "kind": "api_resource",
+      "label": "Funnel Blueprints API"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "ui_surface:offer-modeling.offer-modeling-workbench",
+      "kind": "ui_surface",
+      "label": "Offer Modeling Workbench"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "metric:offer-modeling.offer-originality-score",
+      "kind": "metric",
+      "label": "Offer Originality Score"
+    },
+    {
+      "domain": "offer-modeling",
+      "id": "metric:offer-modeling.offer-approval-rate",
+      "kind": "metric",
+      "label": "Offer Approval Rate"
+    },
+    {
+      "domain": null,
+      "id": "domain:content-studio",
+      "kind": "domain",
+      "label": "Content Studio"
+    },
+    {
+      "domain": "content-studio",
+      "id": "capability:content-studio.plan-editorial-content",
+      "kind": "capability",
+      "label": "Plan Editorial Content"
+    },
+    {
+      "domain": "content-studio",
+      "id": "capability:content-studio.generate-ai-carousel",
+      "kind": "capability",
+      "label": "Generate AI Carousel"
+    },
+    {
+      "domain": "content-studio",
+      "id": "capability:content-studio.edit-design-document",
+      "kind": "capability",
+      "label": "Edit Design Document"
+    },
+    {
+      "domain": "content-studio",
+      "id": "capability:content-studio.render-content-assets",
+      "kind": "capability",
+      "label": "Render Content Assets"
+    },
+    {
+      "domain": "content-studio",
+      "id": "capability:content-studio.approve-content",
+      "kind": "capability",
+      "label": "Approve Content"
+    },
+    {
+      "domain": "content-studio",
+      "id": "capability:content-studio.publish-content",
+      "kind": "capability",
+      "label": "Publish Content"
+    },
+    {
+      "domain": "content-studio",
+      "id": "entity:content-studio.brand-profile",
+      "kind": "entity",
+      "label": "Brand Profile"
+    },
+    {
+      "domain": "content-studio",
+      "id": "entity:content-studio.content-brief",
+      "kind": "entity",
+      "label": "Content Brief"
+    },
+    {
+      "domain": "content-studio",
+      "id": "entity:content-studio.content-item",
+      "kind": "entity",
+      "label": "Content Item"
+    },
+    {
+      "domain": "content-studio",
+      "id": "entity:content-studio.design-document",
+      "kind": "entity",
+      "label": "Design Document"
+    },
+    {
+      "domain": "content-studio",
+      "id": "entity:content-studio.design-document-version",
+      "kind": "entity",
+      "label": "Design Document Version"
+    },
+    {
+      "domain": "content-studio",
+      "id": "entity:content-studio.media-asset",
+      "kind": "entity",
+      "label": "Media Asset"
+    },
+    {
+      "domain": "content-studio",
+      "id": "entity:content-studio.render-job",
+      "kind": "entity",
+      "label": "Render Job"
+    },
+    {
+      "domain": "content-studio",
+      "id": "entity:content-studio.content-approval",
+      "kind": "entity",
+      "label": "Content Approval"
+    },
+    {
+      "domain": "content-studio",
+      "id": "entity:content-studio.publication",
+      "kind": "entity",
+      "label": "Publication"
+    },
+    {
+      "domain": "content-studio",
+      "id": "event:content-studio.content-brief-created",
+      "kind": "event",
+      "label": "Content Brief Created"
+    },
+    {
+      "domain": "content-studio",
+      "id": "event:content-studio.carousel-generated",
+      "kind": "event",
+      "label": "Carousel Generated"
+    },
+    {
+      "domain": "content-studio",
+      "id": "event:content-studio.design-document-updated",
+      "kind": "event",
+      "label": "Design Document Updated"
+    },
+    {
+      "domain": "content-studio",
+      "id": "event:content-studio.content-rendered",
+      "kind": "event",
+      "label": "Content Rendered"
+    },
+    {
+      "domain": "content-studio",
+      "id": "event:content-studio.content-approved",
+      "kind": "event",
+      "label": "Content Approved"
+    },
+    {
+      "domain": "content-studio",
+      "id": "event:content-studio.content-published",
+      "kind": "event",
+      "label": "Content Published"
+    },
+    {
+      "domain": "content-studio",
+      "id": "policy:content-studio.content-originality",
+      "kind": "policy",
+      "label": "Content Originality"
+    },
+    {
+      "domain": "content-studio",
+      "id": "policy:content-studio.brand-guide-compliance",
+      "kind": "policy",
+      "label": "Brand Guide Compliance"
+    },
+    {
+      "domain": "content-studio",
+      "id": "policy:content-studio.accessible-media",
+      "kind": "policy",
+      "label": "Accessible Media"
+    },
+    {
+      "domain": "content-studio",
+      "id": "policy:content-studio.publication-human-approval",
+      "kind": "policy",
+      "label": "Publication Human Approval"
+    },
+    {
+      "domain": "content-studio",
+      "id": "use_case:content-studio.create-content-brief",
+      "kind": "use_case",
+      "label": "Create Content Brief"
+    },
+    {
+      "domain": "content-studio",
+      "id": "use_case:content-studio.generate-carousel-draft",
+      "kind": "use_case",
+      "label": "Generate Carousel Draft"
+    },
+    {
+      "domain": "content-studio",
+      "id": "use_case:content-studio.apply-design-edit",
+      "kind": "use_case",
+      "label": "Apply Design Edit"
+    },
+    {
+      "domain": "content-studio",
+      "id": "use_case:content-studio.render-content",
+      "kind": "use_case",
+      "label": "Render Content"
+    },
+    {
+      "domain": "content-studio",
+      "id": "use_case:content-studio.review-content",
+      "kind": "use_case",
+      "label": "Review Content"
+    },
+    {
+      "domain": "content-studio",
+      "id": "use_case:content-studio.publish-approved-content",
+      "kind": "use_case",
+      "label": "Publish Approved Content"
+    },
+    {
+      "domain": "content-studio",
+      "id": "workflow:content-studio.ai-carousel-production",
+      "kind": "workflow",
+      "label": "AI Carousel Production"
+    },
+    {
+      "domain": "content-studio",
+      "id": "workflow:content-studio.approved-content-publication",
+      "kind": "workflow",
+      "label": "Approved Content Publication"
+    },
+    {
+      "domain": "content-studio",
+      "id": "agent:content-studio.lia",
+      "kind": "agent",
+      "label": "Lia"
+    },
+    {
+      "domain": "content-studio",
+      "id": "tool:content-studio.design-document-renderer-tool",
+      "kind": "tool",
+      "label": "Design Document Renderer"
+    },
+    {
+      "domain": "content-studio",
+      "id": "tool:content-studio.channel-publisher-tool",
+      "kind": "tool",
+      "label": "Social Channel Publisher"
+    },
+    {
+      "domain": "content-studio",
+      "id": "integration:content-studio.social-publishing-connectors",
+      "kind": "integration",
+      "label": "Social Publishing Connectors"
+    },
+    {
+      "domain": "content-studio",
+      "id": "api_resource:content-studio.content-items-api",
+      "kind": "api_resource",
+      "label": "Content Items API"
+    },
+    {
+      "domain": "content-studio",
+      "id": "api_resource:content-studio.design-documents-api",
+      "kind": "api_resource",
+      "label": "Design Documents API"
+    },
+    {
+      "domain": "content-studio",
+      "id": "api_resource:content-studio.render-jobs-api",
+      "kind": "api_resource",
+      "label": "Render Jobs API"
+    },
+    {
+      "domain": "content-studio",
+      "id": "ui_surface:content-studio.carousel-project-library",
+      "kind": "ui_surface",
+      "label": "Carousel Project Library"
+    },
+    {
+      "domain": "content-studio",
+      "id": "ui_surface:content-studio.carousel-ai-wizard",
+      "kind": "ui_surface",
+      "label": "Carousel AI Wizard"
+    },
+    {
+      "domain": "content-studio",
+      "id": "ui_surface:content-studio.carousel-editor",
+      "kind": "ui_surface",
+      "label": "Carousel Editor"
+    },
+    {
+      "domain": "content-studio",
+      "id": "ui_surface:content-studio.content-approval-detail",
+      "kind": "ui_surface",
+      "label": "Content Approval Detail"
+    },
+    {
+      "domain": "content-studio",
+      "id": "metric:content-studio.carousel-generation-lead-time",
+      "kind": "metric",
+      "label": "Carousel Generation Lead Time"
+    },
+    {
+      "domain": "content-studio",
+      "id": "metric:content-studio.content-first-pass-approval-rate",
+      "kind": "metric",
+      "label": "First-Pass Approval Rate"
+    },
+    {
+      "domain": "content-studio",
+      "id": "metric:content-studio.content-cost-per-approved-asset",
+      "kind": "metric",
+      "label": "Cost per Approved Asset"
+    },
+    {
+      "domain": null,
+      "id": "domain:analytics",
+      "kind": "domain",
+      "label": "Analytics and Learning"
+    },
+    {
+      "domain": "analytics",
+      "id": "capability:analytics.collect-analytics-events",
+      "kind": "capability",
+      "label": "Collect Analytics Events"
+    },
+    {
+      "domain": "analytics",
+      "id": "capability:analytics.calculate-business-metrics",
+      "kind": "capability",
+      "label": "Calculate Business Metrics"
+    },
+    {
+      "domain": "analytics",
+      "id": "capability:analytics.generate-actionable-insights",
+      "kind": "capability",
+      "label": "Generate Actionable Insights"
+    },
+    {
+      "domain": "analytics",
+      "id": "capability:analytics.promote-reviewed-learning",
+      "kind": "capability",
+      "label": "Promote Reviewed Learning"
+    },
+    {
+      "domain": "analytics",
+      "id": "entity:analytics.metric-observation",
+      "kind": "entity",
+      "label": "Metric Observation"
+    },
+    {
+      "domain": "analytics",
+      "id": "entity:analytics.insight",
+      "kind": "entity",
+      "label": "Insight"
+    },
+    {
+      "domain": "analytics",
+      "id": "entity:analytics.learning-record",
+      "kind": "entity",
+      "label": "Learning Record"
+    },
+    {
+      "domain": "analytics",
+      "id": "event:analytics.metric-observed",
+      "kind": "event",
+      "label": "Metric Observed"
+    },
+    {
+      "domain": "analytics",
+      "id": "event:analytics.insight-generated",
+      "kind": "event",
+      "label": "Insight Generated"
+    },
+    {
+      "domain": "analytics",
+      "id": "event:analytics.learning-promoted",
+      "kind": "event",
+      "label": "Learning Promoted"
+    },
+    {
+      "domain": "analytics",
+      "id": "policy:analytics.analytics-source-traceability",
+      "kind": "policy",
+      "label": "Analytics Source Traceability"
+    },
+    {
+      "domain": "analytics",
+      "id": "policy:analytics.learning-human-review",
+      "kind": "policy",
+      "label": "Learning Human Review"
+    },
+    {
+      "domain": "analytics",
+      "id": "use_case:analytics.ingest-metric-observation",
+      "kind": "use_case",
+      "label": "Ingest Metric Observation"
+    },
+    {
+      "domain": "analytics",
+      "id": "use_case:analytics.produce-insight",
+      "kind": "use_case",
+      "label": "Produce Insight"
+    },
+    {
+      "domain": "analytics",
+      "id": "use_case:analytics.approve-learning",
+      "kind": "use_case",
+      "label": "Approve Learning"
+    },
+    {
+      "domain": "analytics",
+      "id": "agent:analytics.iris",
+      "kind": "agent",
+      "label": "Iris"
+    },
+    {
+      "domain": "analytics",
+      "id": "tool:analytics.analytics-query-tool",
+      "kind": "tool",
+      "label": "Analytics Query"
+    },
+    {
+      "domain": "analytics",
+      "id": "api_resource:analytics.insights-api",
+      "kind": "api_resource",
+      "label": "Insights API"
+    },
+    {
+      "domain": "analytics",
+      "id": "ui_surface:analytics.analytics-insights-dashboard",
+      "kind": "ui_surface",
+      "label": "Analytics Insights Dashboard"
+    },
+    {
+      "domain": "analytics",
+      "id": "metric:analytics.insight-acceptance-rate",
+      "kind": "metric",
+      "label": "Insight Acceptance Rate"
+    },
+    {
+      "domain": null,
+      "id": "domain:mission-control",
+      "kind": "domain",
+      "label": "Mission Control"
+    },
+    {
+      "domain": "mission-control",
+      "id": "capability:mission-control.supervise-platform-operations",
+      "kind": "capability",
+      "label": "Supervise Platform Operations"
+    },
+    {
+      "domain": "mission-control",
+      "id": "capability:mission-control.manage-goals-and-priorities",
+      "kind": "capability",
+      "label": "Manage Goals and Priorities"
+    },
+    {
+      "domain": "mission-control",
+      "id": "capability:mission-control.respond-to-operational-alerts",
+      "kind": "capability",
+      "label": "Respond to Operational Alerts"
+    },
+    {
+      "domain": "mission-control",
+      "id": "entity:mission-control.business-goal",
+      "kind": "entity",
+      "label": "Business Goal"
+    },
+    {
+      "domain": "mission-control",
+      "id": "entity:mission-control.initiative",
+      "kind": "entity",
+      "label": "Initiative"
+    },
+    {
+      "domain": "mission-control",
+      "id": "entity:mission-control.operational-alert",
+      "kind": "entity",
+      "label": "Operational Alert"
+    },
+    {
+      "domain": "mission-control",
+      "id": "entity:mission-control.incident",
+      "kind": "entity",
+      "label": "Incident"
+    },
+    {
+      "domain": "mission-control",
+      "id": "event:mission-control.goal-created",
+      "kind": "event",
+      "label": "Goal Created"
+    },
+    {
+      "domain": "mission-control",
+      "id": "event:mission-control.operational-alert-opened",
+      "kind": "event",
+      "label": "Operational Alert Opened"
+    },
+    {
+      "domain": "mission-control",
+      "id": "event:mission-control.incident-resolved",
+      "kind": "event",
+      "label": "Incident Resolved"
+    },
+    {
+      "domain": "mission-control",
+      "id": "policy:mission-control.critical-alert-escalation",
+      "kind": "policy",
+      "label": "Critical Alert Escalation"
+    },
+    {
+      "domain": "mission-control",
+      "id": "use_case:mission-control.create-business-goal",
+      "kind": "use_case",
+      "label": "Create Business Goal"
+    },
+    {
+      "domain": "mission-control",
+      "id": "use_case:mission-control.open-operational-alert",
+      "kind": "use_case",
+      "label": "Open Operational Alert"
+    },
+    {
+      "domain": "mission-control",
+      "id": "use_case:mission-control.resolve-incident",
+      "kind": "use_case",
+      "label": "Resolve Incident"
+    },
+    {
+      "domain": "mission-control",
+      "id": "workflow:mission-control.critical-alert-response",
+      "kind": "workflow",
+      "label": "Critical Alert Response"
+    },
+    {
+      "domain": "mission-control",
+      "id": "ui_surface:mission-control.executive-command-center",
+      "kind": "ui_surface",
+      "label": "Executive Command Center"
+    },
+    {
+      "domain": "mission-control",
+      "id": "ui_surface:mission-control.operational-timeline",
+      "kind": "ui_surface",
+      "label": "Operational Timeline"
+    },
+    {
+      "domain": "mission-control",
+      "id": "metric:mission-control.goal-achievement-rate",
+      "kind": "metric",
+      "label": "Goal Achievement Rate"
+    },
+    {
+      "domain": "mission-control",
+      "id": "metric:mission-control.critical-alert-resolution-time",
+      "kind": "metric",
+      "label": "Critical Alert Resolution Time"
+    }
+  ]
+}

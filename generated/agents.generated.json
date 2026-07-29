@@ -1,0 +1,245 @@
+{
+  "agents": [
+    {
+      "approval_boundary": "External writes require human approval",
+      "budget": {
+        "max_cost_per_run": 5.0
+      },
+      "capabilities": [
+        "extract-offer-structure",
+        "model-original-offer",
+        "generate-funnel-blueprint",
+        "review-offer-quality"
+      ],
+      "domain": "offer-modeling",
+      "event_publications": [
+        "offer-structure-extracted",
+        "original-offer-drafted",
+        "funnel-blueprint-created"
+      ],
+      "event_subscriptions": [
+        "opportunity-scored",
+        "offer-graph-crawled"
+      ],
+      "id": "cora",
+      "memory": [
+        "permanent",
+        "operational",
+        "episodic",
+        "shared"
+      ],
+      "mission": "Convert research and customer evidence into differentiated, original and substantiated offers.",
+      "name": "Cora",
+      "policies": [
+        "authorized-source-use",
+        "originality-guard",
+        "substantiated-claims",
+        "no-fabricated-social-proof"
+      ],
+      "role": "Offer strategist",
+      "schema_version": "1.0",
+      "tools": [
+        "knowledge-search-tool",
+        "originality-analysis-tool",
+        "claim-evidence-tool"
+      ]
+    },
+    {
+      "approval_boundary": "External writes require human approval",
+      "budget": {
+        "max_cost_per_run": 3.0
+      },
+      "capabilities": [
+        "calculate-business-metrics",
+        "generate-actionable-insights",
+        "promote-reviewed-learning"
+      ],
+      "domain": "analytics",
+      "event_publications": [
+        "insight-generated"
+      ],
+      "event_subscriptions": [
+        "agent-run-finished",
+        "content-published",
+        "offer-snapshot-captured",
+        "offer-approved"
+      ],
+      "id": "iris",
+      "memory": [
+        "permanent",
+        "operational",
+        "shared"
+      ],
+      "mission": "Turn trustworthy observations into clear insights and reviewed organizational learning.",
+      "name": "Iris",
+      "policies": [
+        "analytics-source-traceability",
+        "learning-human-review"
+      ],
+      "role": "Analytics and learning specialist",
+      "schema_version": "1.0",
+      "tools": [
+        "analytics-query-tool",
+        "knowledge-search-tool"
+      ]
+    },
+    {
+      "approval_boundary": "External writes require human approval",
+      "budget": {
+        "max_cost_per_run": 5.0
+      },
+      "capabilities": [
+        "route-agent-tasks",
+        "evaluate-agent-output",
+        "manage-agent-memory"
+      ],
+      "domain": "aios",
+      "event_publications": [
+        "agent-output-evaluated"
+      ],
+      "event_subscriptions": [
+        "agent-run-finished",
+        "approval-recorded"
+      ],
+      "id": "laura",
+      "memory": [
+        "permanent",
+        "operational",
+        "episodic",
+        "shared"
+      ],
+      "mission": "Convert business goals into governed cross-domain plans, delegate work and request final approval.",
+      "name": "Laura",
+      "policies": [
+        "least-privilege-tools",
+        "agent-budget-limit",
+        "human-approval-external-write"
+      ],
+      "role": "CEO and orchestrator",
+      "schema_version": "1.0",
+      "tools": [
+        "knowledge-search-tool",
+        "notification-tool"
+      ]
+    },
+    {
+      "approval_boundary": "External writes require human approval",
+      "budget": {
+        "max_cost_per_run": 5.0
+      },
+      "capabilities": [
+        "generate-ai-carousel",
+        "edit-design-document",
+        "render-content-assets",
+        "approve-content"
+      ],
+      "domain": "content-studio",
+      "event_publications": [
+        "carousel-generated",
+        "design-document-updated",
+        "content-rendered"
+      ],
+      "event_subscriptions": [
+        "content-brief-created",
+        "original-offer-drafted"
+      ],
+      "id": "lia",
+      "memory": [
+        "permanent",
+        "operational",
+        "episodic",
+        "shared"
+      ],
+      "mission": "Turn grounded ideas into original, on-brand and editable visual content that passes quality review.",
+      "name": "Lia",
+      "policies": [
+        "content-originality",
+        "brand-guide-compliance",
+        "accessible-media"
+      ],
+      "role": "Creative director and carousel designer",
+      "schema_version": "1.0",
+      "tools": [
+        "knowledge-search-tool",
+        "image-generation-tool",
+        "design-document-renderer-tool"
+      ]
+    },
+    {
+      "approval_boundary": "External writes require human approval",
+      "budget": {
+        "max_cost_per_run": 4.0
+      },
+      "capabilities": [
+        "discover-scaled-offers",
+        "monitor-offer-activity",
+        "crawl-offer-graph",
+        "score-offer-opportunity"
+      ],
+      "domain": "offer-intelligence",
+      "event_publications": [
+        "offer-reference-discovered",
+        "offer-snapshot-captured",
+        "opportunity-scored"
+      ],
+      "event_subscriptions": [
+        "offer-watch-created"
+      ],
+      "id": "mika",
+      "memory": [
+        "permanent",
+        "operational",
+        "episodic",
+        "shared"
+      ],
+      "mission": "Discover and monitor evidence-backed market opportunities while clearly separating signals from proven business results.",
+      "name": "Mika",
+      "policies": [
+        "authorized-web-evidence",
+        "respectful-crawl",
+        "evidence-not-revenue-claim"
+      ],
+      "role": "Market and offer intelligence specialist",
+      "schema_version": "1.0",
+      "tools": [
+        "public-ad-library-tool",
+        "governed-crawler-tool",
+        "knowledge-search-tool",
+        "scheduler-tool"
+      ]
+    },
+    {
+      "approval_boundary": "External writes require human approval",
+      "budget": {
+        "max_cost_per_run": 3.0
+      },
+      "capabilities": [
+        "evaluate-agent-output",
+        "manage-agent-memory"
+      ],
+      "domain": "aios",
+      "event_publications": [
+        "agent-output-evaluated"
+      ],
+      "event_subscriptions": [
+        "agent-run-finished"
+      ],
+      "id": "nexo",
+      "memory": [
+        "permanent",
+        "shared"
+      ],
+      "mission": "Maintain architectural consistency, impact analysis and executable specifications.",
+      "name": "Nexo",
+      "policies": [
+        "evidence-before-learning"
+      ],
+      "role": "Platform architect",
+      "schema_version": "1.0",
+      "tools": [
+        "knowledge-search-tool"
+      ]
+    }
+  ],
+  "fingerprint": "09cce0db8c0089fe349d17db168207f949d761b356a8bc836bf7496dcb72e8d1"
+}

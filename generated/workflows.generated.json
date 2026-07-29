@@ -1,0 +1,351 @@
+{
+  "fingerprint": "09cce0db8c0089fe349d17db168207f949d761b356a8bc836bf7496dcb72e8d1",
+  "workflows": [
+    {
+      "description": "",
+      "domain": "content-studio",
+      "emits": [
+        "carousel-generated",
+        "content-rendered",
+        "content-approved"
+      ],
+      "id": "ai-carousel-production",
+      "name": "AI Carousel Production",
+      "owners": [],
+      "schedule": null,
+      "schema_version": "1.0",
+      "status": "active",
+      "steps": [
+        {
+          "agent": "laura",
+          "approval": "none",
+          "condition": null,
+          "id": "brief",
+          "name": "Build Grounded Brief",
+          "on_failure": "escalate",
+          "on_success": "generate",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "create-content-brief"
+        },
+        {
+          "agent": "lia",
+          "approval": "none",
+          "condition": null,
+          "id": "generate",
+          "name": "Generate Slide Structure and Original Assets",
+          "on_failure": "escalate",
+          "on_success": "render",
+          "retry": 1,
+          "timeout_seconds": 900,
+          "uses": "generate-carousel-draft"
+        },
+        {
+          "agent": "lia",
+          "approval": "none",
+          "condition": null,
+          "id": "render",
+          "name": "Render Preview and Export Assets",
+          "on_failure": "escalate",
+          "on_success": "review",
+          "retry": 2,
+          "timeout_seconds": 300,
+          "uses": "render-content"
+        },
+        {
+          "agent": "laura",
+          "approval": "required",
+          "condition": null,
+          "id": "review",
+          "name": "Human Review",
+          "on_failure": "escalate",
+          "on_success": "finish",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "review-content"
+        }
+      ],
+      "tags": [],
+      "trigger": "carousel-requested",
+      "version": "0.1.0"
+    },
+    {
+      "description": "",
+      "domain": "content-studio",
+      "emits": [
+        "content-published"
+      ],
+      "id": "approved-content-publication",
+      "name": "Approved Content Publication",
+      "owners": [],
+      "schedule": null,
+      "schema_version": "1.0",
+      "status": "active",
+      "steps": [
+        {
+          "agent": null,
+          "approval": "required",
+          "condition": null,
+          "id": "publish",
+          "name": "Publish to Authorized Channel",
+          "on_failure": "escalate",
+          "on_success": "finish",
+          "retry": 2,
+          "timeout_seconds": 300,
+          "uses": "publish-approved-content"
+        }
+      ],
+      "tags": [],
+      "trigger": "publication-scheduled",
+      "version": "0.1.0"
+    },
+    {
+      "description": "",
+      "domain": "mission-control",
+      "emits": [
+        "operational-alert-opened"
+      ],
+      "id": "critical-alert-response",
+      "name": "Critical Alert Response",
+      "owners": [],
+      "schedule": null,
+      "schema_version": "1.0",
+      "status": "active",
+      "steps": [
+        {
+          "agent": "laura",
+          "approval": "none",
+          "condition": null,
+          "id": "open",
+          "name": "Open and Classify Alert",
+          "on_failure": "escalate",
+          "on_success": "notify",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "open-operational-alert"
+        },
+        {
+          "agent": "laura",
+          "approval": "none",
+          "condition": null,
+          "id": "notify",
+          "name": "Notify Human Owner",
+          "on_failure": "escalate",
+          "on_success": "finish",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "supervise-platform-operations"
+        }
+      ],
+      "tags": [],
+      "trigger": "critical-alert-opened",
+      "version": "0.1.0"
+    },
+    {
+      "description": "",
+      "domain": "offer-intelligence",
+      "emits": [
+        "offer-snapshot-captured",
+        "opportunity-scored"
+      ],
+      "id": "daily-offer-monitoring",
+      "name": "Daily Offer Monitoring",
+      "owners": [],
+      "schedule": "0 */6 * * *",
+      "schema_version": "1.0",
+      "status": "active",
+      "steps": [
+        {
+          "agent": "mika",
+          "approval": "none",
+          "condition": null,
+          "id": "capture",
+          "name": "Capture Current Evidence",
+          "on_failure": "escalate",
+          "on_success": "score",
+          "retry": 2,
+          "timeout_seconds": 300,
+          "uses": "capture-offer-snapshot"
+        },
+        {
+          "agent": "mika",
+          "approval": "none",
+          "condition": null,
+          "id": "score",
+          "name": "Recalculate Opportunity",
+          "on_failure": "escalate",
+          "on_success": "finish",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "calculate-opportunity-score"
+        }
+      ],
+      "tags": [],
+      "trigger": "offer-watch-due",
+      "version": "0.1.0"
+    },
+    {
+      "description": "",
+      "domain": "aios",
+      "emits": [
+        "agent-run-finished"
+      ],
+      "id": "governed-agent-execution",
+      "name": "Governed Agent Execution",
+      "owners": [],
+      "schedule": null,
+      "schema_version": "1.0",
+      "status": "active",
+      "steps": [
+        {
+          "agent": null,
+          "approval": "none",
+          "condition": null,
+          "id": "plan",
+          "name": "Plan Task",
+          "on_failure": "fail",
+          "on_success": "policy-check",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "execute-agent-runs"
+        },
+        {
+          "agent": null,
+          "approval": "none",
+          "condition": null,
+          "id": "policy-check",
+          "name": "Verify Policies and Budget",
+          "on_failure": "escalate",
+          "on_success": "execute",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "route-agent-tasks"
+        },
+        {
+          "agent": null,
+          "approval": "none",
+          "condition": null,
+          "id": "execute",
+          "name": "Execute Authorized Plan",
+          "on_failure": "escalate",
+          "on_success": "evaluate",
+          "retry": 2,
+          "timeout_seconds": 900,
+          "uses": "run-agent"
+        },
+        {
+          "agent": null,
+          "approval": "none",
+          "condition": null,
+          "id": "evaluate",
+          "name": "Evaluate Result",
+          "on_failure": "escalate",
+          "on_success": "finish",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "evaluate-run"
+        }
+      ],
+      "tags": [],
+      "trigger": "agent-run-requested",
+      "version": "0.1.0"
+    },
+    {
+      "description": "",
+      "domain": "offer-intelligence",
+      "emits": [
+        "offer-graph-crawled"
+      ],
+      "id": "governed-offer-graph-discovery",
+      "name": "Governed Offer Graph Discovery",
+      "owners": [],
+      "schedule": null,
+      "schema_version": "1.0",
+      "status": "active",
+      "steps": [
+        {
+          "agent": "mika",
+          "approval": "none",
+          "condition": null,
+          "id": "crawl",
+          "name": "Discover and Classify URLs",
+          "on_failure": "escalate",
+          "on_success": "finish",
+          "retry": 1,
+          "timeout_seconds": 900,
+          "uses": "extract-offer-urls"
+        }
+      ],
+      "tags": [],
+      "trigger": "crawl-requested",
+      "version": "0.1.0"
+    },
+    {
+      "description": "",
+      "domain": "offer-modeling",
+      "emits": [
+        "offer-approved",
+        "funnel-blueprint-created"
+      ],
+      "id": "reference-to-original-offer",
+      "name": "Reference to Original Offer",
+      "owners": [],
+      "schedule": null,
+      "schema_version": "1.0",
+      "status": "active",
+      "steps": [
+        {
+          "agent": "cora",
+          "approval": "none",
+          "condition": null,
+          "id": "analyze",
+          "name": "Extract Abstract Structure",
+          "on_failure": "escalate",
+          "on_success": "draft",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "analyze-reference-offer"
+        },
+        {
+          "agent": "cora",
+          "approval": "none",
+          "condition": null,
+          "id": "draft",
+          "name": "Draft Independent Offer",
+          "on_failure": "escalate",
+          "on_success": "funnel",
+          "retry": 1,
+          "timeout_seconds": 300,
+          "uses": "draft-original-offer"
+        },
+        {
+          "agent": "cora",
+          "approval": "none",
+          "condition": null,
+          "id": "funnel",
+          "name": "Design Funnel Blueprint",
+          "on_failure": "escalate",
+          "on_success": "review",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "create-funnel-blueprint"
+        },
+        {
+          "agent": "laura",
+          "approval": "required",
+          "condition": null,
+          "id": "review",
+          "name": "Human-Governed Quality Review",
+          "on_failure": "escalate",
+          "on_success": "finish",
+          "retry": 0,
+          "timeout_seconds": 300,
+          "uses": "review-offer"
+        }
+      ],
+      "tags": [],
+      "trigger": "opportunity-approved-for-modeling",
+      "version": "0.1.0"
+    }
+  ]
+}
