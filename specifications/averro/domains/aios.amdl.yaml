@@ -1,0 +1,235 @@
+domains:
+  - id: aios
+    name: AI Operating System
+    description: Governed runtime for planning, tools, memory, evaluation, costs and agent collaboration.
+    owner: Laura
+    depends_on: [foundation, knowledge]
+    capabilities:
+      - id: execute-agent-runs
+        name: Execute Agent Runs
+        inputs: [objective, context, policy-set]
+        outputs: [agent-run, tool-call, evaluation]
+        quality_gates: [policy-check, budget-check, evidence-check]
+      - id: route-agent-tasks
+        name: Route Agent Tasks
+        inputs: [task]
+        outputs: [agent-assignment]
+      - id: evaluate-agent-output
+        name: Evaluate Agent Output
+        inputs: [agent-run, expected-contract]
+        outputs: [evaluation]
+      - id: manage-agent-memory
+        name: Manage Agent Memory
+        inputs: [memory-candidate]
+        outputs: [agent-memory]
+    entities:
+      - id: agent-definition
+        name: Agent Definition
+        versioned: true
+        fields:
+          - {name: key, type: string, required: true, unique: true}
+          - {name: role, type: string, required: true}
+          - {name: mission, type: text, required: true}
+          - {name: manifest, type: json, required: true}
+          - {name: prompt_version, type: string, required: true}
+          - {name: enabled, type: boolean, required: true, default: true}
+        states: [draft, active, paused, archived]
+      - id: agent-run
+        name: Agent Run
+        soft_delete: false
+        fields:
+          - {name: agent_definition_id, type: "ref:agent-definition", required: true, indexed: true}
+          - {name: objective, type: text, required: true}
+          - {name: input_context, type: json, required: true}
+          - {name: plan, type: json}
+          - {name: output, type: json}
+          - {name: model_route, type: string}
+          - {name: tokens_in, type: integer}
+          - {name: tokens_out, type: integer}
+          - {name: cost_amount, type: money}
+          - {name: started_at, type: datetime}
+          - {name: finished_at, type: datetime}
+          - {name: error, type: text}
+        states: [queued, planning, running, awaiting_approval, succeeded, failed, cancelled]
+      - id: tool-call
+        name: Tool Call
+        soft_delete: false
+        fields:
+          - {name: agent_run_id, type: "ref:agent-run", required: true, indexed: true}
+          - {name: tool_key, type: string, required: true}
+          - {name: input, type: json, required: true}
+          - {name: output, type: json}
+          - {name: external_write, type: boolean, required: true, default: false}
+          - {name: approval_id, type: "ref:approval-request"}
+          - {name: latency_ms, type: integer}
+        states: [planned, approved, running, succeeded, failed, denied]
+      - id: agent-evaluation
+        name: Agent Evaluation
+        fields:
+          - {name: agent_run_id, type: "ref:agent-run", required: true, indexed: true}
+          - {name: quality_score, type: number, required: true}
+          - {name: factuality_score, type: number}
+          - {name: policy_score, type: number}
+          - {name: usefulness_score, type: number}
+          - {name: findings, type: json, required: true}
+          - {name: evaluator, type: string, required: true}
+      - id: agent-memory
+        name: Agent Memory
+        fields:
+          - {name: agent_definition_id, type: "ref:agent-definition", indexed: true}
+          - {name: memory_type, type: "enum:permanent|operational|episodic|shared", required: true}
+          - {name: content, type: text, required: true}
+          - {name: evidence_refs, type: array:string}
+          - {name: confidence, type: number, required: true}
+          - {name: expires_at, type: datetime}
+    events:
+      - id: agent-run-started
+        name: Agent Run Started
+        aggregate: agent-run
+        producers: [execute-agent-runs]
+        consumers: [mission-control]
+      - id: agent-run-finished
+        name: Agent Run Finished
+        aggregate: agent-run
+        producers: [execute-agent-runs]
+        consumers: [evaluate-agent-output, mission-control, analytics]
+      - id: agent-output-evaluated
+        name: Agent Output Evaluated
+        aggregate: agent-evaluation
+        producers: [evaluate-agent-output]
+        consumers: [manage-agent-memory, mission-control]
+    policies:
+      - id: least-privilege-tools
+        name: Least Privilege Tools
+        effect: require
+        condition: requested_tool in agent.allowed_tools
+        enforcement: runtime
+        severity: critical
+      - id: agent-budget-limit
+        name: Agent Budget Limit
+        effect: deny
+        condition: projected_cost > agent.max_cost_per_run
+        enforcement: runtime
+        severity: high
+      - id: evidence-before-learning
+        name: Evidence Before Learning
+        effect: require
+        condition: evaluation.quality_score >= 0.8 AND evidence_refs.count > 0
+        enforcement: runtime
+        severity: high
+    use_cases:
+      - id: run-agent
+        name: Run Agent
+        capability: execute-agent-runs
+        actor: system-or-authorized-human
+        input: [agent-definition, objective, context]
+        output: [agent-run]
+        emits: [agent-run-started, agent-run-finished]
+        policies: [least-privilege-tools, agent-budget-limit, human-approval-external-write]
+      - id: evaluate-run
+        name: Evaluate Run
+        capability: evaluate-agent-output
+        actor: evaluator-agent
+        input: [agent-run]
+        output: [agent-evaluation]
+        emits: [agent-output-evaluated]
+        policies: [workspace-isolation]
+    workflows:
+      - id: governed-agent-execution
+        name: Governed Agent Execution
+        trigger: agent-run-requested
+        steps:
+          - id: plan
+            name: Plan Task
+            uses: execute-agent-runs
+            on_success: policy-check
+            on_failure: fail
+          - id: policy-check
+            name: Verify Policies and Budget
+            uses: route-agent-tasks
+            on_success: execute
+            on_failure: escalate
+          - id: execute
+            name: Execute Authorized Plan
+            uses: run-agent
+            on_success: evaluate
+            on_failure: escalate
+            retry: 2
+            timeout_seconds: 900
+          - id: evaluate
+            name: Evaluate Result
+            uses: evaluate-run
+            on_success: finish
+            on_failure: escalate
+        emits: [agent-run-finished]
+    tools:
+      - id: knowledge-search-tool
+        name: Knowledge Search
+        kind: internal
+        permissions: [knowledge:read]
+      - id: browser-capture-tool
+        name: Governed Browser Capture
+        kind: browser
+        permissions: [public-web:read, authorized-sites:read]
+      - id: image-generation-tool
+        name: Image Generation
+        kind: model
+        permissions: [media:create]
+      - id: render-worker-tool
+        name: Render Worker
+        kind: worker
+        permissions: [media:render]
+      - id: notification-tool
+        name: Notification Delivery
+        kind: api
+        permissions: [notifications:send]
+        external_writes: true
+    agents:
+      - id: laura
+        name: Laura
+        role: CEO and orchestrator
+        mission: Convert business goals into governed cross-domain plans, delegate work and request final approval.
+        capabilities: [route-agent-tasks, evaluate-agent-output, manage-agent-memory]
+        tools: [knowledge-search-tool, notification-tool]
+        consumes: [agent-run-finished, approval-recorded]
+        produces: [agent-output-evaluated]
+        policies: [least-privilege-tools, agent-budget-limit, human-approval-external-write]
+        memory: [permanent, operational, episodic, shared]
+        max_cost_per_run: 5.0
+      - id: nexo
+        name: Nexo
+        role: Platform architect
+        mission: Maintain architectural consistency, impact analysis and executable specifications.
+        capabilities: [evaluate-agent-output, manage-agent-memory]
+        tools: [knowledge-search-tool]
+        consumes: [agent-run-finished]
+        produces: [agent-output-evaluated]
+        policies: [evidence-before-learning]
+        memory: [permanent, shared]
+        max_cost_per_run: 3.0
+    api_resources:
+      - id: agent-runs-api
+        name: Agent Runs API
+        entity: agent-run
+        path: /agent-runs
+        operations: [list, get, create]
+    ui_surfaces:
+      - id: agent-run-console
+        name: Agent Run Console
+        kind: timeline
+        entity: agent-run
+        route: /mission-control/agent-runs
+        capabilities: [execute-agent-runs, evaluate-agent-output]
+        components: [RunTimeline, ToolCallInspector, CostBadge, EvaluationPanel]
+        actions: [cancel-run, retry-run, approve-tool-call]
+    metrics:
+      - id: agent-run-success-rate
+        name: Agent Run Success Rate
+        unit: ratio
+        source: agent-run
+        aggregation: ratio
+      - id: agent-cost-per-approved-output
+        name: Agent Cost per Approved Output
+        unit: BRL
+        source: agent-run
+        aggregation: avg

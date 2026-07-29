@@ -58,3 +58,6 @@ test-results/
 playwright-report/
 blob-report/
 playwright/.cache/
+
+# AMA raw compile output (reproducible; only the stable exports are versioned)
+/generated/architecture/

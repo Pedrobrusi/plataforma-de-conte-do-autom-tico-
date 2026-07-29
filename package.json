@@ -4,8 +4,8 @@
   "private": true,
   "description": "Averro monorepo — Next.js content platform (apps/web) plus the AMA/AMDL meta-architecture foundation.",
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "apps/web",
+    "packages/architecture-contracts"
   ],
   "engines": {
     "node": ">=20"
@@ -15,9 +15,14 @@
     "build": "npm run build --workspace apps/web",
     "start": "npm run start --workspace apps/web",
     "lint": "npm run lint --workspace apps/web",
-    "typecheck": "npm run typecheck --workspace apps/web",
-    "test": "npm run test:unit --workspace apps/web",
-    "test:unit": "npm run test:unit --workspace apps/web",
-    "test:e2e": "npm run test:e2e --workspace apps/web"
+    "typecheck": "npm run typecheck --workspace apps/web && npm run typecheck --workspace @averro/architecture-contracts",
+    "test": "npm run test:unit",
+    "test:unit": "npm run test:unit --workspace apps/web && npm run test --workspace @averro/architecture-contracts",
+    "test:e2e": "npm run test:e2e --workspace apps/web",
+    "ama:validate": "bash scripts/ama.sh validate specifications/averro/system.amdl.yaml",
+    "ama:compile": "bash scripts/compile-architecture.sh",
+    "ama:test": "bash scripts/ama-test.sh",
+    "ama:drift": "bash scripts/check-architecture-drift.sh",
+    "verify": "bash scripts/verify.sh"
   }
 }

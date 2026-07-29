@@ -1,0 +1,272 @@
+domains:
+  - id: offer-modeling
+    name: Offer Modeling Studio
+    description: Transform authorized reference evidence into original offers, funnels and creative strategy without copying protected text, assets or brand identity.
+    owner: Cora
+    depends_on: [foundation, aios, knowledge, offer-intelligence]
+    capabilities:
+      - id: extract-offer-structure
+        name: Extract Offer Structure
+        inputs: [offer-reference, offer-page-graph]
+        outputs: [offer-structure]
+        tags: [reference-modeling]
+      - id: model-original-offer
+        name: Model Original Offer
+        description: Use abstract patterns and customer evidence to create a substantially original offer.
+        inputs: [offer-structure, customer-model, product-constraints]
+        outputs: [offer, offer-version]
+        depends_on: [extract-offer-structure]
+        quality_gates: [source-permission, originality-check, claim-substantiation, brand-separation]
+        tags: [reference-modeling]
+      - id: generate-funnel-blueprint
+        name: Generate Funnel Blueprint
+        inputs: [offer]
+        outputs: [funnel-blueprint]
+      - id: review-offer-quality
+        name: Review Offer Quality
+        inputs: [offer, evidence]
+        outputs: [offer-review]
+    entities:
+      - id: offer-structure
+        name: Offer Structure
+        fields:
+          - {name: source_offer_reference_id, type: "ref:offer-reference", required: true, indexed: true}
+          - {name: source_crawl_run_id, type: "ref:crawl-run", indexed: true}
+          - {name: abstract_components, type: json, required: true}
+          - {name: page_sequence, type: json, required: true}
+          - {name: persuasion_patterns, type: json, required: true}
+          - {name: asset_inventory, type: json, required: true}
+          - {name: excluded_protected_expression, type: json, required: true}
+          - {name: evidence_refs, type: array:string, required: true}
+          - {name: permission_basis, type: "enum:owned|licensed|authorized|public_reference", required: true}
+      - id: customer-model
+        name: Customer Model
+        versioned: true
+        fields:
+          - {name: market, type: string, required: true, indexed: true}
+          - {name: avatar, type: json, required: true}
+          - {name: pains, type: json, required: true}
+          - {name: desires, type: json, required: true}
+          - {name: objections, type: json, required: true}
+          - {name: beliefs, type: json, required: true}
+          - {name: awareness_stage, type: string, required: true}
+          - {name: language_evidence, type: json, required: true}
+          - {name: citation_ids, type: array:string, required: true}
+      - id: offer
+        name: Offer
+        versioned: true
+        fields:
+          - {name: name, type: string, required: true, indexed: true}
+          - {name: market, type: string, required: true, indexed: true}
+          - {name: customer_model_id, type: "ref:customer-model", required: true}
+          - {name: big_idea, type: text, required: true}
+          - {name: unique_mechanism, type: text, required: true}
+          - {name: promise, type: text, required: true}
+          - {name: deliverables, type: json, required: true}
+          - {name: price, type: money, required: true}
+          - {name: currency, type: string, required: true, default: BRL}
+          - {name: guarantee, type: json, required: true}
+          - {name: proof_plan, type: json, required: true}
+          - {name: claims_register, type: json, required: true}
+          - {name: originality_report, type: json, required: true}
+        states: [draft, research, building, review, approved, live, retired]
+      - id: offer-version
+        name: Offer Version
+        soft_delete: false
+        fields:
+          - {name: offer_id, type: "ref:offer", required: true, indexed: true}
+          - {name: version_number, type: integer, required: true}
+          - {name: snapshot, type: json, required: true}
+          - {name: change_reason, type: text, required: true}
+          - {name: approved_by, type: uuid}
+        indexes:
+          - {name: uq_offer_version_number, fields: [offer_id, version_number], unique: true}
+      - id: funnel-blueprint
+        name: Funnel Blueprint
+        versioned: true
+        fields:
+          - {name: offer_id, type: "ref:offer", required: true, indexed: true}
+          - {name: funnel_type, type: "enum:vsl|advertorial|quiz|webinar|leadgen|ecommerce|hybrid", required: true}
+          - {name: nodes, type: json, required: true}
+          - {name: edges, type: json, required: true}
+          - {name: tracking_plan, type: json, required: true}
+          - {name: approval_gates, type: json, required: true}
+      - id: offer-review
+        name: Offer Review
+        fields:
+          - {name: offer_id, type: "ref:offer", required: true, indexed: true}
+          - {name: originality_score, type: number, required: true}
+          - {name: evidence_score, type: number, required: true}
+          - {name: clarity_score, type: number, required: true}
+          - {name: differentiation_score, type: number, required: true}
+          - {name: compliance_score, type: number, required: true}
+          - {name: findings, type: json, required: true}
+          - {name: recommendation, type: "enum:approve|revise|reject", required: true}
+    events:
+      - id: offer-structure-extracted
+        name: Offer Structure Extracted
+        aggregate: offer-structure
+        producers: [extract-offer-structure]
+        consumers: [model-original-offer, knowledge]
+      - id: original-offer-drafted
+        name: Original Offer Drafted
+        aggregate: offer
+        producers: [model-original-offer]
+        consumers: [review-offer-quality, content-studio, mission-control]
+      - id: offer-approved
+        name: Offer Approved
+        aggregate: offer
+        producers: [review-offer-quality]
+        consumers: [content-studio, mission-control, analytics]
+      - id: funnel-blueprint-created
+        name: Funnel Blueprint Created
+        aggregate: funnel-blueprint
+        producers: [generate-funnel-blueprint]
+        consumers: [mission-control]
+    policies:
+      - id: authorized-source-use
+        name: Authorized Source Use
+        description: Source material must be owned, licensed, authorized or used only as public reference for abstract analysis.
+        effect: require
+        condition: source.permission_basis in [owned, licensed, authorized, public_reference]
+        enforcement: both
+        severity: critical
+      - id: originality-guard
+        name: Originality Guard
+        description: Never reproduce source copy, protected assets, testimonials, identity or distinctive layout; generate an independently expressed result.
+        effect: require
+        condition: output.originality_score >= 0.8 AND output.protected_expression_overlap <= 0.1
+        enforcement: both
+        severity: critical
+      - id: substantiated-claims
+        name: Substantiated Claims
+        description: Material performance, health, financial or factual claims require evidence and review.
+        effect: require
+        condition: offer.claims_register.all_material_claims_supported == true
+        enforcement: both
+        severity: critical
+      - id: no-fabricated-social-proof
+        name: No Fabricated Social Proof
+        description: Testimonials, experts, results and endorsements cannot be invented or presented as real without proof and permission.
+        effect: deny
+        condition: social_proof.is_fabricated == true
+        enforcement: both
+        severity: critical
+    use_cases:
+      - id: analyze-reference-offer
+        name: Analyze Reference Offer
+        capability: extract-offer-structure
+        actor: cora
+        input: [offer-reference, offer-page-graph]
+        output: [offer-structure]
+        emits: [offer-structure-extracted]
+        policies: [authorized-source-use, originality-guard]
+      - id: draft-original-offer
+        name: Draft Original Offer
+        capability: model-original-offer
+        actor: cora
+        input: [offer-structure, customer-model, product-constraints]
+        output: [offer, offer-version]
+        emits: [original-offer-drafted]
+        policies: [authorized-source-use, originality-guard, substantiated-claims, no-fabricated-social-proof]
+      - id: create-funnel-blueprint
+        name: Create Funnel Blueprint
+        capability: generate-funnel-blueprint
+        actor: cora
+        input: [offer]
+        output: [funnel-blueprint]
+        emits: [funnel-blueprint-created]
+        policies: [originality-guard, substantiated-claims]
+      - id: review-offer
+        name: Review Offer
+        capability: review-offer-quality
+        actor: laura
+        input: [offer, evidence]
+        output: [offer-review]
+        emits: [offer-approved]
+        policies: [originality-guard, substantiated-claims, no-fabricated-social-proof]
+        approval: required
+    workflows:
+      - id: reference-to-original-offer
+        name: Reference to Original Offer
+        trigger: opportunity-approved-for-modeling
+        steps:
+          - id: analyze
+            name: Extract Abstract Structure
+            uses: analyze-reference-offer
+            agent: cora
+            on_success: draft
+            on_failure: escalate
+          - id: draft
+            name: Draft Independent Offer
+            uses: draft-original-offer
+            agent: cora
+            on_success: funnel
+            on_failure: escalate
+            retry: 1
+          - id: funnel
+            name: Design Funnel Blueprint
+            uses: create-funnel-blueprint
+            agent: cora
+            on_success: review
+            on_failure: escalate
+          - id: review
+            name: Human-Governed Quality Review
+            uses: review-offer
+            agent: laura
+            approval: required
+            on_success: finish
+            on_failure: escalate
+        emits: [offer-approved, funnel-blueprint-created]
+    tools:
+      - id: originality-analysis-tool
+        name: Originality Analysis
+        kind: internal
+        permissions: [offer:compare-abstract-patterns]
+      - id: claim-evidence-tool
+        name: Claim Evidence Checker
+        kind: internal
+        permissions: [knowledge:read, claims:validate]
+    agents:
+      - id: cora
+        name: Cora
+        role: Offer strategist
+        mission: Convert research and customer evidence into differentiated, original and substantiated offers.
+        capabilities: [extract-offer-structure, model-original-offer, generate-funnel-blueprint, review-offer-quality]
+        tools: [knowledge-search-tool, originality-analysis-tool, claim-evidence-tool]
+        consumes: [opportunity-scored, offer-graph-crawled]
+        produces: [offer-structure-extracted, original-offer-drafted, funnel-blueprint-created]
+        policies: [authorized-source-use, originality-guard, substantiated-claims, no-fabricated-social-proof]
+        memory: [permanent, operational, episodic, shared]
+        max_cost_per_run: 5.0
+    api_resources:
+      - id: offers-api
+        name: Offers API
+        entity: offer
+        path: /offers
+        operations: [list, get, create, update, archive]
+      - id: funnel-blueprints-api
+        name: Funnel Blueprints API
+        entity: funnel-blueprint
+        path: /funnels/blueprints
+        operations: [list, get, create, update, archive]
+    ui_surfaces:
+      - id: offer-modeling-workbench
+        name: Offer Modeling Workbench
+        kind: editor
+        entity: offer
+        route: /offer-studio/:id
+        capabilities: [extract-offer-structure, model-original-offer, review-offer-quality]
+        components: [EvidencePanel, StructureMap, OfferCanvas, ClaimsRegister, OriginalityReport, VersionTimeline, ApprovalPanel]
+        actions: [generate-draft, compare-versions, run-review, submit-approval]
+    metrics:
+      - id: offer-originality-score
+        name: Offer Originality Score
+        unit: ratio
+        source: offer-review.originality_score
+        aggregation: avg
+      - id: offer-approval-rate
+        name: Offer Approval Rate
+        unit: ratio
+        source: offer-review.recommendation
+        aggregation: ratio

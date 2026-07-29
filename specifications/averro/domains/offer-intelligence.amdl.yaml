@@ -1,0 +1,376 @@
+domains:
+  - id: offer-intelligence
+    name: Offer Intelligence
+    description: Discover, catalogue, monitor and analyze public or authorized offer evidence without copying protected expression.
+    owner: Mika
+    depends_on: [foundation, aios, knowledge]
+    capabilities:
+      - id: discover-scaled-offers
+        name: Discover Scaled Offers
+        description: Search a curated swipe library with filters, trend scoring and evidence-backed ranking.
+        inputs: [query, platform, niche, funnel-type, ad-count-range, date-range]
+        outputs: [offer-reference, offer-evidence]
+      - id: monitor-offer-activity
+        name: Monitor Offer Activity
+        description: Capture periodic snapshots of active-ad counts and calculate trend indicators.
+        inputs: [offer-watch]
+        outputs: [offer-snapshot, offer-alert]
+      - id: crawl-offer-graph
+        name: Crawl Offer Graph
+        description: Discover and classify pages connected to an authorized or public-reference funnel.
+        inputs: [authorized-root-url]
+        outputs: [offer-page, offer-page-edge, crawl-run]
+        quality_gates: [permission-basis, robots-policy, rate-limit, scope-limit]
+      - id: score-offer-opportunity
+        name: Score Offer Opportunity
+        description: Score evidence using longevity, active creative volume, trend, relevance and market fit.
+        inputs: [offer-reference, offer-snapshot]
+        outputs: [opportunity-score]
+        depends_on: [discover-scaled-offers, monitor-offer-activity]
+    entities:
+      - id: offer-reference
+        name: Offer Reference
+        fields:
+          - {name: name, type: string, required: true, indexed: true}
+          - {name: advertiser_name, type: string, indexed: true}
+          - {name: niche, type: string, indexed: true}
+          - {name: subniche, type: string, indexed: true}
+          - {name: language, type: string, indexed: true}
+          - {name: country, type: string, indexed: true}
+          - {name: platform, type: "enum:meta|google|tiktok|youtube|native|other", required: true, indexed: true}
+          - {name: funnel_type, type: "enum:vsl|advertorial|quiz|webinar|leadgen|ecommerce|other", indexed: true}
+          - {name: source_url, type: url, required: true}
+          - {name: site_url, type: url}
+          - {name: checkout_url, type: url}
+          - {name: tags, type: array:string}
+          - {name: evidence_summary, type: json, required: true}
+          - {name: trend_score, type: number, indexed: true}
+          - {name: first_seen_at, type: datetime}
+          - {name: last_seen_at, type: datetime}
+        states: [candidate, verified, monitored, modeled, archived]
+        indexes:
+          - {name: idx_offer_reference_discovery, fields: [platform, niche, country, trend_score]}
+      - id: offer-watch
+        name: Offer Watch
+        fields:
+          - {name: offer_reference_id, type: "ref:offer-reference", required: true, indexed: true}
+          - {name: display_name, type: string, required: true}
+          - {name: ads_library_url, type: url, required: true}
+          - {name: site_url, type: url}
+          - {name: checkout_url, type: url}
+          - {name: tags, type: array:string}
+          - {name: languages, type: array:string}
+          - {name: scan_frequency_minutes, type: integer, required: true, default: 1440}
+          - {name: alert_rules, type: json, required: true, default: {}}
+          - {name: next_scan_at, type: datetime, indexed: true}
+        states: [active, paused, failed, archived]
+      - id: offer-snapshot
+        name: Offer Snapshot
+        soft_delete: false
+        fields:
+          - {name: offer_watch_id, type: "ref:offer-watch", required: true, indexed: true}
+          - {name: captured_at, type: datetime, required: true, indexed: true}
+          - {name: active_ads_count, type: integer, required: true}
+          - {name: previous_ads_count, type: integer}
+          - {name: daily_variation, type: number}
+          - {name: weekly_average, type: number}
+          - {name: historical_peak, type: integer}
+          - {name: consecutive_active_days, type: integer}
+          - {name: raw_evidence, type: json, required: true}
+          - {name: evidence_checksum, type: string, required: true}
+        indexes:
+          - {name: uq_offer_snapshot_capture, fields: [offer_watch_id, captured_at], unique: true}
+      - id: offer-alert
+        name: Offer Alert
+        fields:
+          - {name: offer_watch_id, type: "ref:offer-watch", required: true, indexed: true}
+          - {name: alert_type, type: "enum:surge|drop|new_peak|inactive|crawl_change|manual", required: true}
+          - {name: threshold, type: number}
+          - {name: observed_value, type: number}
+          - {name: message, type: text, required: true}
+          - {name: acknowledged_at, type: datetime}
+        states: [open, acknowledged, dismissed]
+      - id: crawl-run
+        name: Crawl Run
+        fields:
+          - {name: offer_reference_id, type: "ref:offer-reference", required: true, indexed: true}
+          - {name: root_url, type: url, required: true}
+          - {name: permission_basis, type: "enum:owned|licensed|authorized|public_reference", required: true}
+          - {name: scope, type: json, required: true}
+          - {name: pages_discovered, type: integer, required: true, default: 0}
+          - {name: started_at, type: datetime}
+          - {name: finished_at, type: datetime}
+          - {name: error_summary, type: text}
+        states: [queued, running, completed, partial, failed, cancelled]
+      - id: offer-page
+        name: Offer Page
+        fields:
+          - {name: crawl_run_id, type: "ref:crawl-run", required: true, indexed: true}
+          - {name: url, type: url, required: true, indexed: true}
+          - {name: canonical_url, type: url}
+          - {name: page_type, type: "enum:landing|sales|checkout|order_bump|upsell|downsell|thank_you|privacy|terms|support|asset|unknown", required: true, indexed: true}
+          - {name: relevance_score, type: number, required: true, indexed: true}
+          - {name: title, type: string}
+          - {name: http_status, type: integer}
+          - {name: content_checksum, type: string}
+          - {name: structure_summary, type: json, required: true}
+          - {name: captured_at, type: datetime, required: true}
+        indexes:
+          - {name: uq_offer_page_url_run, fields: [crawl_run_id, url], unique: true}
+      - id: offer-page-edge
+        name: Offer Page Edge
+        fields:
+          - {name: crawl_run_id, type: "ref:crawl-run", required: true, indexed: true}
+          - {name: source_page_id, type: "ref:offer-page", required: true, indexed: true}
+          - {name: target_page_id, type: "ref:offer-page", required: true, indexed: true}
+          - {name: relation, type: "enum:link|redirect|form_submit|checkout_transition|upsell_transition|downsell_transition|asset_reference", required: true}
+          - {name: evidence, type: json, required: true}
+      - id: opportunity-score
+        name: Opportunity Score
+        fields:
+          - {name: offer_reference_id, type: "ref:offer-reference", required: true, indexed: true}
+          - {name: total_score, type: number, required: true, indexed: true}
+          - {name: longevity_score, type: number, required: true}
+          - {name: volume_score, type: number, required: true}
+          - {name: trend_score, type: number, required: true}
+          - {name: market_fit_score, type: number, required: true}
+          - {name: confidence, type: number, required: true}
+          - {name: rationale, type: json, required: true}
+    events:
+      - id: offer-reference-discovered
+        name: Offer Reference Discovered
+        aggregate: offer-reference
+        producers: [discover-scaled-offers]
+        consumers: [score-offer-opportunity, mission-control]
+      - id: offer-watch-created
+        name: Offer Watch Created
+        aggregate: offer-watch
+        producers: [create-offer-watch]
+        consumers: [monitor-offer-activity, mission-control]
+      - id: offer-snapshot-captured
+        name: Offer Snapshot Captured
+        aggregate: offer-snapshot
+        producers: [monitor-offer-activity]
+        consumers: [score-offer-opportunity, analytics, mission-control]
+      - id: offer-alert-triggered
+        name: Offer Alert Triggered
+        aggregate: offer-alert
+        producers: [monitor-offer-activity]
+        consumers: [laura, mission-control]
+      - id: offer-graph-crawled
+        name: Offer Graph Crawled
+        aggregate: crawl-run
+        producers: [crawl-offer-graph]
+        consumers: [offer-modeling, knowledge, mission-control]
+      - id: opportunity-scored
+        name: Opportunity Scored
+        aggregate: opportunity-score
+        producers: [score-offer-opportunity]
+        consumers: [laura, offer-modeling, mission-control]
+    policies:
+      - id: authorized-web-evidence
+        name: Authorized Web Evidence
+        description: Crawling is limited to owned, licensed, authorized or public-reference material and an explicit scope.
+        effect: require
+        condition: crawl.permission_basis in [owned, licensed, authorized, public_reference]
+        enforcement: both
+        severity: critical
+      - id: respectful-crawl
+        name: Respectful Crawl
+        description: Respect access controls, robots directives, rate limits and opt-out signals; never bypass authentication.
+        effect: require
+        condition: crawler.bypasses_access_control == false AND crawler.rate_limited == true
+        enforcement: both
+        severity: critical
+      - id: evidence-not-revenue-claim
+        name: Evidence Is Not a Revenue Claim
+        description: Ad longevity and volume are signals, not proof of profitability or sales.
+        effect: transform
+        condition: output.labels_signals_as_estimates == true
+        enforcement: runtime
+        severity: high
+    use_cases:
+      - id: search-offer-swipe
+        name: Search Offer Swipe
+        capability: discover-scaled-offers
+        actor: workspace-member
+        kind: query
+        input: [filters, query, sort]
+        output: [offer-reference]
+        emits: [offer-reference-discovered]
+        policies: [workspace-isolation, evidence-not-revenue-claim]
+      - id: create-offer-watch
+        name: Create Offer Watch
+        capability: monitor-offer-activity
+        actor: workspace-editor
+        input: [offer-reference, monitoring-settings]
+        output: [offer-watch]
+        emits: [offer-watch-created]
+        policies: [workspace-isolation, authorized-web-evidence]
+      - id: capture-offer-snapshot
+        name: Capture Offer Snapshot
+        capability: monitor-offer-activity
+        actor: scheduler-worker
+        input: [offer-watch]
+        output: [offer-snapshot, offer-alert]
+        emits: [offer-snapshot-captured, offer-alert-triggered]
+        policies: [authorized-web-evidence, respectful-crawl, evidence-not-revenue-claim]
+      - id: extract-offer-urls
+        name: Extract Offer URLs
+        capability: crawl-offer-graph
+        actor: workspace-editor
+        input: [root-url, crawl-scope, permission-basis]
+        output: [crawl-run, offer-page, offer-page-edge]
+        emits: [offer-graph-crawled]
+        policies: [workspace-isolation, authorized-web-evidence, respectful-crawl]
+      - id: calculate-opportunity-score
+        name: Calculate Opportunity Score
+        capability: score-offer-opportunity
+        actor: mika
+        input: [offer-reference, snapshots, market-context]
+        output: [opportunity-score]
+        emits: [opportunity-scored]
+        policies: [evidence-not-revenue-claim]
+    workflows:
+      - id: daily-offer-monitoring
+        name: Daily Offer Monitoring
+        trigger: offer-watch-due
+        schedule: "0 */6 * * *"
+        steps:
+          - id: capture
+            name: Capture Current Evidence
+            uses: capture-offer-snapshot
+            agent: mika
+            on_success: score
+            on_failure: escalate
+            retry: 2
+            timeout_seconds: 300
+          - id: score
+            name: Recalculate Opportunity
+            uses: calculate-opportunity-score
+            agent: mika
+            on_success: finish
+            on_failure: escalate
+        emits: [offer-snapshot-captured, opportunity-scored]
+      - id: governed-offer-graph-discovery
+        name: Governed Offer Graph Discovery
+        trigger: crawl-requested
+        steps:
+          - id: crawl
+            name: Discover and Classify URLs
+            uses: extract-offer-urls
+            agent: mika
+            on_success: finish
+            on_failure: escalate
+            retry: 1
+            timeout_seconds: 900
+        emits: [offer-graph-crawled]
+    tools:
+      - id: public-ad-library-tool
+        name: Public Ad Library Reader
+        kind: browser
+        permissions: [public-ad-evidence:read]
+      - id: governed-crawler-tool
+        name: Governed Funnel Crawler
+        kind: browser
+        permissions: [authorized-sites:read, public-reference:read]
+      - id: scheduler-tool
+        name: Scheduler
+        kind: internal
+        permissions: [jobs:schedule]
+    agents:
+      - id: mika
+        name: Mika
+        role: Market and offer intelligence specialist
+        mission: Discover and monitor evidence-backed market opportunities while clearly separating signals from proven business results.
+        capabilities: [discover-scaled-offers, monitor-offer-activity, crawl-offer-graph, score-offer-opportunity]
+        tools: [public-ad-library-tool, governed-crawler-tool, knowledge-search-tool, scheduler-tool]
+        consumes: [offer-watch-created]
+        produces: [offer-reference-discovered, offer-snapshot-captured, opportunity-scored]
+        policies: [authorized-web-evidence, respectful-crawl, evidence-not-revenue-claim]
+        memory: [permanent, operational, episodic, shared]
+        max_cost_per_run: 4.0
+    integrations:
+      - id: meta-ad-library
+        name: Meta Ad Library
+        kind: source
+        auth: none
+        capabilities: [discover-scaled-offers, monitor-offer-activity]
+        rate_limit: conservative-public-access
+        respect_robots: true
+        permission_mode: public_reference
+        data_classification: public
+      - id: authorized-web-capture
+        name: Authorized Web Capture
+        kind: source
+        auth: none
+        capabilities: [crawl-offer-graph]
+        rate_limit: 1-request-per-second-per-host
+        respect_robots: true
+        permission_mode: authorized
+        data_classification: public
+    api_resources:
+      - id: offer-references-api
+        name: Offer References API
+        entity: offer-reference
+        path: /offer-intelligence/references
+        operations: [list, get, create, update, archive]
+      - id: offer-watches-api
+        name: Offer Watches API
+        entity: offer-watch
+        path: /offer-intelligence/watches
+        operations: [list, get, create, update, archive]
+      - id: offer-crawls-api
+        name: Offer Crawls API
+        entity: crawl-run
+        path: /offer-intelligence/crawls
+        operations: [list, get, create]
+    ui_surfaces:
+      - id: offer-swipe-library
+        name: Offer Swipe Library
+        kind: list
+        entity: offer-reference
+        route: /offer-intelligence/swipe
+        capabilities: [discover-scaled-offers, score-offer-opportunity]
+        components: [SearchBar, AdvancedFilterPanel, OfferCardGrid, TrendScoreBadge, SavedViewPicker]
+        actions: [save, monitor, open-evidence, model-original-offer]
+      - id: offer-monitoring-dashboard
+        name: Offer Monitoring Dashboard
+        kind: dashboard
+        entity: offer-watch
+        route: /offer-intelligence/monitoring
+        capabilities: [monitor-offer-activity]
+        components: [WatchCardGrid, ActiveAdsMetric, DailyVariationMetric, WeeklyAverageMetric, HistoricalPeakMetric, ConsecutiveDaysMetric, HistoryChart, AlertFeed]
+        actions: [create-watch, pause-watch, scan-now, open-history]
+      - id: offer-watch-detail
+        name: Offer Watch Detail
+        kind: detail
+        entity: offer-watch
+        route: /offer-intelligence/monitoring/:id
+        capabilities: [monitor-offer-activity, score-offer-opportunity]
+        components: [MetricGrid, SevenDayChart, ThirtyDayChart, WeeklyChart, SnapshotTable, EvidenceDrawer]
+        actions: [edit-alerts, export-evidence, recalculate-score]
+      - id: offer-url-extractor
+        name: Offer URL Extractor
+        kind: wizard
+        entity: crawl-run
+        route: /offer-intelligence/url-extractor
+        capabilities: [crawl-offer-graph]
+        components: [RootUrlInput, PermissionBasisSelector, ScopeEditor, UrlResultList, PageTypeBadge, RelevanceBadge, FunnelGraph]
+        actions: [extract-urls, copy-url, open-page, filter-results, export-graph]
+    metrics:
+      - id: monitored-active-ad-count
+        name: Monitored Active Ad Count
+        unit: count
+        source: offer-snapshot.active_ads_count
+        aggregation: latest
+      - id: offer-daily-variation
+        name: Offer Daily Variation
+        unit: percent
+        source: offer-snapshot.daily_variation
+        aggregation: latest
+      - id: crawl-classification-confidence
+        name: Crawl Classification Confidence
+        unit: ratio
+        source: offer-page.relevance_score
+        aggregation: avg

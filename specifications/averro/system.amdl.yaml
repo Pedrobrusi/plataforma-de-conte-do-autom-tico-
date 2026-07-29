@@ -1,0 +1,27 @@
+amdl: "1.0"
+metadata:
+  id: averro-platform
+  name: Averro Platform
+  version: 1.0.0
+  description: >-
+    AI-native operating platform for discovering markets, understanding customers,
+    building original direct-response offers, producing content, distributing work,
+    measuring outcomes and learning under human governance.
+  owners: [Pedro Brusi, Laura]
+  tags: [ai-native, workspace-first, event-driven, human-approval]
+defaults:
+  workspace_scoped: true
+  audited: true
+  versioned: false
+  soft_delete: true
+  approval_for_external_writes: true
+includes:
+  - domains/foundation.amdl.yaml
+  - domains/aios.amdl.yaml
+  - domains/knowledge.amdl.yaml
+  - domains/offer-intelligence.amdl.yaml
+  - domains/offer-modeling.amdl.yaml
+  - domains/content-studio.amdl.yaml
+  - domains/analytics.amdl.yaml
+  - domains/mission-control.amdl.yaml
+domains: []
