@@ -4,6 +4,10 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+echo "==> Secret + env safety checks"
+bash scripts/scan-secrets.sh
+bash scripts/check-env.sh
+
 echo "==> AMA/AMDL validate + tests"
 bash scripts/ama.sh validate specifications/averro/system.amdl.yaml
 bash scripts/ama-test.sh
